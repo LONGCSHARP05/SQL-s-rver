@@ -1,9 +1,20 @@
-﻿-- Sử dụng cơ sở dữ liệu
 USE QuanLyTiemChungAnhPham;
-GO
+GO 
+
+
+-- Xóa tất cả các khóa ngoại trong cơ sở dữ liệu hiện tại
+DECLARE @sql NVARCHAR(MAX) = N'';
+
+-- Tạo script để xóa các khóa ngoại
+SELECT @sql += 'ALTER TABLE [' + OBJECT_SCHEMA_NAME(parent_object_id) + '].[' + OBJECT_NAME(parent_object_id) + '] DROP CONSTRAINT [' + name + '];' + CHAR(13)
+FROM sys.foreign_keys;
+
+-- Thực thi script
+EXEC sp_executesql @sql;
 
 -- Xóa bảng nếu tồn tại trước khi tạo mới
--- DROP TABLE IF EXISTS CHI_TIET_LICH_HEN, CHI_TIET_LO_VACCINE, CHI_TIET_LAN_TIEM, PHIEU_KHAM, LAN_TIEM,  PHAN_UNG_SAU_TIEM, CAN_BO_CO_SO, LICH_HEN,  HO_SO_TIEM_CHUNG, LO_VACCINE, LAN_TIEM, VACCINE, CO_SO, CAN_BO_Y_TE, BENH_NHAN,VACCINE;
+DROP TABLE IF EXISTS CHI_TIET_LICH_HEN, CHI_TIET_LO_VACCINE, CHI_TIET_LAN_TIEM, PHIEU_KHAM, LAN_TIEM,  PHAN_UNG_SAU_TIEM, CAN_BO_CO_SO, LICH_HEN,  HO_SO_TIEM_CHUNG, LO_VACCINE, VACCINE, CO_SO, CAN_BO_Y_TE, BENH_NHAN;
+
 
 -- Bảng BỆNH NHÂN
 CREATE TABLE BENH_NHAN (
@@ -47,13 +58,13 @@ CREATE TABLE CO_SO (
 
 -- Bảng CÁN BỘ - CƠ SỞ
 CREATE TABLE CAN_BO_CO_SO (    -- Ví dụ: PC000001, PC000002
-    Ma_Can_Bo_Co_So VARCHAR(30) PRIMARY KEY NOT NULL, -- Ví dụ: PC000001
     Ma_Co_So VARCHAR(15) NOT NULL,             -- Ví dụ: CS000001
     Ma_Can_Bo VARCHAR(15) NOT NULL,            -- Ví dụ: CB000001
     Chuc_Vu NVARCHAR(100) NOT NULL,            -- Ví dụ: Trưởng khoa, Bác sĩ, Y tá
     Ngay_Bat_Dau DATE NOT NULL,                -- Ví dụ: 2023-01-01
     Ngay_Ket_Thuc DATE, 
-                         -- Ví dụ: 2023-12-31
+    
+    PRIMARY KEY (Ma_Can_Bo, Ma_Co_So),                     -- Ví dụ: 2023-12-31
     FOREIGN KEY (Ma_Co_So) REFERENCES CO_SO(Ma_Co_So),
     FOREIGN KEY (Ma_Can_Bo) REFERENCES CAN_BO_Y_TE(Ma_Can_Bo)
 );
@@ -72,13 +83,14 @@ CREATE TABLE HO_SO_TIEM_CHUNG (
 CREATE TABLE PHIEU_KHAM (
     Ma_Phieu_Kham VARCHAR(15) PRIMARY KEY NOT NULL,     -- Ví dụ: PK000001, PK000002
     Ma_Ho_So VARCHAR(15) NOT NULL, 
-    Ma_Can_Bo_Co_So VARCHAR (30) NOT NULL,           -- Ví dụ: CB000001
+    Ma_Can_Bo VARCHAR(15) NOT NULL,
+    Ma_Co_So VARCHAR(15) NOT NULL,          -- Ví dụ: CB000001
     Ngay_Kham DATE NOT NULL,                   -- Ví dụ: 2023-10-05
     Noi_Dung NVARCHAR(MAX),   
     Chi_Dinh NVARCHAR (30) CHECK (Chi_Dinh IN (N'Đủ điều kiện tiêm', N'Hủy bỏ',N'Không đủ điều kiện')) NOT NULL,
     
     FOREIGN KEY (Ma_Ho_So) REFERENCES HO_SO_TIEM_CHUNG(Ma_Ho_So),
-    FOREIGN KEY (Ma_Can_Bo_Co_So) REFERENCES CAN_BO_CO_SO(Ma_Can_Bo_Co_So)
+    FOREIGN KEY (Ma_Can_Bo, Ma_Co_So) REFERENCES CAN_BO_CO_SO(Ma_Can_Bo, Ma_Co_So)
 );
 -- Bảng VACCINE
 CREATE TABLE VACCINE (
@@ -107,15 +119,16 @@ CREATE TABLE LO_VACCINE (
 
 -- Bảng LẦN TIÊM
 CREATE TABLE LAN_TIEM (
-    Ma_Lan_Tiem VARCHAR(15) PRIMARY KEY NOT NULL,       -- Ví dụ: LT000001, LT000002
+        Ma_Lan_Tiem VARCHAR(15) PRIMARY KEY NOT NULL,       -- Ví dụ: LT000001, LT000002
         Ma_Ho_So  VARCHAR(15) NOT NULL,        -- Ví dụ: TC000001
-        Ma_Can_Bo_Co_So VARCHAR (30) NOT NULL,        -- Ví dụ: CB000001        -- Ví dụ: TC000001
+        Ma_Can_Bo VARCHAR(15) NOT NULL,
+        Ma_Co_So VARCHAR(15) NOT NULL,         -- Ví dụ: CB000001        -- Ví dụ: TC000001
         Ngay_Tiem DATE NOT NULL,                   -- Ví dụ: 2023-10-10
         Ket_Qua_Tiem NVARCHAR(100) CHECK (Ket_Qua_Tiem IN (N'Thành công', N'Xảy ra phản ứng', N'Hoãn tiêm', N'Đình chỉ vĩnh viễn', N'Không thành công')) NOT NULL,          
                        -- Ví dụ: Đã tiêm thành công
         
         FOREIGN KEY (Ma_Ho_So) REFERENCES HO_SO_TIEM_CHUNG(Ma_Ho_So),
-        FOREIGN KEY (Ma_Can_Bo_Co_So) REFERENCES CAN_BO_CO_SO(Ma_Can_Bo_Co_So)
+        FOREIGN KEY (Ma_Can_Bo, Ma_Co_So) REFERENCES CAN_BO_CO_SO(Ma_Can_Bo, Ma_Co_So)
 );
 
 
@@ -173,4 +186,3 @@ CREATE TABLE CHI_TIET_LICH_HEN (  -- Ví dụ: CL000001, CL000002
     FOREIGN KEY (Ma_Lich_Hen) REFERENCES LICH_HEN(Ma_Lich_Hen),
     FOREIGN KEY (Ma_Vaccine) REFERENCES VACCINE(Ma_Vaccine)
 );
-
