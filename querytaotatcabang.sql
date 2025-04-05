@@ -1,5 +1,6 @@
 USE UDCSDL
-GO 
+go
+
 
 
 -- Xóa tất cả các khóa ngoại trong cơ sở dữ liệu hiện tại
@@ -19,6 +20,7 @@ DROP TABLE IF EXISTS CHI_TIET_LICH_HEN, CHI_TIET_LO_VACCINE, CHI_TIET_LAN_TIEM, 
 -- Bảng BỆNH NHÂN
 CREATE TABLE BENH_NHAN (
     Ma_Benh_Nhan VARCHAR(15) PRIMARY KEY NOT NULL,      -- Ví dụ: BN000001, BN000002
+    Ma_Tiem_Chung CHAR(15) UNIQUE NOT null,        -- Ví dụ: 349349333000001
     Ho_Ten NVARCHAR(100) NOT NULL,             -- Ví dụ: Nguyễn Văn A
     Ngay_Sinh DATE NOT NULL,                   -- Ví dụ: 1990-05-15
     Gioi_Tinh BIT NULL,           -- Ví dụ: Nam, Nữ, Liên giới tính
@@ -48,7 +50,7 @@ CREATE TABLE CAN_BO_Y_TE (
 
 -- Bảng CƠ SỞ
 CREATE TABLE CO_SO (
-    Ma_Co_So VARCHAR(15) PRIMARY KEY NOT NULL,          -- Ví dụ: CS000001, CS000002
+    Ma_Co_So VARCHAR(4) PRIMARY KEY NOT NULL,          -- Ví dụ: CS000001, CS000002
     Ten_Co_So NVARCHAR(100) NOT NULL,          -- Ví dụ: Trung tâm Y tế quận 1
     Dia_Chi NVARCHAR(255) NOT NULL,            -- Ví dụ: 123 Nguyễn Huệ, Q.1, TP.HCM
     So_Dien_Thoai VARCHAR(15) NOT NULL,        -- Ví dụ: 0283123456
@@ -58,7 +60,7 @@ CREATE TABLE CO_SO (
 
 -- Bảng CÁN BỘ - CƠ SỞ
 CREATE TABLE CAN_BO_CO_SO (    -- Ví dụ: PC000001, PC000002
-    Ma_Co_So VARCHAR(15) NOT NULL,             -- Ví dụ: CS000001
+    Ma_Co_So VARCHAR(4) NOT NULL,             -- Ví dụ: CS000001
     Ma_Can_Bo VARCHAR(15) NOT NULL,            -- Ví dụ: CB000001
     Chuc_Vu NVARCHAR(100) NOT NULL,            -- Ví dụ: Trưởng khoa, Bác sĩ, Y tá
     Ngay_Bat_Dau DATE NOT NULL,                -- Ví dụ: 2023-01-01
@@ -70,26 +72,18 @@ CREATE TABLE CAN_BO_CO_SO (    -- Ví dụ: PC000001, PC000002
 );
 
 
--- Bảng HỒ SƠ TIÊM CHỦNG
-CREATE TABLE HO_SO_TIEM_CHUNG (
-    Ma_Ho_So VARCHAR(15) PRIMARY KEY NOT NULL,          -- Ví dụ: HS000001, HS000002
-    Ma_Tiem_Chung CHAR(15) UNIQUE NOT NULL,        -- Ví dụ: 349349333000001
-    Ma_Benh_Nhan VARCHAR(15) UNIQUE NOT NULL,         -- Ví dụ: BN000001
-    Ngay_Tao DATETIME NOT NULL,                    -- Ví dụ: 2023-10-01 08:00:00
-    Trang_Thai BIT NOT NULL,
-    FOREIGN KEY (Ma_Benh_Nhan) REFERENCES BENH_NHAN(Ma_Benh_Nhan)
-);
+
 -- Bảng PHIẾU KHÁM
 CREATE TABLE PHIEU_KHAM (
     Ma_Phieu_Kham VARCHAR(15) PRIMARY KEY NOT NULL,     -- Ví dụ: PK000001, PK000002
-    Ma_Ho_So VARCHAR(15) NOT NULL, 
+    Ma_Benh_Nhan VARCHAR(15) NOT NULL,        -- Ví dụ: BN000001
     Ma_Can_Bo VARCHAR(15) NOT NULL,
-    Ma_Co_So VARCHAR(15) NOT NULL,          -- Ví dụ: CB000001
+    Ma_Co_So VARCHAR(4) NOT NULL,          -- Ví dụ: CB000001
     Ngay_Kham DATE NOT NULL,                   -- Ví dụ: 2023-10-05
     Noi_Dung NVARCHAR(MAX),   
     Chi_Dinh NVARCHAR (30) CHECK (Chi_Dinh IN (N'Đủ điều kiện tiêm', N'Hủy bỏ',N'Không đủ điều kiện')) NOT NULL,
     
-    FOREIGN KEY (Ma_Ho_So) REFERENCES HO_SO_TIEM_CHUNG(Ma_Ho_So),
+    FOREIGN KEY (Ma_Benh_Nhan) REFERENCES BENH_NHAN(Ma_Benh_Nhan),
     FOREIGN KEY (Ma_Can_Bo, Ma_Co_So) REFERENCES CAN_BO_CO_SO(Ma_Can_Bo, Ma_Co_So)
 );
 -- Bảng VACCINE
@@ -120,14 +114,14 @@ CREATE TABLE LO_VACCINE (
 -- Bảng LẦN TIÊM
 CREATE TABLE LAN_TIEM (
         Ma_Lan_Tiem VARCHAR(15) PRIMARY KEY NOT NULL,       -- Ví dụ: LT000001, LT000002
-        Ma_Ho_So  VARCHAR(15) NOT NULL,        -- Ví dụ: TC000001
+        Ma_Benh_Nhan VARCHAR(15) NOT NULL,        -- Ví dụ: TC000001
         Ma_Can_Bo VARCHAR(15) NOT NULL,
-        Ma_Co_So VARCHAR(15) NOT NULL,         -- Ví dụ: CB000001        -- Ví dụ: TC000001
+        Ma_Co_So VARCHAR(4) NOT NULL,         -- Ví dụ: CB000001        -- Ví dụ: TC000001
         Ngay_Tiem DATE NOT NULL,                   -- Ví dụ: 2023-10-10
         Ket_Qua_Tiem NVARCHAR(100) CHECK (Ket_Qua_Tiem IN (N'Thành công', N'Xảy ra phản ứng', N'Hoãn tiêm', N'Đình chỉ vĩnh viễn', N'Không thành công')) NOT NULL,          
                        -- Ví dụ: Đã tiêm thành công
         
-        FOREIGN KEY (Ma_Ho_So) REFERENCES HO_SO_TIEM_CHUNG(Ma_Ho_So),
+        FOREIGN KEY (Ma_Benh_Nhan) REFERENCES BENH_NHAN(Ma_Benh_Nhan),
         FOREIGN KEY (Ma_Can_Bo, Ma_Co_So) REFERENCES CAN_BO_CO_SO(Ma_Can_Bo, Ma_Co_So)
 );
 
@@ -154,10 +148,10 @@ CREATE TABLE PHAN_UNG_SAU_TIEM (
 -- Bảng LỊCH HẸN
 CREATE TABLE LICH_HEN (
     Ma_Lich_Hen VARCHAR(15) PRIMARY KEY NOT NULL,       -- Ví dụ: LH000001, LH000002
-    Ma_Co_So VARCHAR(15) NOT NULL,           -- Ví dụ: CS000001
+    Ma_Co_So VARCHAR(4) NOT NULL,           -- Ví dụ: CS000001
     Ma_Benh_Nhan VARCHAR(15) NOT NULL,   
-    Ngay_Dat_Lich DATETIME NOT NULL,      -- Ví dụ: BN000001
-    Ngay_Hen DATETIME NOT NULL,                    -- Ví dụ: 2023-11-01
+    Ngay_Dat_Lich DATE NOT NULL,      -- Ví dụ: BN000001
+    Ngay_Hen DATE NOT NULL,                    -- Ví dụ: 2023-11-01
     Ghi_Chu NVARCHAR(255) NULL,                     -- Ví dụ: Tiêm mũi 2 vắc-xin COVID-19
     Tinh_Trang_Lich NVARCHAR(50) CHECK (Tinh_Trang_Lich IN (N'Đã xác nhận', N'Đã gửi mail', N'Đã hủy', N'Đang chờ')) NOT NULL,     -- Ví dụ: Đã xác nhận, Chưa xác nhận, Đã hủy
     FOREIGN KEY (Ma_Benh_Nhan) REFERENCES BENH_NHAN(Ma_Benh_Nhan),
@@ -169,7 +163,7 @@ CREATE TABLE LICH_HEN (
 -- Bảng CHI TIẾT LÔ VACCINE
 CREATE TABLE CHI_TIET_LO_VACCINE (    -- Ví dụ: CL000001, CL000002
     Ma_Lo VARCHAR(20) NOT NULL,                -- Ví dụ: LOT2023001
-    Ma_Co_So VARCHAR(15) NOT NULL,             -- Ví dụ: CS000001
+    Ma_Co_So VARCHAR(4) NOT NULL,             -- Ví dụ: CS000001
     So_Lieu_Da_Su_Dung INT NOT NULL DEFAULT 0, -- Ví dụ: 250
     So_Lieu_Ton_Kho INT NOT NULL,              -- Ví dụ: 750
     Ngay_Nhap DATE NOT NULL,                   -- Ví dụ: 2023-06-01
@@ -191,89 +185,64 @@ CREATE TABLE CHI_TIET_LICH_HEN (  -- Ví dụ: CL000001, CL000002
 -- GO
 
 --Nhập liệu cho bảng bệnh nhân
-INSERT INTO BENH_NHAN (Ma_Benh_Nhan, Ho_Ten, Ngay_Sinh, Gioi_Tinh, Dia_Chi, So_Dien_Thoai, Email, CCCD, Nguoi_Giam_Ho, Trang_Thai) 
-VALUES (
-    'BNHN991234',  -- Mã bệnh nhân (Hà Nội, sinh 1999, STT 1234)
-    N'Trần Minh Hoàng',
-    '1999-08-22',
-    1,  -- Nam (1: Nam, 0: Nữ, NULL: Không xác định)
-    N'123 Lê Lợi, Q.1, TP.HCM',
-    '0912345678',
-    'tranminhhoang@gmail.com',
-    '079202000001',  -- Số CCCD (có thể NULL)
-    0,  -- Không có người giám hộ (1: Có, 0: Không)
-    1   -- Trạng thái hoạt động (1: Hoạt động, 0: Không hoạt động)
-);
-
-INSERT INTO BENH_NHAN (Ma_Benh_Nhan, Ho_Ten, Ngay_Sinh, Gioi_Tinh, Dia_Chi, So_Dien_Thoai, Email, CCCD, Nguoi_Giam_Ho, Trang_Thai) 
+INSERT INTO BENH_NHAN (Ma_Benh_Nhan, Ma_Tiem_Chung, Ho_Ten, Ngay_Sinh, Gioi_Tinh, Dia_Chi, So_Dien_Thoai, Email, CCCD, Nguoi_Giam_Ho, Trang_Thai) 
 VALUES
-    ('BNHN981001', N'Nguyễn Văn Hải', '1998-01-15', 1, N'12 Cầu Giấy, Hà Nội', '0912345001', 'nguyenvanhai@gmail.com', '001234567891', 0, 1),
-    ('BNHN990002', N'Trần Thị Lan', '1999-05-20', 0, N'45 Tây Hồ, Hà Nội', '0912345002', 'tranthilan@gmail.com', '002345678912', 0, 1),
-    ('BNHN010003', N'Lê Quang Huy', '2001-09-10', 1, N'78 Đống Đa, Hà Nội', '0912345003', 'lequanghuy@gmail.com', '003456789123', 0, 1),
-    ('BNHN020004', N'Hoàng Minh Đức', '2002-11-25', 1, N'22 Hai Bà Trưng, Hà Nội', '0912345004', 'hoangminhduc@gmail.com', '004567891234', 0, 1),
-    ('BNHN030005', N'Phạm Thu Hằng', '2003-03-05', 0, N'90 Hoàn Kiếm, Hà Nội', '0912345005', 'phamthuhang@gmail.com', '005678912345', 0, 1),
-    ('BNHN970006', N'Vũ Hoài Nam', '1997-07-30', 1, N'15 Ba Đình, Hà Nội', '0912345006', 'vuhoainam@gmail.com', '006789123456', 0, 1),
-    ('BNHN980007', N'Đỗ Thị Thanh', '1998-12-18', 0, N'36 Thanh Xuân, Hà Nội', '0912345007', 'dothithanh@gmail.com', '007891234567', 0, 1),
-    ('BNHN000008', N'Ngô Văn Toàn', '2000-04-22', 1, N'55 Hoàng Mai, Hà Nội', '0912345008', 'ngovantoan@gmail.com', '008912345678', 0, 1),
-    ('BNHN990009', N'Bùi Thu Phương', '1999-06-14', 0, N'87 Long Biên, Hà Nội', '0912345009', 'buithuphuong@gmail.com', '009123456789', 0, 1),
-    ('BNHN010010', N'Đinh Tiến Dũng', '2001-10-29', 1, N'33 Bắc Từ Liêm, Hà Nội', '0912345010', 'dinhtiendung@gmail.com', '010234567890', 0, 1),
-    
-    ('BNHN030011', N'Nguyễn Thị Mai', '2003-08-19', 0, N'66 Nam Từ Liêm, Hà Nội', '0912345011', 'nguyenthimai@gmail.com', '011345678901', 0, 1),
-    ('BNHN920012', N'Hoàng Văn Kiên', '1992-01-10', 1, N'99 Cầu Giấy, Hà Nội', '0912345012', 'hoangvankien@gmail.com', '012456789012', 0, 1),
-    ('BNHN950013', N'Phạm Văn Hoàng', '1995-02-05', 1, N'12 Tây Hồ, Hà Nội', '0912345013', 'phamvanhoang@gmail.com', '013567890123', 0, 1),
-    ('BNHN000014', N'Lê Thị Ngọc', '2000-07-25', 0, N'55 Đống Đa, Hà Nội', '0912345014', 'lethingoc@gmail.com', '014678901234', 0, 1),
-    ('BNHN010015', N'Trần Minh Tâm', '2001-09-18', 1, N'77 Hoàn Kiếm, Hà Nội', '0912345015', 'tranminhtam@gmail.com', '015789012345', 0, 1),
-    ('BNHN030016', N'Nguyễn Tuấn Anh', '2003-06-07', 1, N'90 Hai Bà Trưng, Hà Nội', '0912345016', 'nguyentuananh@gmail.com', '016890123456', 0, 1),
-    ('BNHN980017', N'Vũ Thanh Hà', '1998-12-21', 0, N'42 Ba Đình, Hà Nội', '0912345017', 'vuthanhha@gmail.com', '017901234567', 0, 1),
-    ('BNHN020018', N'Đỗ Hữu Phước', '2002-03-03', 1, N'33 Thanh Xuân, Hà Nội', '0912345018', 'dohuuphuoc@gmail.com', '018012345678', 0, 1),
-    ('BNHN970019', N'Ngô Văn Minh', '1997-11-14', 1, N'11 Hoàng Mai, Hà Nội', '0912345019', 'ngovanminh@gmail.com', '019123456780', 0, 1),
-    ('BNHN000020', N'Bùi Hồng Nhung', '2000-04-25', 0, N'77 Long Biên, Hà Nội', '0912345020', 'buihongnhung@gmail.com', '020234567891', 0, 1),
-    
-    ('BNHN990021', N'Đinh Văn Thắng', '1999-07-12', 1, N'55 Bắc Từ Liêm, Hà Nội', '0912345021', 'dinhvanthang@gmail.com', '021345678902', 0, 1),
-    ('BNHN030022', N'Nguyễn Văn Bình', '2003-02-20', 1, N'88 Nam Từ Liêm, Hà Nội', '0912345022', 'nguyenvanbinh@gmail.com', '022456789013', 0, 1),
-    ('BNHN010023', N'Hoàng Ngọc Lan', '2001-09-28', 0, N'33 Cầu Giấy, Hà Nội', '0912345023', 'hoangngoclan@gmail.com', '023567890124', 0, 1),
-    ('BNHN970024', N'Phạm Văn Hùng', '1997-11-10', 1, N'66 Tây Hồ, Hà Nội', '0912345024', 'phamvanhung@gmail.com', '024678901235', 0, 1),
-    ('BNHN000025', N'Lê Thị Hương', '2000-07-15', 0, N'99 Đống Đa, Hà Nội', '0912345025', 'lethihuong@gmail.com', '025789012346', 0, 1),
-    ('BNHN020026', N'Trần Minh Khang', '2002-03-27', 1, N'12 Hoàn Kiếm, Hà Nội', '0912345026', 'tranminhkhang@gmail.com', '026890123457', 0, 1),
-    ('BNHN030027', N'Nguyễn Thùy Dung', '2003-06-22', 0, N'42 Hai Bà Trưng, Hà Nội', '0912345027', 'nguyenthuydung@gmail.com', '027901234568', 0, 1),
-    ('BNHN980028', N'Vũ Quang Huy', '1998-12-11', 1, N'33 Ba Đình, Hà Nội', '0912345028', 'vuquanghuy@gmail.com', '028012345679', 0, 1),
-    ('BNHN990029', N'Đỗ Tiến Dũng', '1999-05-14', 1, N'77 Thanh Xuân, Hà Nội', '0912345029', 'dotiendung@gmail.com', '029123456780', 0, 1),
-    ('BNHN970030', N'Ngô Văn Lộc', '1997-08-05', 1, N'66 Hoàng Mai, Hà Nội', '0912345030', 'ngovanloc@gmail.com', '030234567891', 0, 1);
-
-
-   INSERT INTO BENH_NHAN (Ma_Benh_Nhan, Ho_Ten, Ngay_Sinh, Gioi_Tinh, Dia_Chi, So_Dien_Thoai, Email, CCCD, Nguoi_Giam_Ho, Trang_Thai) 
-VALUES
-    -- 10 trẻ em có người giám hộ, chưa có căn cước
-    ('BNHN170031', N'Nguyễn An Khôi', '2017-06-15', 1, N'12 Cầu Giấy, Hà Nội', '0912345031', 'nguyenankhoi@gmail.com',null, 1, 1),
-    ('BNHN180032', N'Hoàng Minh Châu', '2018-08-20', 0, N'45 Tây Hồ, Hà Nội', '0912345032', 'hoangminhchau@gmail.com',null, 1, 1),
-    ('BNHN190033', N'Lê Quang Nhật', '2019-09-10', 1, N'78 Đống Đa, Hà Nội', '0912345033', 'lequangnhat@gmail.com',null, 1, 1),
-    ('BNHN200034', N'Phạm Gia Bảo', '2020-02-25', 1, N'22 Hai Bà Trưng, Hà Nội', '0912345034', 'phamgiabao@gmail.com', NULL, 1, 1),
-    ('BNHN210035', N'Đỗ Thảo Vy', '2021-03-05', 0, N'90 Hoàn Kiếm, Hà Nội', '0912345035', 'dothaovy@gmail.com', NULL, 1, 1),
-    ('BNHN180036', N'Vũ Minh Tuấn', '2018-07-30', 1, N'15 Ba Đình, Hà Nội', '0912345036', 'vuminhtuan@gmail.com', NULL, 1, 1),
-    ('BNHN190037', N'Ngô Hoàng My', '2019-12-18', 0, N'36 Thanh Xuân, Hà Nội', '0912345037', 'ngohoangmy@gmail.com', NULL, 1, 1),
-    ('BNHN200038', N'Trần Ngọc Bảo', '2020-04-22', 1, N'55 Hoàng Mai, Hà Nội', '0912345038', 'tranngocbao@gmail.com', NULL, 1, 1),
-    ('BNHN210039', N'Bùi Anh Khoa', '2021-06-14', 1, N'87 Long Biên, Hà Nội', '0912345039', 'buianhkhoa@gmail.com', NULL, 1, 1),
-    ('BNHN220040', N'Đinh Thanh Hà', '2022-10-29', 0, N'33 Bắc Từ Liêm, Hà Nội', '0912345040', 'dinhthanhha@gmail.com', NULL, 1, 1),
-
-    -- 5 người có trạng thái = 0
-    ('BNHN950041', N'Nguyễn Hữu Toàn', '1995-07-12', 1, N'66 Nam Từ Liêm, Hà Nội', '0912345041', 'nguyenhuutoan@gmail.com', '041345678901', 0, 0),
-    ('BNHN920042', N'Hoàng Văn Nghĩa', '1992-01-10', 1, N'99 Cầu Giấy, Hà Nội', '0912345042', 'hoangvannghia@gmail.com', '042456789012', 0, 0),
-    ('BNHN950043', N'Phạm Hoàng Nam', '1995-02-05', 1, N'12 Tây Hồ, Hà Nội', '0912345043', 'phamhoangnam@gmail.com', '043567890123', 0, 0),
-    ('BNHN000044', N'Lê Văn Khánh', '2000-07-25', 1, N'55 Đống Đa, Hà Nội', '0912345044', 'levankhanh@gmail.com', '044678901234', 0, 0),
-    ('BNHN010045', N'Trần Thị Huyền', '2001-09-18', 0, N'77 Hoàn Kiếm, Hà Nội', '0912345045', 'tranthihuyen@gmail.com', '045789012345', 0, 0),
-
-    -- 10 người ở Hồ Chí Minh
-    ('BNHCM980046', N'Nguyễn Văn Tín', '1998-06-25', 1, N'12 Quận 1, TP.HCM', '0912345046', 'nguyenvantin@gmail.com', '046890123456', 0, 1),
-    ('BNHCM990047', N'Phạm Thị Thảo', '1999-05-20', 0, N'45 Quận 3, TP.HCM', '0912345047', 'phamthithao@gmail.com', '047901234567', 0, 1),
-    ('BNHCM000048', N'Lê Minh Đức', '2000-09-10', 1, N'78 Quận 5, TP.HCM', '0912345048', 'leminhduc@gmail.com', '048012345678', 0, 1),
-    ('BNHCM020049', N'Hoàng Văn Trung', '2002-11-25', 1, N'22 Quận 7, TP.HCM', '0912345049', 'hoangvantrung@gmail.com', '049123456789', 0, 1),
-    ('BNHCM030050', N'Đỗ Bích Hằng', '2003-03-05', 0, N'90 Quận 10, TP.HCM', '0912345050', 'dobichhang@gmail.com', '050234567890', 0, 1),
-    ('BNHCM970051', N'Vũ Hoài Phong', '1997-07-30', 1, N'15 Quận Bình Thạnh, TP.HCM', '0912345051', 'vuhoaiphong@gmail.com', '051345678901', 0, 1),
-    ('BNHCM980052', N'Ngô Thanh Mai', '1998-12-18', 0, N'36 Quận Phú Nhuận, TP.HCM', '0912345052', 'ngothanhmai@gmail.com', '052456789012', 0, 1),
-    ('BNHCM000053', N'Bùi Văn Hậu', '2000-04-22', 1, N'55 Quận Tân Bình, TP.HCM', '0912345053', 'buivanhau@gmail.com', '053567890123', 0, 1),
-    ('BNHCM990054', N'Đinh Ngọc Dung', '1999-06-14', 0, N'87 Quận Gò Vấp, TP.HCM', '0912345054', 'dinhngocdung@gmail.com', '054678901234', 0, 1),
-    ('BNHCM010055', N'Trần Hoàng Anh', '2001-10-29', 1, N'33 Quận 2, TP.HCM', '0912345055', 'tranhoanganh@gmail.com', '055789012345', 0, 1);
-
+    ('BNHN991234', '123456789012345', N'Trần Minh Hoàng', '1999-08-22', 1, N'123 Lê Lợi, Q.1, TP.HCM', '0912345678', 'tranminhhoang@gmail.com', '079202000001', 0, 1),
+    ('BNHN981001', '234567890123456', N'Nguyễn Văn Hải', '1998-01-15', 1, N'12 Cầu Giấy, Hà Nội', '0912345001', 'nguyenvanhai@gmail.com', '001234567891', 0, 1),
+    ('BNHN990002', '345678901234567', N'Trần Thị Lan', '1999-05-20', 0, N'45 Tây Hồ, Hà Nội', '0912345002', 'tranthilan@gmail.com', '002345678912', 0, 1),
+    ('BNHN010003', '456789012345678', N'Lê Quang Huy', '2001-09-10', 1, N'78 Đống Đa, Hà Nội', '0912345003', 'lequanghuy@gmail.com', '003456789123', 0, 1),
+    ('BNHN020004', '567890123456789', N'Hoàng Minh Đức', '2002-11-25', 1, N'22 Hai Bà Trưng, Hà Nội', '0912345004', 'hoangminhduc@gmail.com', '004567891234', 0, 1),
+    ('BNHN030005', '678901234567890', N'Phạm Thu Hằng', '2003-03-05', 0, N'90 Hoàn Kiếm, Hà Nội', '0912345005', 'phamthuhang@gmail.com', '005678912345', 0, 1),
+    ('BNHN970006', '789012345678901', N'Vũ Hoài Nam', '1997-07-30', 1, N'15 Ba Đình, Hà Nội', '0912345006', 'vuhoainam@gmail.com', '006789123456', 0, 1),
+    ('BNHN980007', '890123456789012', N'Đỗ Thị Thanh', '1998-12-18', 0, N'36 Thanh Xuân, Hà Nội', '0912345007', 'dothithanh@gmail.com', '007891234567', 0, 1),
+    ('BNHN000008', '901234567890123', N'Ngô Văn Toàn', '2000-04-22', 1, N'55 Hoàng Mai, Hà Nội', '0912345008', 'ngovantoan@gmail.com', '008912345678', 0, 1),
+    ('BNHN990009', '012345678901234', N'Bùi Thu Phương', '1999-06-14', 0, N'87 Long Biên, Hà Nội', '0912345009', 'buithuphuong@gmail.com', '009123456789', 0, 1),
+    ('BNHN010010', '123456789012346', N'Đinh Tiến Dũng', '2001-10-29', 1, N'33 Bắc Từ Liêm, Hà Nội', '0912345010', 'dinhtiendung@gmail.com', '010234567890', 0, 1),
+    ('BNHN030011', '234567890123457', N'Nguyễn Thị Mai', '2003-08-19', 0, N'66 Nam Từ Liêm, Hà Nội', '0912345011', 'nguyenthimai@gmail.com', '011345678901', 0, 1),
+    ('BNHN920012', '345678901234568', N'Hoàng Văn Kiên', '1992-01-10', 1, N'99 Cầu Giấy, Hà Nội', '0912345012', 'hoangvankien@gmail.com', '012456789012', 0, 1),
+    ('BNHN950013', '456789012345679', N'Phạm Văn Hoàng', '1995-02-05', 1, N'12 Tây Hồ, Hà Nội', '0912345013', 'phamvanhoang@gmail.com', '013567890123', 0, 1),
+    ('BNHN000014', '567890123456780', N'Lê Thị Ngọc', '2000-07-25', 0, N'55 Đống Đa, Hà Nội', '0912345014', 'lethingoc@gmail.com', '014678901234', 0, 1),
+    ('BNHN010015', '678901234567891', N'Trần Minh Tâm', '2001-09-18', 1, N'77 Hoàn Kiếm, Hà Nội', '0912345015', 'tranminhtam@gmail.com', '015789012345', 0, 1),
+    ('BNHN030016', '789012345678902', N'Nguyễn Tuấn Anh', '2003-06-07', 1, N'90 Hai Bà Trưng, Hà Nội', '0912345016', 'nguyentuananh@gmail.com', '016890123456', 0, 1),
+    ('BNHN980017', '890123456789013', N'Vũ Thanh Hà', '1998-12-21', 0, N'42 Ba Đình, Hà Nội', '0912345017', 'vuthanhha@gmail.com', '017901234567', 0, 1),
+    ('BNHN020018', '901234567890124', N'Đỗ Hữu Phước', '2002-03-03', 1, N'33 Thanh Xuân, Hà Nội', '0912345018', 'dohuuphuoc@gmail.com', '018012345678', 0, 1),
+    ('BNHN970019', '012345678901235', N'Ngô Văn Minh', '1997-11-14', 1, N'11 Hoàng Mai, Hà Nội', '0912345019', 'ngovanminh@gmail.com', '019123456780', 0, 1),
+    ('BNHN000020', '123456789012347', N'Bùi Hồng Nhung', '2000-04-25', 0, N'77 Long Biên, Hà Nội', '0912345020', 'buihongnhung@gmail.com', '020234567891', 0, 1),
+    ('BNHN990021', '234567890123458', N'Đinh Văn Thắng', '1999-07-12', 1, N'55 Bắc Từ Liêm, Hà Nội', '0912345021', 'dinhvanthang@gmail.com', '021345678902', 0, 1),
+    ('BNHN030022', '345678901234569', N'Nguyễn Văn Bình', '2003-02-20', 1, N'88 Nam Từ Liêm, Hà Nội', '0912345022', 'nguyenvanbinh@gmail.com', '022456789013', 0, 1),
+    ('BNHN010023', '456789012345680', N'Hoàng Ngọc Lan', '2001-09-28', 0, N'33 Cầu Giấy, Hà Nội', '0912345023', 'hoangngoclan@gmail.com', '023567890124', 0, 1),
+    ('BNHN970024', '567890123456781', N'Phạm Văn Hùng', '1997-11-10', 1, N'66 Tây Hồ, Hà Nội', '0912345024', 'phamvanhung@gmail.com', '024678901235', 0, 1),
+    ('BNHN000025', '678901234567892', N'Lê Thị Hương', '2000-07-15', 0, N'99 Đống Đa, Hà Nội', '0912345025', 'lethihuong@gmail.com', '025789012346', 0, 1),
+    ('BNHN020026', '789012345678903', N'Trần Minh Khang', '2002-03-27', 1, N'12 Hoàn Kiếm, Hà Nội', '0912345026', 'tranminhkhang@gmail.com', '026890123457', 0, 1),
+    ('BNHN030027', '890123456789014', N'Nguyễn Thùy Dung', '2003-06-22', 0, N'42 Hai Bà Trưng, Hà Nội', '0912345027', 'nguyenthuydung@gmail.com', '027901234568', 0, 1),
+    ('BNHN980028', '901234567890125', N'Vũ Quang Huy', '1998-12-11', 1, N'33 Ba Đình, Hà Nội', '0912345028', 'vuquanghuy@gmail.com', '028012345679', 0, 1),
+    ('BNHN990029', '012345678901236', N'Đỗ Tiến Dũng', '1999-05-14', 1, N'77 Thanh Xuân, Hà Nội', '0912345029', 'dotiendung@gmail.com', '029123456780', 0, 1),
+    ('BNHN970030', '123456789012348', N'Ngô Văn Lộc', '1997-08-05', 1, N'66 Hoàng Mai, Hà Nội', '0912345030', 'ngovanloc@gmail.com', '030234567891', 0, 1),
+    ('BNHN170031', '234567890123459', N'Nguyễn An Khôi', '2017-06-15', 1, N'12 Cầu Giấy, Hà Nội', '0912345031', 'nguyenankhoi@gmail.com', NULL, 1, 1),
+    ('BNHN180032', '345678901234570', N'Hoàng Minh Châu', '2018-08-20', 0, N'45 Tây Hồ, Hà Nội', '0912345032', 'hoangminhchau@gmail.com', NULL, 1, 1),
+    ('BNHN190033', '456789012345681', N'Lê Quang Nhật', '2019-09-10', 1, N'78 Đống Đa, Hà Nội', '0912345033', 'lequangnhat@gmail.com', NULL, 1, 1),
+    ('BNHN200034', '567890123456782', N'Phạm Gia Bảo', '2020-02-25', 1, N'22 Hai Bà Trưng, Hà Nội', '0912345034', 'phamgiabao@gmail.com', NULL, 1, 1),
+    ('BNHN210035', '678901234567893', N'Đỗ Thảo Vy', '2021-03-05', 0, N'90 Hoàn Kiếm, Hà Nội', '0912345035', 'dothaovy@gmail.com', NULL, 1, 1),
+    ('BNHN180036', '789012345678904', N'Vũ Minh Tuấn', '2018-07-30', 1, N'15 Ba Đình, Hà Nội', '0912345036', 'vuminhtuan@gmail.com', NULL, 1, 1),
+    ('BNHN190037', '890123456789015', N'Ngô Hoàng My', '2019-12-18', 0, N'36 Thanh Xuân, Hà Nội', '0912345037', 'ngohoangmy@gmail.com', NULL, 1, 1),
+    ('BNHN200038', '901234567890126', N'Trần Ngọc Bảo', '2020-04-22', 1, N'55 Hoàng Mai, Hà Nội', '0912345038', 'tranngocbao@gmail.com', NULL, 1, 1),
+    ('BNHN210039', '012345678901237', N'Bùi Anh Khoa', '2021-06-14', 1, N'87 Long Biên, Hà Nội', '0912345039', 'buianhkhoa@gmail.com', NULL, 1, 1),
+    ('BNHN220040', '123456789012349', N'Đinh Thanh Hà', '2022-10-29', 0, N'33 Bắc Từ Liêm, Hà Nội', '0912345040', 'dinhthanhha@gmail.com', NULL, 1, 1),
+    ('BNHN950041', '234567890123460', N'Nguyễn Hữu Toàn', '1995-07-12', 1, N'66 Nam Từ Liêm, Hà Nội', '0912345041', 'nguyenhuutoan@gmail.com', '041345678901', 0, 0),
+    ('BNHN920042', '345678901234571', N'Hoàng Văn Nghĩa', '1992-01-10', 1, N'99 Cầu Giấy, Hà Nội', '0912345042', 'hoangvannghia@gmail.com', '042456789012', 0, 0),
+    ('BNHN950043', '456789012345682', N'Phạm Hoàng Nam', '1995-02-05', 1, N'12 Tây Hồ, Hà Nội', '0912345043', 'phamhoangnam@gmail.com', '043567890123', 0, 0),
+    ('BNHN000044', '567890123456783', N'Lê Văn Khánh', '2000-07-25', 1, N'55 Đống Đa, Hà Nội', '0912345044', 'levankhanh@gmail.com', '044678901234', 0, 0),
+    ('BNHN010045', '678901234567894', N'Trần Thị Huyền', '2001-09-18', 0, N'77 Hoàn Kiếm, Hà Nội', '0912345045', 'tranthihuyen@gmail.com', '045789012345', 0, 0),
+    ('BNHCM980046', '789012345678905', N'Nguyễn Văn Tín', '1998-06-25', 1, N'12 Quận 1, TP.HCM', '0912345046', 'nguyenvantin@gmail.com', '046890123456', 0, 1),
+    ('BNHCM990047', '890123456789016', N'Phạm Thị Thảo', '1999-05-20', 0, N'45 Quận 3, TP.HCM', '0912345047', 'phamthithao@gmail.com', '047901234567', 0, 1),
+    ('BNHCM000048', '901234567890127', N'Lê Minh Đức', '2000-09-10', 1, N'78 Quận 5, TP.HCM', '0912345048', 'leminhduc@gmail.com', '048012345678', 0, 1),
+    ('BNHCM020049', '012345678901238', N'Hoàng Văn Trung', '2002-11-25', 1, N'22 Quận 7, TP.HCM', '0912345049', 'hoangvantrung@gmail.com', '049123456789', 0, 1),
+    ('BNHCM030050', '123456789012350', N'Đỗ Bích Hằng', '2003-03-05', 0, N'90 Quận 10, TP.HCM', '0912345050', 'dobichhang@gmail.com', '050234567890', 0, 1),
+    ('BNHCM970051', '234567890123461', N'Vũ Hoài Phong', '1997-07-30', 1, N'15 Quận Bình Thạnh, TP.HCM', '0912345051', 'vuhoaiphong@gmail.com', '051345678901', 0, 1),
+    ('BNHCM980052', '345678901234572', N'Ngô Thanh Mai', '1998-12-18', 0, N'36 Quận Phú Nhuận, TP.HCM', '0912345052', 'ngothanhmai@gmail.com', '052456789012', 0, 1),
+    ('BNHCM000053', '456789012345683', N'Bùi Văn Hậu', '2000-04-22', 1, N'55 Quận Tân Bình, TP.HCM', '0912345053', 'buivanhau@gmail.com', '053567890123', 0, 1),
+    ('BNHCM990054', '567890123456784', N'Đinh Ngọc Dung', '1999-06-14', 0, N'87 Quận Gò Vấp, TP.HCM', '0912345054', 'dinhngocdung@gmail.com', '054678901234', 0, 1),
+    ('BNHCM010055', '678901234567895', N'Trần Hoàng Anh', '2001-10-29', 1, N'33 Quận 2, TP.HCM', '0912345055', 'tranhoanganh@gmail.com', '055789012345', 0, 1);
 -- Nhập liệu cho bảng Cán bộ y tế
 INSERT INTO CAN_BO_Y_TE (Ma_Can_Bo, Ho_Ten, So_Dien_Thoai, Email, Bang_Cap, Trang_Thai)
 VALUES 
@@ -448,141 +417,102 @@ WHERE Ma_Can_Bo IN (
 --Nhập data cơ sở
 INSERT INTO CO_SO (Ma_Co_So, Ten_Co_So, Dia_Chi, So_Dien_Thoai, Email, Cap_Co_So)
 VALUES
-    ('CS1HN001', N'Kho dự trữ tổng', N'123 Đường Hoàng Quốc Việt, Cầu Giấy, Hà Nội', '0241234567', 'khotong.hn@gmail.com', '1'),
+    ('KHO1', N'Kho dự trữ tổng', N'123 Đường Hoàng Quốc Việt, Cầu Giấy, Hà Nội', '0241234567', 'khotong.hn@gmail.com', '1'),
     
-    ('CS2HN007', N'Cơ sở Thanh Xuân', N'45 Nguyễn Trãi, Thanh Xuân, Hà Nội', '0242345678', 'coso.tx@hanoi.gov.vn', '2'),
-    ('CS2HN003', N'Cơ sở Hoàn Kiếm', N'20 Hàng Bài, Hoàn Kiếm, Hà Nội', '0243456789', 'coso.hk@hanoi.gov.vn', '2'),
-    ('CS2HN009', N'Cơ sở Tây Hồ', N'98 Võ Chí Công, Tây Hồ, Hà Nội', '0244567890', 'coso.th@hanoi.gov.vn', '2'),
+    ('CS02', N'Cơ sở Thanh Xuân', N'45 Nguyễn Trãi, Thanh Xuân, Hà Nội', '0242345678', 'coso.tx@hanoi.gov.vn', '2'),
+    ('CS03', N'Cơ sở Hoàn Kiếm', N'20 Hàng Bài, Hoàn Kiếm, Hà Nội', '0243456789', 'coso.hk@hanoi.gov.vn', '2'),
+    ('CS04', N'Cơ sở Tây Hồ', N'98 Võ Chí Công, Tây Hồ, Hà Nội', '0244567890', 'coso.th@hanoi.gov.vn', '2'),
     
-    ('CS3HN005', N'Trung tâm Y tế Quận Ba Đình', N'12 Đội Cấn, Ba Đình, Hà Nội', '0245678901', 'ttytbd@hanoi.gov.vn', '3'),
-    ('CS3HN006', N'Trung tâm Y tế Quận Đống Đa', N'60 Tôn Đức Thắng, Đống Đa, Hà Nội', '0246789012', 'ttytdd@hanoi.gov.vn', '3'),
-    ('CS3HN002', N'Trung tâm Y tế Quận Hai Bà Trưng', N'15 Bạch Mai, Hai Bà Trưng, Hà Nội', '0247890123', 'ttythbt@hanoi.gov.vn', '3'),
-    ('CS3-HN008', N'Trung tâm Y tế Huyện Gia Lâm', N'234 Nguyễn Đức Thuận, Gia Lâm, Hà Nội', '0248901234', 'ttytgl@hanoi.gov.vn', '3'),
+    ('CS05', N'Trung tâm Y tế Quận Ba Đình', N'12 Đội Cấn, Ba Đình, Hà Nội', '0245678901', 'ttytbd@hanoi.gov.vn', '3'),
+    ('CS06', N'Trung tâm Y tế Quận Đống Đa', N'60 Tôn Đức Thắng, Đống Đa, Hà Nội', '0246789012', 'ttytdd@hanoi.gov.vn', '3'),
+    ('CS07', N'Trung tâm Y tế Quận Hai Bà Trưng', N'15 Bạch Mai, Hai Bà Trưng, Hà Nội', '0247890123', 'ttythbt@hanoi.gov.vn', '3'),
+    ('CS08', N'Trung tâm Y tế Huyện Gia Lâm', N'234 Nguyễn Đức Thuận, Gia Lâm, Hà Nội', '0248901234', 'ttytgl@hanoi.gov.vn', '3'),
 
-    ('CS2HCM004', N'Cơ sở Quận 1', N'123 Nguyễn Huệ, Quận 1, TP.HCM', '0283123456', 'coso.q1@hcm.gov.vn', '2'),
-    ('CS3HCM010', N'Trung tâm Y tế Quận Bình Thạnh', N'88 Đinh Tiên Hoàng, Bình Thạnh, TP.HCM', '0289876543', 'ttytbt@hcm.gov.vn', '3');
+    ('CS09', N'Cơ sở Quận 1', N'123 Nguyễn Huệ, Quận 1, TP.HCM', '0283123456', 'coso.q1@hcm.gov.vn', '2'),
+    ('CS10', N'Trung tâm Y tế Quận Bình Thạnh', N'88 Đinh Tiên Hoàng, Bình Thạnh, TP.HCM', '0289876543', 'ttytbt@hcm.gov.vn', '3');
 
 
 INSERT INTO CAN_BO_CO_SO (Ma_Co_So, Ma_Can_Bo, Chuc_Vu, Ngay_Bat_Dau, Ngay_Ket_Thuc) VALUES
--- Cơ sở Quận 1 (5 cán bộ)
-('CS2HCM004', 'CBNVA001', N'Nhân viên y tế', '2023-01-01', NULL),
-('CS2HCM004', 'CBPTH002', N'Bác sĩ', '2023-02-15', NULL),
-('CS2HCM004', 'CBLTP003', N'Y tá', '2023-03-10', NULL),
-('CS2HCM004', 'CBTCT009', N'Trưởng khoa', '2023-04-20', NULL),
-('CS2HCM004', 'CBMVT029', N'Nhân viên hành chính', '2023-05-25', NULL),
--- Cơ sở Hoàn Kiếm (5 cán bộ)
-('CS2HN003', 'CBLHD147', N'Trưởng khoa', '2023-01-05', NULL),
-('CS2HN003', 'CBLNT023', N'Bác sĩ', '2023-02-12', NULL),
-('CS2HN003', 'CBLTP003', N'Y tá', '2023-03-08', NULL),
-('CS2HN003', 'CBMVT029', N'Nhân viên y tế', '2023-04-10', NULL),
-('CS2HN003', 'CBNBT018', N'Nhân viên hành chính', '2023-05-20', NULL),
+-- Cơ sở 2 (6 cán bộ)
+('CS02', 'CBBTA006', N'Trưởng khoa', '2023-01-21', NULL),
+('CS02', 'CBBTA275', N'Y tá', '2023-01-21', NULL),
+('CS02', 'CBBTN039', N'Nhân viên y tế', '2023-03-01', NULL),
+('CS02', 'CBBTN094', N'Nhân viên hành chính', '2023-01-21', NULL),
+('CS02', 'CBDBH010', N'Bác sĩ', '2023-03-01', '2023-06-01'),
 
--- Trung tâm Y tế Huyện Gia Lâm (5 cán bộ)
-('CS3-HN008', 'CBHBT005', N'Bác sĩ', '2023-01-05', NULL),
 
--- Trung tâm Y tế Quận Bình Thạnh (5 cán bộ)
-('CS3HCM010', 'CBPTH002', N'Trưởng khoa', '2023-01-12', NULL),
-('CS3HCM010', 'CBDHA028', N'Y tá', '2023-03-30', NULL),
-('CS3HCM010', 'CBPTK016', N'Nhân viên y tế', '2023-04-15', NULL),
-('CS3HCM010', 'CBPVL007', N'Nhân viên hành chính', '2023-05-10', NULL),
-('CS3HCM010', 'CBPTH014', N'Bác sĩ', '2023-02-22', '2024-04-15'),
--- Trung tâm Y tế Quận Hai Bà Trưng (4 cán bộ)
-('CS3HN002', 'CBTCT009', N'Trưởng khoa', '2023-01-20', NULL),
-('CS3HN002', 'CBBTA006', N'Y tá', '2023-03-08', NULL),
-('CS3HN002', 'CBTNN028', N'Bác sĩ', '2023-04-02', NULL),
-('CS3HN002', 'CBTTD015', N'Nhân viên hành chính', '2023-05-12', NULL),
+-- Cơ sở 3 (6 cán bộ)
+('CS03', 'CBDBP020', N'Trưởng khoa', '2023-02-11', '2024-04-11'),
+('CS03', 'CBDBP178', N'Trưởng khoa', '2023-01-21', NULL),
+('CS03', 'CBDHA028', N'Nhân viên y tế', '2023-02-01', NULL),
+('CS03', 'CBDHA056', N'Nhân viên hành chính', '2023-02-11', NULL),
+('CS03', 'CBHBT005', N'Y tá', '2023-02-11', NULL),
+('CS03', 'CBHBT092', N'Bác sĩ', '2023-01-21', NULL),
 
--- Trung tâm Y tế Quận Ba Đình (5 cán bộ)
-('CS3HN005', 'CBTTN012', N'Bác sĩ', '2023-01-05', NULL),
-('CS3HN005', 'CBTVH024', N'Trưởng khoa', '2023-02-10', NULL),
-('CS3HN005', 'CBVTA005', N'Y tá', '2023-03-20', NULL),
-('CS3HN005', 'CBLHV266', N'Nhân viên hành chính', '2023-04-15', NULL),
-('CS3HN005', 'CBDBH010', N'Nhân viên hành chính', '2023-02-22', '2024-04-27'),
+-- Cơ sở 4 (6 cán bộ)
+('CS04', 'CBHNN019', N'Trưởng khoa', '2023-01-11', NULL),
+('CS04', 'CBHNN203', N'Bác sĩ', '2023-01-11', NULL),
+('CS04', 'CBLHD013', N'Y tá', '2023-01-11', NULL),
+('CS04', 'CBLHD147', N'Nhân viên y tế', '2023-01-11', NULL),
+('CS04', 'CBLHV017', N'Nhân viên hành chính', '2023-01-11', NULL),
 
--- Trung tâm Y tế Quận Đống Đa (5 cán bộ)
-('CS3HN006', 'CBLLP008', N'Trưởng khoa', '2023-01-15', NULL),
-('CS3HN006', 'CBLLT027', N'Bác sĩ', '2023-02-25', NULL),
-('CS3HN006', 'CBLMT045', N'Y tá', '2023-03-12', NULL),
-('CS3HN006', 'CBBTN094', N'Nhân viên hành chính', '2023-04-10', NULL),
-('CS3HN006', 'CBDBP020', N'Y tá', '2023-03-12', '2023-06-15');
 
--- Thêm các cán bộ còn thiếu vào bảng CAN_BO_CO_SO
-INSERT INTO CAN_BO_CO_SO (Ma_Co_So, Ma_Can_Bo, Chuc_Vu, Ngay_Bat_Dau, Ngay_Ket_Thuc) VALUES
--- Cơ sở Quận Bình Thạnh (CS3HCM010)
-('CS3HCM010', 'CBNVA001', N'Nhân viên y tế', '2023-01-01', NULL),
-('CS3HCM010', 'CBNTH021', N'Nhân viên hành chính', '2023-02-15', NULL),
+-- Cơ sở 5 (6 cán bộ)
+('CS05', 'CBLLP008', N'Trưởng khoa', '2023-01-12', NULL),
+('CS05', 'CBLLP081', N'Bác sĩ', '2023-01-12', NULL),
+('CS05', 'CBLLT027', N'Y tá', '2023-01-12', NULL),
+('CS05', 'CBLLT259', N'Nhân viên y tế', '2023-01-12', NULL),
+('CS05', 'CBLMT045', N'Nhân viên hành chính', '2023-01-12', NULL),
+('CS05', 'CBLMT231', N'Bác sĩ', '2023-01-12', NULL),
 
--- Trung tâm Y tế Huyện Gia Lâm (CS3-HN008)
-('CS3-HN008', 'CBPHT025', N'Y tá', '2023-03-10', NULL),
+-- Cơ sở 6 (6 cán bộ)
+('CS06', 'CBLNT023', N'Trưởng khoa', '2023-01-14', NULL),
+('CS06', 'CBLTP003', N'Bác sĩ', '2023-01-14', NULL),
+('CS06', 'CBMVT029', N'Y tá', '2023-01-14', NULL),
+('CS06', 'CBNBT018', N'Nhân viên y tế', '2023-01-14', NULL),
+('CS06', 'CBNDT030', N'Nhân viên hành chính', '2023-01-14', NULL),
+('CS06', 'CBNMC026', N'Bác sĩ', '2023-01-14', '2024-01-17'),
 
--- Trung tâm Y tế Quận Đống Đa (CS3HN006)
-('CS3HN006', 'CBNMC026', N'Bác sĩ', '2023-04-05', NULL);
+-- Cơ sở 7 (6 cán bộ)
+('CS07', 'CBNMD250', N'Trưởng khoa', '2023-01-16', NULL),
+('CS07', 'CBNQA011', N'Bác sĩ', '2023-01-16', NULL),
+('CS07', 'CBNTH021', N'Y tá', '2023-01-16', NULL),
+('CS07', 'CBNTL034', N'Nhân viên y tế', '2023-01-16', NULL),
+('CS07', 'CBNTT006', N'Nhân viên hành chính', '2023-01-15', NULL),
+('CS07', 'CBNTTH868', N'Bác sĩ', '2023-01-16', NULL),
+
+-- Cơ sở 8 (6 cán bộ)
+('CS08', 'CBNVA24087', N'Trưởng khoa', '2023-01-21', NULL),
+('CS08', 'CBPHT025', N'Bác sĩ', '2023-01-21', NULL),
+('CS08', 'CBPQN115', N'Y tá', '2023-01-21', NULL),
+('CS08', 'CBPQT022', N'Nhân viên y tế', '2023-01-21', NULL),
+('CS08', 'CBPTD194', N'Nhân viên hành chính', '2023-01-21', NULL),
+
+
+-- Cơ sở 9 (6 cán bộ)
+('CS09', 'CBPTH014', N'Trưởng khoa', '2023-01-12', '2023-12-12'),
+('CS09', 'CBPTH129', N'Trưởng khoa', '2023-01-12', NULL),
+('CS09', 'CBPTK016', N'Y tá', '2023-01-12', NULL),
+('CS09', 'CBPVL007', N'Nhân viên y tế', '2023-01-11', NULL),
+('CS09', 'CBTCT009', N'Nhân viên hành chính', '2023-01-12', NULL),
+('CS09', 'CBTMA004', N'Bác sĩ', '2023-01-12', NULL),
+
+-- Cơ sở 10 (7 cán bộ)
+('CS10', 'CBTMD198', N'Trưởng khoa', '2023-01-13', NULL),
+('CS10', 'CBTNN028', N'Bác sĩ', '2023-01-13', NULL),
+('CS10', 'CBTTD015', N'Y tá', '2023-01-13', NULL),
+('CS10', 'CBTTH888', N'Nhân viên y tế', '2023-01-13', NULL),
+('CS10', 'CBTTN012', N'Nhân viên hành chính', '2023-01-13', NULL),
+
+
+('KHO1', 'CBPTH002', N'Trưởng kho', '2023-01-21', NULL),
+('KHO1', 'CBLHV266', N'Kế toán', '2023-01-11', NULL),
+('KHO1', 'CBDBH019', N'Nhân viên kho', '2023-01-21', NULL),
+('KHO1', 'CBTVH024', N'Nhân viên kho', '2023-01-13', NULL),
+('KHO1', 'CBVTA005', N'Nhân viên kho', '2023-01-13', NULL),
+('KHO1', 'CBVTA289', N'Nhân viên kho', '2023-01-13', NULL);
 
 -- code check xem mã cán bộ trong bảng cán bộ cơ sở không trùng với bảng cán bộ y tế
-
--- Nhập liệu bảng Hồ sơ bệnh nhân 
-INSERT INTO HO_SO_TIEM_CHUNG (Ma_Ho_So, Ma_Tiem_Chung, Ma_Benh_Nhan, Ngay_Tao, Trang_Thai) VALUES
-('HSTMH34', '012320058912001', 'BNHN991234', '2025-03-21 07:00:00', 1),
-('HSNVH01', '012320058912301', 'BNHN981001', '2025-03-21 08:00:00', 1),
-('HSTTL02', '012320058912302', 'BNHN990002', '2025-03-21 08:10:00', 1),
-('HSLQH03', '012320058912303', 'BNHN010003', '2025-03-21 08:20:00', 1),
-('HSHMD04', '012320058912304', 'BNHN020004', '2025-03-21 08:30:00', 1),
-('HSPTH05', '012320058912305', 'BNHN030005', '2025-03-21 08:40:00', 1),
-('HSVHN06', '012320058912306', 'BNHN970006', '2025-03-21 08:50:00', 1),
-('HSDTT07', '012320058912307', 'BNHN980007', '2025-03-21 09:00:00', 1),
-('HSNVT08', '012320058912308', 'BNHN000008', '2025-03-21 09:10:00', 1),
-('HSBTP09', '012320058912309', 'BNHN990009', '2025-03-21 09:20:00', 1),
-('HSDTD10', '012320058912310', 'BNHN010010', '2025-03-21 09:30:00', 1),
-('HSNTH11', '012320058912311', 'BNHN030011', '2025-03-21 09:40:00', 1),
-('HSHVK12', '012320058912312', 'BNHN920012', '2025-03-21 09:50:00', 1),
-('HSPVH13', '012320058912313', 'BNHN950013', '2025-03-21 10:00:00', 1),
-('HSLTN14', '012320058912314', 'BNHN000014', '2025-03-21 10:10:00', 1),
-('HSTMT15', '012320058912315', 'BNHN010015', '2025-03-21 10:20:00', 1),
-('HSNTA16', '012320058912316', 'BNHN030016', '2025-03-21 10:30:00', 1),
-('HSVTH17', '012320058912317', 'BNHN980017', '2025-03-21 10:40:00', 1),
-('HSDHP18', '012320058912318', 'BNHN020018', '2025-03-21 10:50:00', 1),
-('HSNVM19', '012320058912319', 'BNHN970019', '2025-03-21 11:00:00', 1),
-('HSBHN20', '012320058912320', 'BNHN000020', '2025-03-21 11:10:00', 1),
-('HSDVT21', '012320058912321', 'BNHN990021', '2025-03-21 11:20:00', 1),
-('HSNVB22', '012320058912322', 'BNHN030022', '2025-03-21 11:30:00', 1),
-('HSHNL23', '012320058912323', 'BNHN010023', '2025-03-21 11:40:00', 1),
-('HSPVH24', '012320058912324', 'BNHN970024', '2025-03-21 11:50:00', 1),
-('HSLTH25', '012320058912325', 'BNHN000025', '2025-03-21 12:00:00', 1),
-('HSTMK26', '012320058912326', 'BNHN020026', '2025-03-21 12:10:00', 1),
-('HSNTH27', '012320058912327', 'BNHN030027', '2025-03-21 12:20:00', 1),
-('HSVQH28', '012320058912328', 'BNHN980028', '2025-03-21 12:30:00', 1),
-('HSDTD29', '012320058912329', 'BNHN990029', '2025-03-21 12:40:00', 1),
-('HSNVL30', '012320058912330', 'BNHN970030', '2025-03-21 12:50:00', 1),
-('HSNAK31', '012320058912331', 'BNHN170031', '2025-03-21 13:00:00', 1),
-('HSHMC32', '012320058912332', 'BNHN180032', '2025-03-21 13:10:00', 1),
-('HSLQN33', '012320058912333', 'BNHN190033', '2025-03-21 13:20:00', 1),
-('HSPGB34', '012320058912334', 'BNHN200034', '2025-03-21 13:30:00', 1),
-('HSDTV35', '012320058912335', 'BNHN210035', '2025-03-21 13:40:00', 1),
-('HSVMT36', '012320058912336', 'BNHN180036', '2025-03-21 13:50:00', 1),
-('HSNHM37', '012320058912337', 'BNHN190037', '2025-03-21 14:00:00', 1),
-('HSTNB38', '012320058912338', 'BNHN200038', '2025-03-21 14:10:00', 1),
-('HSBAK39', '012320058912339', 'BNHN210039', '2025-03-21 14:20:00', 1),
-('HSDTH40', '012320058912340', 'BNHN220040', '2025-03-21 14:30:00', 1),
-('HSNHT41', '012320058912341', 'BNHN950041', '2025-03-21 14:40:00', 1),
-('HSHVN42', '012320058912342', 'BNHN920042', '2025-03-21 14:50:00', 1),
-('HSPHN43', '012320058912343', 'BNHN950043', '2025-03-21 15:00:00', 1),
-('HSLVK44', '012320058912344', 'BNHN000044', '2025-03-21 15:10:00', 1),
-('HSTTH45', '012320058912345', 'BNHN010045', '2025-03-21 15:20:00', 1),
-('HSNVT46', '028420058912346', 'BNHCM980046', '2025-03-21 15:30:00', 1),
-('HSPTT47', '028420058912347', 'BNHCM990047', '2025-03-21 15:40:00', 1),
-('HSLMD48', '028420058912348', 'BNHCM000048', '2025-03-21 15:50:00', 1),
-('HSHVT49', '028420058912349', 'BNHCM020049', '2025-03-21 16:00:00', 1),
-('HSDBH50', '028420058912350', 'BNHCM030050', '2025-03-21 16:10:00', 1),
-('HSVHP51', '028420058912351', 'BNHCM970051', '2025-03-21 16:20:00', 1),
-('HSNTP52', '028420058912352', 'BNHCM980052', '2025-03-21 16:30:00', 1),
-('HSBVH53', '028420058912353', 'BNHCM000053', '2025-03-21 16:40:00', 1),
-('HSDND54', '028420058912354', 'BNHCM990054', '2025-03-21 16:50:00', 1),
-('HSTHA55', '028420058912355', 'BNHCM010055', '2025-03-21 17:00:00', 1);
-
-UPDATE HO_SO_TIEM_CHUNG
-SET Ngay_Tao = 
-    DATEADD(DAY, ABS(CHECKSUM(NEWID())) % 90, '2024-11-01') + 
-    DATEADD(SECOND, ABS(CHECKSUM(NEWID())) % 86400, '00:00:00');
 
 
 -- Nhập liệu bảng phiếu khám
@@ -705,56 +635,37 @@ INSERT INTO LO_VACCINE (Ma_Lo, Ma_Vaccine, So_Lieu_Vaccine_Ban_Dau, Ngay_San_Xua
 
 
 -- File 1
-INSERT INTO LAN_TIEM (Ma_Lan_Tiem, Ma_Ho_So, Ma_Can_Bo, Ma_Co_So, Ngay_Tiem, Ket_Qua_Tiem) VALUES
-('LT250122066', 'HSBAK39', 'CBDBH010', 'CS3HN005', '2025-01-22', N'Thành công'),
-('LT250425072', 'HSBAK39', 'CBDBH010', 'CS3HN005', '2025-04-25', N'Thành công'),
-('LT250625016', 'HSBAK39', 'CBDBH010', 'CS3HN005', '2025-06-25', N'Thành công'),
-('LT250126070', 'HSBHN20', 'CBDBP020', 'CS3HN006', '2025-01-26', N'Thành công'),
-('LT250429038', 'HSBHN20', 'CBDBP020', 'CS3HN006', '2025-04-29', N'Xảy ra phản ứng'),
-('LT250529013', 'HSBHN20', 'CBDBP020', 'CS3HN006', '2025-05-29', N'Thành công'),
-('LT250327010', 'HSBTP09', 'CBHBT005', 'CS3-HN008', '2025-03-27', N'Thành công'),
-('LT250429077', 'HSBTP09', 'CBHBT005', 'CS3-HN008', '2025-04-29', N'Thành công'),
-('LT250120063', 'HSVTH17', 'CBPTH002', 'CS3HCM010', '2025-01-20', N'Thành công'),
-('LT250320102', 'HSVTH17', 'CBPTH002', 'CS3HCM010', '2025-03-20', N'Hoãn tiêm'),
-('LT250522040', 'HSVTH17', 'CBPTH002', 'CS3HCM010', '2025-05-22', N'Thành công'),
-('LT250622020', 'HSVTH17', 'CBPTH002', 'CS3HCM010', '2025-06-22', N'Thành công');
-
--- File 2
-INSERT INTO LAN_TIEM (Ma_Lan_Tiem, Ma_Ho_So, Ma_Can_Bo, Ma_Co_So, Ngay_Tiem, Ket_Qua_Tiem) VALUES
-('LT250129005', 'HSBVH53', 'CBTVH024', 'CS3HN005', '2025-01-29', N'Thành công'),
-('LT250429058', 'HSBVH53', 'CBTVH024', 'CS3HN005', '2025-04-29', N'Thành công'),
-('LT250422026', 'HSDBH50', 'CBDBH010', 'CS3HN005', '2025-04-22', N'Thành công'),
-('LT250122041', 'HSDTD10', 'CBTCT009', 'CS3HN002', '2025-01-22', N'Thành công'),
-('LT250524029', 'HSDTD10', 'CBTCT009', 'CS3HN002', '2025-05-24', N'Thành công'),
-('LT250422015', 'HSDTD29', 'CBTCT009', 'CS3HN002', '2025-04-22', N'Thành công'),
-('LT250222034', 'HSDTH40', 'CBPTH002', 'CS3HCM010', '2025-02-22', N'Thành công'),
-('LT250522029', 'HSDTH40', 'CBPTH002', 'CS3HCM010', '2025-05-22', N'Xảy ra phản ứng');
-
-
--- File 2: Sửa các mã trùng
-INSERT INTO LAN_TIEM (Ma_Lan_Tiem, Ma_Ho_So, Ma_Can_Bo, Ma_Co_So, Ngay_Tiem, Ket_Qua_Tiem) VALUES
-('LT250129006', 'HSBVH53', 'CBTVH024', 'CS3HN005', '2025-01-29', N'Thành công'), -- Sửa từ LT250129005
-('LT250429059', 'HSBVH53', 'CBTVH024', 'CS3HN005', '2025-04-29', N'Thành công'), -- Sửa từ LT250429058
-('LT250422027', 'HSDBH50', 'CBDBH010', 'CS3HN005', '2025-04-22', N'Thành công'), -- Sửa từ LT250422026
-('LT250224059', 'HSDHP18', 'CBPHT025', 'CS3-HN008', '2025-02-24', N'Thành công'),
-('LT250525041', 'HSDHP18', 'CBPHT025', 'CS3-HN008', '2025-05-25', N'Thành công'),
-('LT250122042', 'HSDTD10', 'CBTCT009', 'CS3HN002', '2025-01-22', N'Thành công'), -- Sửa từ LT250122041
-('LT250524030', 'HSDTD10', 'CBTCT009', 'CS3HN002', '2025-05-24', N'Thành công'), -- Sửa từ LT250524029
-('LT250422016', 'HSDTD29', 'CBTCT009', 'CS3HN002', '2025-04-22', N'Thành công'), -- Sửa từ LT250422015
-('LT250222035', 'HSDTH40', 'CBPTH002', 'CS3HCM010', '2025-02-22', N'Thành công'), -- Sửa từ LT250222034
-('LT250522030', 'HSDTH40', 'CBPTH002', 'CS3HCM010', '2025-05-22', N'Xảy ra phản ứng'); -- Sửa từ LT250522029
-
--- File 3: LAN_TIEM (Đã gán đủ Ma_Co_So và loại bỏ bản ghi không hợp lệ)
-INSERT INTO LAN_TIEM (Ma_Lan_Tiem, Ma_Ho_So, Ma_Can_Bo, Ma_Co_So, Ngay_Tiem, Ket_Qua_Tiem) VALUES
-('LT250120004', 'HSDTV35', 'CBNVA001', 'CS3HCM010', '2025-01-20', N'Thành công'),
-('LT250420033', 'HSDTV35', 'CBNVA001', 'CS3HCM010', '2025-04-20', N'Thành công'),
-('LT250422121', 'HSDVT21', 'CBNVA001', 'CS3HCM010', '2025-04-22', N'Thành công'),
-('LT250124067', 'HSHMC32', 'CBNMC026', 'CS3HN006', '2025-01-24', N'Thành công'),
-('LT250525044', 'HSHMC32', 'CBNMC026', 'CS3HN006', '2025-05-25', N'Thành công'),
-('LT250409007', 'HSHMD04', 'CBNMC026', 'CS3HN006', '2025-04-09', N'Thành công'),
-('LT250210031', 'HSHNL23', 'CBNTH021', 'CS3HCM010', '2025-02-10', N'Thành công'),
-('LT250510001', 'HSHNL23', 'CBNTH021', 'CS3HCM010', '2025-05-10', N'Thành công');
-
+INSERT INTO LAN_TIEM (Ma_Lan_Tiem, Ma_Benh_Nhan, Ma_Can_Bo, Ma_Co_So, Ngay_Tiem, Ket_Qua_Tiem) VALUES
+('LT250122066', 'BNHN950013', 'CBDBH010', 'CS05', '2025-01-22', N'Thành công'),
+('LT250425072', 'BNHN950013', 'CBDBH010', 'CS05', '2025-04-25', N'Thành công'),
+('LT250625016', 'BNHN950013', 'CBDBH010', 'CS05', '2025-06-25', N'Thành công'),
+('LT250126070', 'BNHN000020', 'CBDBP020', 'CS06', '2025-01-26', N'Thành công'),
+('LT250429038', 'BNHN000020', 'CBDBP020', 'CS06', '2025-04-29', N'Xảy ra phản ứng'),
+('LT250529013', 'BNHN000020', 'CBDBP020', 'CS06', '2025-05-29', N'Thành công'),
+('LT250327010', 'BNHN990009', 'CBHBT005', 'CS08', '2025-03-27', N'Thành công'),
+('LT250429077', 'BNHN990009', 'CBHBT005', 'CS08', '2025-04-29', N'Thành công'),
+('LT250120063', 'BNHN980017', 'CBPTH002', 'CS10', '2025-01-20', N'Thành công'),
+('LT250320102', 'BNHN980017', 'CBPTH002', 'CS10', '2025-03-20', N'Hoãn tiêm'),
+('LT250522040', 'BNHN980017', 'CBPTH002', 'CS10', '2025-05-22', N'Thành công'),
+('LT250622020', 'BNHN980017', 'CBPTH002', 'CS10', '2025-06-22', N'Thành công'),
+('LT250129006', 'BNHCM980052', 'CBTVH024', 'CS05', '2024-01-20', N'Thành công'),
+('LT250429059', 'BNHCM980052', 'CBTVH024', 'CS05', '2024-04-29', N'Thành công'),
+('LT250422027', 'BNHN950013', 'CBDBH010', 'CS05', '2024-04-22', N'Thành công'),
+('LT250224059', 'BNHN020018', 'CBPHT025', 'CS08', '2024-02-24', N'Thành công'),
+('LT250525041', 'BNHN020018', 'CBPHT025', 'CS08', '2024-05-25', N'Thành công'),
+('LT250122042', 'BNHN010010', 'CBTCT009', 'CS02', '2024-01-22', N'Thành công'),
+('LT250524030', 'BNHN010010', 'CBTCT009', 'CS02', '2024-05-24', N'Thành công'),
+('LT250422016', 'BNHN000025', 'CBTCT009', 'CS02', '2024-04-22', N'Thành công'),
+('LT250222035', 'BNHCM030050', 'CBPTH002', 'CS10', '2024-02-22', N'Thành công'),
+('LT250522030', 'BNHCM030050', 'CBPTH002', 'CS10', '2024-05-22', N'Xảy ra phản ứng'),
+('LT250120004', 'BNHCM000053', 'CBNVA001', 'CS10', '2025-01-20', N'Thành công'),
+('LT250420033', 'BNHCM000053', 'CBNVA001', 'CS10', '2025-04-20', N'Thành công'),
+('LT250422121', 'BNHCM980046', 'CBNVA001', 'CS10', '2025-04-22', N'Thành công'),
+('LT250124067', 'BNHN010015', 'CBNMC026', 'CS06', '2025-01-24', N'Thành công'),
+('LT250525044', 'BNHN010015', 'CBNMC026', 'CS06', '2025-05-25', N'Thành công'),
+('LT250409007', 'BNHN950041', 'CBNMC026', 'CS06', '2025-04-09', N'Thành công'),
+('LT250210031', 'BNHCM990054', 'CBNTH021', 'CS10', '2025-02-10', N'Thành công'),
+('LT250510001', 'BNHCM990054', 'CBNTH021', 'CS10', '2025-05-10', N'Thành công');
 
 INSERT INTO CHI_TIET_LAN_TIEM (Ma_Lan_Tiem, Ma_Vaccine) VALUES
 ('LT250126070', 'USMEN2410'),
