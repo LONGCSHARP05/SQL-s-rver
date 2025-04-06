@@ -2,7 +2,6 @@ USE UDCSDL
 go
 
 
-
 -- Xóa tất cả các khóa ngoại trong cơ sở dữ liệu hiện tại
 DECLARE @sql NVARCHAR(MAX) = N'';
 
@@ -195,7 +194,7 @@ CREATE TABLE CHI_TIET_LICH_HEN (  -- Ví dụ: CL000001, CL000002
 
 INSERT INTO BENH_NHAN (Ma_Benh_Nhan, Ma_Tiem_Chung, Ho_Ten, Ngay_Sinh, Gioi_Tinh, Dia_Chi, So_Dien_Thoai, Email, CCCD, Nguoi_Giam_Ho, Trang_Thai) 
 VALUES
-    ('BNHN991234', '123456789012345', N'Trần Minh Hoàng', '1999-08-22', 1, N'123 Lê Lợi, Q.1, TP.HCM', '0912345678', 'tranminhhoang@gmail.com', '079202000001', 0, 1),
+    ('BNHN991234', '123456789012345', N'Trần Minh Hoàng', '1999-08-22', 1, N'123 Lê Lợi, Q.1, TP.HCM', '0912340078', 'tranminhhoang@gmail.com', '079202000001', 0, 1),
     ('BNHN981001', '234567890123456', N'Nguyễn Văn Hải', '1998-01-15', 1, N'12 Cầu Giấy, Hà Nội', '0912345001', 'nguyenvanhai@gmail.com', '001234567891', 0, 1),
     ('BNHN990002', '345678901234567', N'Trần Thị Lan', '1999-05-20', 0, N'45 Tây Hồ, Hà Nội', '0912345002', 'tranthilan@gmail.com', '002345678912', 0, 1),
     ('BNHN010003', '456789012345678', N'Lê Quang Huy', '2001-09-10', 1, N'78 Đống Đa, Hà Nội', '0912345003', 'lequanghuy@gmail.com', '003456789123', 0, 1),
@@ -257,14 +256,14 @@ INSERT INTO CAN_BO_Y_TE (Ma_Can_Bo, Ho_Ten, So_Dien_Thoai, Email, Bang_Cap, Tran
 VALUES 
 ('CBNTTH868', N'Nguyễn Thị Thanh Hiếu', '0912978908', 'hieu.thnh@gmail.com', N'Tiến sĩ', 1),
 ('CBTTH888', N'Trần Thanh Hải', '0912999888', 'hai.tt@gmail.com', N'Tiến sĩ', 1),
-('CBNVA001', N'Nguyễn Văn An', '0912345678', 'nguyenvana@gmail.com', N'Tiến sĩ', 1),
+('CBNVA001', N'Nguyễn Văn An', '0192345678', 'nguyenvana@gmail.com', N'Tiến sĩ', 1),
 ('CBPTH002', N'Phạm Thị Hạnh', '0987654321', 'phamthihanh@gmail.com', N'Thạc sĩ', 1),
 ('CBLTP003', N'Lê Tuấn Phong', '0898123456', 'letuanphong@gmail.com', N'Cử nhân', 1),
 ('CBTMA004', N'Trần Minh Anh', '0901122334', 'tranminhanh@gmail.com', N'Phó giáo sư - Tiến sĩ', 1),
-('CBHBT005', N'Hoàng Bảo Trâm', '0977654321', 'hoangbaotram@gmail.com', N'Thạc sĩ', 1),
+('CBHBT005', N'Hoàng Bảo Trâm', '0977654231', 'hoangbaotram@gmail.com', N'Thạc sĩ', 1),
 ('CBNTT006', N'Ngô Thanh Tùng', '0866789012', 'ngothanhtung@gmail.com', N'Cử nhân', 1),
 ('CBPVL007', N'Phan Văn Lâm', '0834567890', 'phanvanlam@gmail.com', N'Tiến sĩ', 1),
-('CBLLP008', N'Lý Lan Phương', '0923456789', 'lylanphuong@gmail.com', N'Thạc sĩ', 1),
+('CBLLP008', N'Lý Lan Phương', '0920056789', 'lylanphuong@gmail.com', N'Thạc sĩ', 1),
 ('CBTCT009', N'Trịnh Công Thành', '0812345678', 'trinhcongthanh@gmail.com', N'Phó giáo sư - Tiến sĩ', 1),
 ('CBDBH010', N'Đinh Bảo Hân', '0876543210', 'dinhbaohan@gmail.com', N'Cử nhân', 0),
 ('CBNQA011', N'Nguyễn Quang Anh', '0903456789', 'nguyenquanganh@gmail.com', N'Thạc sĩ', 1),
@@ -275,7 +274,7 @@ VALUES
 ('CBPTK016', N'Phạm Thị Kim', '0812345679', 'phamthikim@gmail.com', N'Cử nhân', 1),
 ('CBLHV017', N'Lê Hữu Vinh', '0845678901', 'lehuuvinh@gmail.com', N'Thạc sĩ', 1),
 ('CBNBT018', N'Nguyễn Bảo Trang', '0998765432', 'nguyenbaotrang@gmail.com', N'Phó giáo sư - Tiến sĩ', 1),
-('CBHNN019', N'Hoàng Như Ngọc', '0945678901', 'hoangnhungoc@gmail.com', N'Tiến sĩ', 1),
+('CBHNN019', N'Hoàng Như Ngọc', '0947658901', 'hoangnhungoc@gmail.com', N'Tiến sĩ', 1),
 ('CBDBP020', N'Đoàn Bảo Phúc', '0971234567', 'doanbaophuc@gmail.com', N'Cử nhân', 0),
 ('CBNTH021', N'Nguyễn Thị Hương', '0923456780', 'nguyenthihuong@gmail.com', N'Thạc sĩ', 1),
 ('CBPQT022', N'Phan Quang Thịnh', '0898765432', 'phanquangthinh@gmail.com', N'Phó giáo sư - Tiến sĩ', 1),
@@ -283,7 +282,7 @@ VALUES
 ('CBTVH024', N'Trần Văn Hoàng', '0876543209', 'tranvanhoang@gmail.com', N'Tiến sĩ', 1),
 ('CBPHT025', N'Phạm Hải Tú', '0823456788', 'phamhaitu@gmail.com', N'Cử nhân', 1),
 ('CBNMC026', N'Nguyễn Minh Châu', '0934567890', 'nguyenminhchau@gmail.com', N'Phó giáo sư - Tiến sĩ', 0),
-('CBLLT027', N'Lý Long Thịnh', '0891234567', 'lylongthinh@gmail.com', N'Thạc sĩ', 1),
+('CBLLT027', N'Lý Long Thịnh', '0198234567', 'lylongthinh@gmail.com', N'Thạc sĩ', 1),
 ('CBTNN028', N'Tô Ngọc Nam', '0987654309', 'tongocnam@gmail.com', N'Cử nhân', 1),
 ('CBMVT029', N'Mai Văn Thái', '0912345609', 'maivanthai@gmail.com', N'Thạc sĩ', 1),
 ('CBNDT030', N'Nguyễn Đình Tuấn', '0856789023', 'nguyendinhtuan@gmail.com', N'Tiến sĩ', 1);
@@ -307,16 +306,16 @@ VALUES
     ('CBNTL24034', N'Ngô Tuấn Linh', '0878901234', 'ngotuanlinh@gmail.com', N'Tiến sĩ', 1),
     ('CBPQN24115', N'Phan Quang Nhật', '0889012345', 'phanquangnhat@gmail.com', N'Tiến sĩ', 1),
     ('CBVTA24289', N'Võ Thị Anh', '0890123456', 'vothianh@gmail.com', N'Bác sĩ', 1),
-    ('CBDBH24010', N'Đinh Bảo Hân', '0876543210', 'dinhbaohan@gmail.com', N'Cử nhân', 1),
+    ('CBDBH24010', N'Đinh Bảo Hân', '0876543221', 'dinhbaohan@gmail.com', N'Cử nhân', 1),
     ('CBDBP24178', N'Đoàn Bảo Phúc', '0971234567', 'doanbaophuc@gmail.com', N'Cử nhân', 1),
     ('CBHBT24092', N'Hoàng Bảo Trâm', '0977654321', 'hoangbaotram@gmail.com', N'Thạc sĩ', 1),
     ('CBHNN24203', N'Hoàng Như Ngọc', '0945678901', 'hoangnhungoc@gmail.com', N'Tiến sĩ', 1),
-    ('CBLHD24147', N'Lương Hoàng Dũng', '0823456789', 'luonghoangdung@gmail.com', N'Tiến sĩ', 1),
+    ('CBLHD24147', N'Lương Hoàng Dũng', '0111167829', 'luonghoangdung@gmail.com', N'Tiến sĩ', 1),
     ('CBLHV24266', N'Lê Hữu Vinh', '0845678901', 'lehuuvinh@gmail.com', N'Thạc sĩ', 1),
-    ('CBLLP24081', N'Lý Lan Phương', '0923456789', 'lylanphuong@gmail.com', N'Thạc sĩ', 1),
+    ('CBLLP24081', N'Lý Lan Phương', '0943256789', 'lylanphuong@gmail.com', N'Thạc sĩ', 1),
     ('CBLLT24259', N'Lý Long Thịnh', '0891234567', 'lylongthinh@gmail.com', N'Thạc sĩ', 1),
     ('CBBTN24039', N'Bùi Thị Nga', '0901234567', 'buithinga@gmail.com', N'Bác sĩ', 1),
-    ('CBPTD24194', N'Phạm Tuấn Dũng', '0912345678', 'phamtuandung@gmail.com', N'Cử nhân', 1),
+    ('CBPTD24194', N'Phạm Tuấn Dũng', '0912222278', 'phamtuandung@gmail.com', N'Cử nhân', 1),
     ('CBNMD24250', N'Nguyễn Minh Đức', '0934567890', 'nguyenminhduc@gmail.com', N'Thạc sĩ', 1);
 
 UPDATE CAN_BO_Y_TE SET Bang_Cap = N'Thạc sĩ' WHERE Bang_Cap = N'Bác sĩ';
@@ -440,15 +439,14 @@ VALUES
 
 INSERT INTO CAN_BO_CO_SO (Ma_Co_So, Ma_Can_Bo, Chuc_Vu, Ngay_Bat_Dau, Ngay_Ket_Thuc) VALUES
 -- Cơ sở Quận 1 (5 cán bộ)
-('CS09', 'CBNVA001', N'Nhân viên y tế', '2023-01-01', NULL),
 ('CS09', 'CBPTH002', N'Bác sĩ', '2023-02-15', NULL),
-('CS09', 'CBLTP003', N'Y tá', '2023-03-10', NULL),
+('CS09', 'CBLTP003', N'Y tá', '2023-04-10', NULL),
 ('CS09', 'CBTCT009', N'Trưởng khoa', '2023-04-20', NULL),
 ('CS09', 'CBMVT029', N'Nhân viên hành chính', '2023-05-25', NULL),
 -- Cơ sở Hoàn Kiếm (5 cán bộ)
 ('CS03', 'CBLHD147', N'Trưởng khoa', '2023-01-05', NULL),
 ('CS03', 'CBLNT023', N'Bác sĩ', '2023-02-12', NULL),
-('CS03', 'CBLTP003', N'Y tá', '2023-03-08', NULL),
+('CS03', 'CBLTP003', N'Y tá', '2023-03-08','2023-04-08'),
 ('CS03', 'CBMVT029', N'Nhân viên y tế', '2023-04-10', NULL),
 ('CS03', 'CBNBT018', N'Nhân viên hành chính', '2023-05-20', NULL),
 
@@ -462,7 +460,7 @@ INSERT INTO CAN_BO_CO_SO (Ma_Co_So, Ma_Can_Bo, Chuc_Vu, Ngay_Bat_Dau, Ngay_Ket_T
 ('CS10', 'CBPVL007', N'Nhân viên hành chính', '2023-05-10', NULL),
 ('CS10', 'CBPTH014', N'Bác sĩ', '2023-02-22', '2024-04-15'),
 -- Trung tâm Y tế Quận Hai Bà Trưng (4 cán bộ)
-('CS07', 'CBTCT009', N'Trưởng khoa', '2023-01-20', NULL),
+('CS07', 'CBHNN203', N'Trưởng khoa', '2023-01-20', NULL),
 ('CS07', 'CBBTA006', N'Y tá', '2023-03-08', NULL),
 ('CS07', 'CBTNN028', N'Bác sĩ', '2023-04-02', NULL),
 ('CS07', 'CBTTD015', N'Nhân viên hành chính', '2023-05-12', NULL),
@@ -634,10 +632,10 @@ INSERT INTO LAN_TIEM (Ma_Lan_Tiem, Ma_Benh_Nhan, Ma_Can_Bo, Ma_Co_So, Ngay_Tiem,
 INSERT INTO LAN_TIEM (Ma_Lan_Tiem, Ma_Benh_Nhan, Ma_Can_Bo, Ma_Co_So, Ngay_Tiem, Ket_Qua_Tiem) VALUES
 ('LT250129005', 'BNHCM000053', 'CBTVH024', 'CS05', '2025-01-29', N'Thành công'),
 ('LT250429058', 'BNHCM000053', 'CBTVH024', 'CS05', '2025-04-29', N'Thành công'),
-('LT250422026', 'BNHCM030050', 'CBDBH010', 'CS05', '2025-04-22', N'Thành công'),
-('LT250122041', 'BNHN010010', 'CBTCT009', 'CS07', '2025-01-22', N'Thành công'),
-('LT250524029', 'BNHN010010', 'CBTCT009', 'CS07', '2025-05-24', N'Thành công'),
-('LT250422015', 'BNHN990029', 'CBTCT009', 'CS07', '2025-04-22', N'Thành công'),
+('LT250422026', 'BNHCM030050', 'CBTTN012', 'CS05', '2025-04-22', N'Thành công'),
+('LT250122041', 'BNHN010010', 'CBTCT009', 'CS09', '2025-01-22', N'Thành công'),
+('LT250524029', 'BNHN010010', 'CBTCT009', 'CS09', '2025-05-24', N'Thành công'),
+('LT250422015', 'BNHN990029', 'CBTCT009', 'CS09', '2025-04-22', N'Thành công'),
 ('LT250222034', 'BNHN220040', 'CBPTH002', 'CS10', '2025-02-22', N'Thành công'),
 ('LT250522029', 'BNHN220040', 'CBPTH002', 'CS10', '2025-05-22', N'Xảy ra phản ứng');
 
@@ -645,12 +643,12 @@ INSERT INTO LAN_TIEM (Ma_Lan_Tiem, Ma_Benh_Nhan, Ma_Can_Bo, Ma_Co_So, Ngay_Tiem,
 INSERT INTO LAN_TIEM (Ma_Lan_Tiem, Ma_Benh_Nhan, Ma_Can_Bo, Ma_Co_So, Ngay_Tiem, Ket_Qua_Tiem) VALUES
 ('LT250129006', 'BNHCM000053', 'CBTVH024', 'CS05', '2025-01-29', N'Thành công'),
 ('LT250429059', 'BNHCM000053', 'CBTVH024', 'CS05', '2025-04-29', N'Thành công'),
-('LT250422027', 'BNHCM030050', 'CBDBH010', 'CS05', '2025-04-22', N'Thành công'),
+('LT250422027', 'BNHCM030050', 'CBTTN012', 'CS05', '2025-04-22', N'Thành công'),
 ('LT250224059', 'BNHN020018', 'CBPHT025', 'CS08', '2025-02-24', N'Thành công'),
 ('LT250525041', 'BNHN020018', 'CBPHT025', 'CS08', '2025-05-25', N'Thành công'),
-('LT250122042', 'BNHN010010', 'CBTCT009', 'CS07', '2025-01-22', N'Thành công'),
-('LT250524030', 'BNHN010010', 'CBTCT009', 'CS07', '2025-05-24', N'Thành công'),
-('LT250422016', 'BNHN990029', 'CBTCT009', 'CS07', '2025-04-22', N'Thành công'),
+('LT250122042', 'BNHN010010', 'CBTCT009', 'CS09', '2025-01-22', N'Thành công'),
+('LT250524030', 'BNHN010010', 'CBTCT009', 'CS09', '2025-05-24', N'Thành công'),
+('LT250422016', 'BNHN990029', 'CBTCT009', 'CS09', '2025-04-22', N'Thành công'),
 ('LT250222035', 'BNHN220040', 'CBPTH002', 'CS10', '2025-02-22', N'Thành công'),
 ('LT250522030', 'BNHN220040', 'CBPTH002', 'CS10', '2025-05-22', N'Xảy ra phản ứng');
 
@@ -752,30 +750,30 @@ INSERT INTO PHIEU_KHAM (Ma_Phieu_Kham, Ma_Benh_Nhan, Ma_Can_Bo, Ma_Co_So, Ngay_K
 ('PK250101002', 'BNHN990002', 'CBPTH002', 'CS10', '2025-01-12', N'Huyết áp cao, theo dõi thêm', N'Không đủ điều kiện'),
 ('PK250101003', 'BNHN990002', 'CBPTH002', 'CS10', '2025-01-19', N'Huyết áp ổn định', N'Đủ điều kiện tiêm'),
 ('PK250102005', 'BNHN020004', 'CBHBT005', 'CS08', '2025-02-14', N'Tiền sử dị ứng nhẹ', N'Đủ điều kiện tiêm'),
-('PK250102006', 'BNHN030005', 'CBDBH010', 'CS05', '2025-02-22', N'Đang bị sốt', N'Hủy bỏ'),
-('PK250103007', 'BNHN030005', 'CBDBH010', 'CS05', '2025-03-22', N'Tình trạng sức khỏe ổn định', N'Đủ điều kiện tiêm'),
+('PK250102006', 'BNHN030005', 'CBTVH024', 'CS05', '2025-02-22', N'Đang bị sốt', N'Hủy bỏ'),
+('PK250103007', 'BNHN030005', 'CBTVH024', 'CS05', '2025-03-22', N'Tình trạng sức khỏe ổn định', N'Đủ điều kiện tiêm'),
 ('PK250102009', 'BNHN980007', 'CBPVL007', 'CS10', '2025-02-28', N'Huyết áp thấp', N'Không đủ điều kiện'),
 ('PK250103010', 'BNHN980007', 'CBPVL007', 'CS10', '2025-03-07', N'Tình trạng cải thiện', N'Đủ điều kiện tiêm'),
 ('PK250103011', 'BNHN000008', 'CBLLP008', 'CS06', '2025-03-15', N'Thường xuyên chóng mặt', N'Hủy bỏ'),
 ('PK250104012', 'BNHN000008', 'CBLLP008', 'CS06', '2025-04-15', N'Không còn triệu chứng', N'Đủ điều kiện tiêm'),
-('PK250102013', 'BNHN990009', 'CBTCT009', 'CS07', '2025-02-20', N'Triệu chứng ổn định', N'Đủ điều kiện tiêm'),
+('PK250102013', 'BNHN990009', 'CBTCT009', 'CS09', '2025-02-20', N'Triệu chứng ổn định', N'Đủ điều kiện tiêm'),
 ('PK250101014', 'BNHN010010', 'CBDBH010', 'CS05', '2025-01-11', N'Cảm cúm nhẹ', N'Hủy bỏ'),
 ('PK250102015', 'BNHN010010', 'CBDBH010', 'CS05', '2025-02-11', N'Không còn triệu chứng', N'Đủ điều kiện tiêm'),
 ('PK250104020', 'BNHN950013', 'CBHBT005', 'CS08', '2025-04-01', N'Không có triệu chứng bất thường', N'Đủ điều kiện tiêm');
 -- File 2
 INSERT INTO PHIEU_KHAM (Ma_Phieu_Kham, Ma_Benh_Nhan, Ma_Can_Bo, Ma_Co_So, Ngay_Kham, Noi_Dung, Chi_Dinh) VALUES
 ('PK250103021', 'BNHN000014', 'CBPTH002', 'CS10', '2025-03-10', N'Khám sức khỏe định kỳ', N'Đủ điều kiện tiêm'),
-('PK250103022', 'BNHN010015', 'CBLTP003', 'CS03', '2025-03-15', N'Huyết áp không ổn định', N'Không đủ điều kiện'),
-('PK250103023', 'BNHN010015', 'CBLTP003', 'CS03', '2025-03-22', N'Tình trạng cải thiện', N'Đủ điều kiện tiêm'),
+('PK250103022', 'BNHN010015', 'CBLTP003', 'CS09', '2025-03-15', N'Huyết áp không ổn định', N'Không đủ điều kiện'),
+('PK250103023', 'BNHN010015', 'CBLTP003', 'CS09', '2025-03-22', N'Tình trạng cải thiện', N'Đủ điều kiện tiêm'),
 ('PK250102026', 'BNHN980017', 'CBHBT005', 'CS08', '2025-02-14', N'Sốt cao, cần theo dõi', N'Không đủ điều kiện'),
 ('PK250103027', 'BNHN980017', 'CBHBT005', 'CS08', '2025-03-02', N'Hạ sốt, sức khỏe tốt', N'Đủ điều kiện tiêm'),
-('PK250103028', 'BNHN020018', 'CBDBH010', 'CS05', '2025-03-05', N'Huyết áp thấp', N'Không đủ điều kiện'),
-('PK250103029', 'BNHN020018', 'CBDBH010', 'CS05', '2025-03-12', N'Huyết áp bình thường', N'Đủ điều kiện tiêm'),
+('PK250103028', 'BNHN020018', 'CBTVH024', 'CS05', '2025-03-05', N'Huyết áp thấp', N'Không đủ điều kiện'),
+('PK250103029', 'BNHN020018', 'CBTTN012', 'CS05', '2025-03-12', N'Huyết áp bình thường', N'Đủ điều kiện tiêm'),
 ('PK250103031', 'BNHN000020', 'CBPVL007', 'CS10', '2025-03-14', N'Cảm cúm nhẹ', N'Không đủ điều kiện'),
 ('PK250103032', 'BNHN000020', 'CBPVL007', 'CS10', '2025-03-21', N'Không còn triệu chứng', N'Đủ điều kiện tiêm'),
 ('PK250103033', 'BNHN990021', 'CBLLP008', 'CS06', '2025-03-11', N'Sốt nhẹ', N'Không đủ điều kiện'),
 ('PK250103034', 'BNHN990021', 'CBLLP008', 'CS06', '2025-03-18', N'Tình trạng tốt', N'Đủ điều kiện tiêm'),
-('PK250103035', 'BNHN030022', 'CBTCT009', 'CS07', '2025-03-20', N'Không có vấn đề sức khỏe', N'Đủ điều kiện tiêm'),
+('PK250103035', 'BNHN030022', 'CBTNN028', 'CS07', '2025-03-20', N'Không có vấn đề sức khỏe', N'Đủ điều kiện tiêm'),
 ('PK250103039', 'BNHN000025', 'CBHBT005', 'CS08', '2025-03-28', N'Triệu chứng nhẹ, cần theo dõi', N'Không đủ điều kiện'),
 ('PK250104040', 'BNHN000025', 'CBHBT005', 'CS08', '2025-04-04', N'Không còn triệu chứng', N'Đủ điều kiện tiêm');
 -- File 3
