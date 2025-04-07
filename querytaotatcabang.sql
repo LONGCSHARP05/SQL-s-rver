@@ -707,13 +707,13 @@ INSERT INTO CHI_TIET_LAN_TIEM (Ma_Lan_Tiem, Ma_Vaccine) VALUES
 
 INSERT INTO PHAN_UNG_SAU_TIEM (Ma_Phan_Ung, Ma_Lan_Tiem, Ten_Phan_Ung, Muc_Do_Phan_Ung, Thoi_Diem_Xay_Ra, Thoi_Diem_Ket_Thuc, Ghi_Chu)
 VALUES
-    ('PU290425MEN312', 'LT250120004', N'Sốt cao', N'Nặng', '2025-04-29 14:00:00', '2025-04-29 18:30:00', N'Đã nhập viện theo dõi'),
-    ('PU220525BVG347', 'LT250122066', N'Nổi mẩn đỏ', N'Trung bình', '2025-05-22 10:15:00', '2025-05-23 08:00:00', N'Dùng thuốc kháng histamin'),
-    ('PU220525ROT453', 'LT250327010', N'Sưng tại chỗ tiêm', N'Nhẹ', '2025-05-22 12:30:00', '2025-05-22 20:00:00', N'Chườm lạnh tại chỗ'),
-    ('PU260525MRN056', 'LT250409007', N'Đau đầu', N'Trung bình', '2025-05-26 16:00:00', '2025-05-27 09:00:00', N'Dùng thuốc giảm đau'),
-    ('PU020625MRN077', 'LT250422016', N'Chóng mặt', N'Nhẹ', '2025-06-02 14:45:00', '2025-06-02 17:30:00', N'Nghỉ ngơi theo dõi'),
-    ('PU120625RVG028', 'LT250510001', N'Nôn ói', N'Nặng', '2025-06-12 18:00:00', '2025-06-13 12:00:00', N'Đã truyền dịch và theo dõi'),
-    ('PU200725RVG368', 'LT250522030', N'Sốt nhẹ', N'Nhẹ', '2025-07-20 09:30:00', null, N'Nghỉ ngơi theo dõi');
+    ('PU290425MEN312', 'LT250120004', N'Sốt cao', N'Nặng', '2025-04-29 14:00', '2025-04-29 18:30', N'Đã nhập viện theo dõi'),
+    ('PU220525BVG347', 'LT250122066', N'Nổi mẩn đỏ', N'Trung bình', '2025-01-22 10:15', '2025-01-22 11:00', N'Dùng thuốc kháng histamin'),
+    ('PU220525ROT453', 'LT250327010', N'Sưng tại chỗ tiêm', N'Nhẹ', '2025-03-27 12:30', '2025-03-27 20:00', N'Chườm lạnh tại chỗ'),
+    ('PU260525MRN056', 'LT250409007', N'Đau đầu', N'Trung bình', '2025-05-26 16:00', '2025-05-27 09:00', N'Dùng thuốc giảm đau'),
+    ('PU020625MRN077', 'LT250422016', N'Chóng mặt', N'Nhẹ', '2025-06-02 14:45', '2025-06-02 17:30', N'Nghỉ ngơi theo dõi'),
+    ('PU120625RVG028', 'LT250510001', N'Nôn ói', N'Nặng', '2025-06-12 18:00', '2025-06-13 12:00', N'Đã truyền dịch và theo dõi'),
+    ('PU200725RVG368', 'LT250522030', N'Sốt nhẹ', N'Nhẹ', '2025-07-20 09:30', null, N'Nghỉ ngơi theo dõi');
 
 
 
