@@ -615,13 +615,12 @@ INSERT INTO LO_VACCINE (Ma_Lo, Ma_Vaccine, So_Lieu_Vaccine_Ban_Dau, Ngay_San_Xua
 
 -- File 1
 INSERT INTO LAN_TIEM (Ma_Lan_Tiem, Ma_Benh_Nhan, Ma_Can_Bo, Ma_Co_So, Ngay_Tiem, Ket_Qua_Tiem) VALUES
-('LT250122066', 'BNHN210039', 'CBDBH010', 'CS05', '2025-01-22', N'Thành công'),
+('LT250122066', 'BNHN210039', 'CBDBH010', 'CS05', '2025-01-22', N'Xảy ra phản ứng'),
 ('LT250425072', 'BNHN210039', 'CBDBH010', 'CS05', '2025-04-25', N'Thành công'),
 ('LT250625016', 'BNHN210039', 'CBDBH010', 'CS05', '2025-06-25', N'Thành công'),
 ('LT250126070', 'BNHN000020', 'CBDBP020', 'CS06', '2025-01-26', N'Thành công'),
-('LT250429038', 'BNHN000020', 'CBDBP020', 'CS06', '2025-04-29', N'Xảy ra phản ứng'),
 ('LT250529013', 'BNHN000020', 'CBDBP020', 'CS06', '2025-05-29', N'Thành công'),
-('LT250327010', 'BNHN990009', 'CBHBT005', 'CS08', '2025-03-27', N'Thành công'),
+('LT250327010', 'BNHN990009', 'CBHBT005', 'CS08', '2025-03-27', N'Xảy ra phản ứng'),
 ('LT250429077', 'BNHN990009', 'CBHBT005', 'CS08', '2025-04-29', N'Thành công'),
 ('LT250120063', 'BNHN980017', 'CBPTH002', 'CS10', '2025-01-20', N'Thành công'),
 ('LT250320102', 'BNHN980017', 'CBPTH002', 'CS10', '2025-03-20', N'Hoãn tiêm'),
@@ -648,20 +647,20 @@ INSERT INTO LAN_TIEM (Ma_Lan_Tiem, Ma_Benh_Nhan, Ma_Can_Bo, Ma_Co_So, Ngay_Tiem,
 ('LT250525041', 'BNHN020018', 'CBPHT025', 'CS08', '2025-05-25', N'Thành công'),
 ('LT250122042', 'BNHN010010', 'CBTCT009', 'CS09', '2025-01-22', N'Thành công'),
 ('LT250524030', 'BNHN010010', 'CBTCT009', 'CS09', '2025-05-24', N'Thành công'),
-('LT250422016', 'BNHN990029', 'CBTCT009', 'CS09', '2025-04-22', N'Thành công'),
+('LT250422016', 'BNHN990029', 'CBTCT009', 'CS09', '2025-04-22', N'Xảy ra phản ứng'),
 ('LT250222035', 'BNHN220040', 'CBPTH002', 'CS10', '2025-02-22', N'Thành công'),
 ('LT250522030', 'BNHN220040', 'CBPTH002', 'CS10', '2025-05-22', N'Xảy ra phản ứng');
 
 -- File 3: LAN_TIEM (Đã gán đủ Ma_Co_So và loại bỏ bản ghi không hợp lệ)
 INSERT INTO LAN_TIEM (Ma_Lan_Tiem, Ma_Benh_Nhan, Ma_Can_Bo, Ma_Co_So, Ngay_Tiem, Ket_Qua_Tiem) VALUES
-('LT250120004', 'BNHN210035', 'CBNVA001', 'CS10', '2025-01-20', N'Thành công'),
+('LT250120004', 'BNHN210035', 'CBNVA001', 'CS10', '2025-01-20', N'Xảy ra phản ứng'),
 ('LT250420033', 'BNHN210035', 'CBNVA001', 'CS10', '2025-04-20', N'Thành công'),
 ('LT250422121', 'BNHN990021', 'CBNVA001', 'CS10', '2025-04-22', N'Thành công'),
 ('LT250124067', 'BNHN180032', 'CBNMC026', 'CS06', '2025-01-24', N'Thành công'),
 ('LT250525044', 'BNHN180032', 'CBNMC026', 'CS06', '2025-05-25', N'Thành công'),
-('LT250409007', 'BNHN020004', 'CBNMC026', 'CS06', '2025-04-09', N'Thành công'),
+('LT250409007', 'BNHN020004', 'CBNMC026', 'CS06', '2025-04-09', N'Xảy ra phản ứng'),
 ('LT250210031', 'BNHN010023', 'CBNTH021', 'CS10', '2025-02-10', N'Thành công'),
-('LT250510001', 'BNHN010023', 'CBNTH021', 'CS10', '2025-05-10', N'Thành công');
+('LT250510001', 'BNHN010023', 'CBNTH021', 'CS10', '2025-05-10', N'Xảy ra phản ứng');
 
 
 INSERT INTO CHI_TIET_LAN_TIEM (Ma_Lan_Tiem, Ma_Vaccine) VALUES
