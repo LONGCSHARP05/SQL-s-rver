@@ -2,6 +2,8 @@ USE UDCSDL
 go
 
 
+
+
 -- Xóa tất cả các khóa ngoại trong cơ sở dữ liệu hiện tại
 DECLARE @sql NVARCHAR(MAX) = N'';
 
@@ -464,6 +466,8 @@ INSERT INTO CAN_BO_CO_SO (Ma_Co_So, Ma_Can_Bo, Chuc_Vu, Ngay_Bat_Dau, Ngay_Ket_T
 ('CS07', 'CBBTA006', N'Y tá', '2023-03-08', NULL),
 ('CS07', 'CBTNN028', N'Bác sĩ', '2023-04-02', NULL),
 ('CS07', 'CBTTD015', N'Nhân viên hành chính', '2023-05-12', NULL),
+('CS07', 'CBNTL034', N'Bác sĩ', '2023-04-02', NULL),
+('CS07', 'CBNTT006', N'Bác sĩ', '2023-04-02', NULL),
 
 -- Trung tâm Y tế Quận Ba Đình (5 cán bộ)
 ('CS05', 'CBTTN012', N'Bác sĩ', '2023-01-05', NULL),
@@ -471,13 +475,33 @@ INSERT INTO CAN_BO_CO_SO (Ma_Co_So, Ma_Can_Bo, Chuc_Vu, Ngay_Bat_Dau, Ngay_Ket_T
 ('CS05', 'CBVTA005', N'Y tá', '2023-03-20', NULL),
 ('CS05', 'CBLHV266', N'Nhân viên hành chính', '2023-04-15', NULL),
 ('CS05', 'CBDBH010', N'Nhân viên hành chính', '2023-02-22', '2024-04-27'),
+('CS05', 'CBNQA011', N'Bác sĩ', '2023-01-05', NULL);
 
+INSERT INTO CAN_BO_CO_SO (Ma_Co_So, Ma_Can_Bo, Chuc_Vu, Ngay_Bat_Dau, Ngay_Ket_Thuc) VALUES
+-- Trung tâm Y tế Quận Ba Đình (5 cán bộ)
+('CS02', 'CBBTA275', N'Bác sĩ', '2023-01-05', NULL),
+('CS02', 'CBBTN039', N'Trưởng khoa', '2023-02-10', NULL),
+('CS02', 'CBDBH019', N'Y tá', '2023-03-20', NULL),
+('CS02', 'CBDBP178', N'Nhân viên hành chính', '2023-04-15', NULL),
+('CS02', 'CBDHA056', N'Nhân viên hành chính', '2023-02-22', '2024-04-27'),
+('CS02', 'CBHBT092', N'Bác sĩ', '2023-01-05', NULL),
+
+-- Trung tâm Y tế Quận Ba Đình (5 cán bộ)
+('CS04', 'CBHNN019', N'Bác sĩ', '2023-01-05', NULL),
+('CS04', 'CBLHD013', N'Trưởng khoa', '2023-02-10', NULL),
+('CS04', 'CBLHV017', N'Y tá', '2023-03-20', NULL),
+('CS04', 'CBLLP081', N'Nhân viên hành chính', '2023-04-15', NULL),
+('CS04', 'CBLLT259', N'Nhân viên hành chính', '2023-02-22', '2024-04-27'),
+('CS04', 'CBLMT231', N'Bác sĩ', '2023-01-05', NULL);
+
+INSERT INTO CAN_BO_CO_SO (Ma_Co_So, Ma_Can_Bo, Chuc_Vu, Ngay_Bat_Dau, Ngay_Ket_Thuc) VALUES
 -- Trung tâm Y tế Quận Đống Đa (5 cán bộ)
 ('CS06', 'CBLLP008', N'Trưởng khoa', '2023-01-15', NULL),
 ('CS06', 'CBLLT027', N'Bác sĩ', '2023-02-25', NULL),
 ('CS06', 'CBLMT045', N'Y tá', '2023-03-12', NULL),
 ('CS06', 'CBBTN094', N'Nhân viên hành chính', '2023-04-10', NULL),
-('CS06', 'CBDBP020', N'Y tá', '2023-03-12', '2023-06-15');
+('CS06', 'CBDBP020', N'Y tá', '2023-03-12', '2023-06-15'),
+('CS06', 'CBNMD250', N'Bác sĩ', '2023-01-05', NULL);
 
 -- Thêm các cán bộ còn thiếu vào bảng CAN_BO_CO_SO
 INSERT INTO CAN_BO_CO_SO (Ma_Co_So, Ma_Can_Bo, Chuc_Vu, Ngay_Bat_Dau, Ngay_Ket_Thuc) VALUES
@@ -490,6 +514,21 @@ INSERT INTO CAN_BO_CO_SO (Ma_Co_So, Ma_Can_Bo, Chuc_Vu, Ngay_Bat_Dau, Ngay_Ket_T
 
 -- Trung tâm Y tế Quận Đống Đa (CS3HN006)
 ('CS06', 'CBNMC026', N'Bác sĩ', '2023-04-05', NULL);
+INSERT INTO CAN_BO_CO_SO (Ma_Co_So, Ma_Can_Bo, Chuc_Vu, Ngay_Bat_Dau, Ngay_Ket_Thuc) VALUES
+--KHO
+('KH01', 'CBNTTH868', N'Trưởng kho', '2023-01-15', NULL),
+('KH01', 'CBPQN115', N'Kế toán', '2023-02-25', NULL),
+('KH01', 'CBPQT022', N'Nhân viên kho', '2023-03-12', NULL),
+('KH01', 'CBPTD194', N'Nhân viên kho', '2023-04-10', NULL),
+('KH01', 'CBPTH129', N'Nhân viên kho', '2023-03-12', '2023-06-15'),
+('KH01', 'CBTMD198', N'Nhân viên kho', '2023-01-05', NULL),
+('KH01', 'CBVTA289', N'Nhân viên kho', '2023-01-05', NULL);
+
+
+
+
+
+
 
 -- code check xem mã cán bộ trong bảng cán bộ cơ sở không trùng với bảng cán bộ y tế
 
@@ -610,167 +649,153 @@ INSERT INTO LO_VACCINE (Ma_Lo, Ma_Vaccine, So_Lieu_Vaccine_Ban_Dau, Ngay_San_Xua
 ('BCG240398', 'VNBGC2305', 145, '2024-03-15', '2027-03-15', N'Viện Vaccine Việt Nam', N'Sẵn sàng sử dụng'),
 ('BCG240349', 'VNBGC2305', 155, '2024-03-20', '2027-03-20', N'Viện Vaccine Việt Nam', N'Sẵn sàng sử dụng');
 
-
--- File 1
-INSERT INTO LAN_TIEM (Ma_Lan_Tiem, Ma_Benh_Nhan, Ma_Can_Bo, Ma_Co_So, Ngay_Tiem, Ket_Qua_Tiem) VALUES
-('LT250122066', 'BNHN210039', 'CBDBH010', 'CS05', '2025-01-22', N'Xảy ra phản ứng'),
-('LT250425072', 'BNHN210039', 'CBDBH010', 'CS05', '2025-04-25', N'Thành công'),
-('LT250625016', 'BNHN210039', 'CBDBH010', 'CS05', '2025-06-25', N'Thành công'),
-('LT250126070', 'BNHN000020', 'CBDBP020', 'CS06', '2025-01-26', N'Thành công'),
-('LT250529013', 'BNHN000020', 'CBDBP020', 'CS06', '2025-05-29', N'Thành công'),
-('LT250327010', 'BNHN990009', 'CBHBT005', 'CS08', '2025-03-27', N'Xảy ra phản ứng'),
-('LT250429077', 'BNHN990009', 'CBHBT005', 'CS08', '2025-04-29', N'Thành công'),
-('LT250120063', 'BNHN980017', 'CBPTH002', 'CS10', '2025-01-20', N'Thành công'),
-('LT250320102', 'BNHN980017', 'CBPTH002', 'CS10', '2025-03-20', N'Hoãn tiêm'),
-('LT250522040', 'BNHN980017', 'CBPTH002', 'CS10', '2025-05-22', N'Thành công'),
-('LT250622020', 'BNHN980017', 'CBPTH002', 'CS10', '2025-06-22', N'Thành công');
-
--- File 2
-INSERT INTO LAN_TIEM (Ma_Lan_Tiem, Ma_Benh_Nhan, Ma_Can_Bo, Ma_Co_So, Ngay_Tiem, Ket_Qua_Tiem) VALUES
-('LT250129005', 'BNHCM000053', 'CBTVH024', 'CS05', '2025-01-29', N'Thành công'),
-('LT250429058', 'BNHCM000053', 'CBTVH024', 'CS05', '2025-04-29', N'Thành công'),
-('LT250422026', 'BNHCM030050', 'CBTTN012', 'CS05', '2025-04-22', N'Thành công'),
-('LT250122041', 'BNHN010010', 'CBTCT009', 'CS09', '2025-01-22', N'Thành công'),
-('LT250524029', 'BNHN010010', 'CBTCT009', 'CS09', '2025-05-24', N'Thành công'),
-('LT250422015', 'BNHN990029', 'CBTCT009', 'CS09', '2025-04-22', N'Thành công'),
-('LT250222034', 'BNHN220040', 'CBPTH002', 'CS10', '2025-02-22', N'Thành công');
-
-
--- File 2: Sửa các mã trùng
-INSERT INTO LAN_TIEM (Ma_Lan_Tiem, Ma_Benh_Nhan, Ma_Can_Bo, Ma_Co_So, Ngay_Tiem, Ket_Qua_Tiem) VALUES
-('LT250129006', 'BNHCM000053', 'CBTVH024', 'CS05', '2025-01-29', N'Thành công'),
-('LT250429059', 'BNHCM000053', 'CBTVH024', 'CS05', '2025-04-29', N'Thành công'),
-('LT250422027', 'BNHCM030050', 'CBTTN012', 'CS05', '2025-04-22', N'Thành công'),
-('LT250224059', 'BNHN020018', 'CBPHT025', 'CS08', '2025-02-24', N'Thành công'),
-('LT250525041', 'BNHN020018', 'CBPHT025', 'CS08', '2025-05-25', N'Thành công'),
-('LT250122042', 'BNHN010010', 'CBTCT009', 'CS09', '2025-01-22', N'Thành công'),
-('LT250524030', 'BNHN010010', 'CBTCT009', 'CS09', '2025-05-24', N'Thành công'),
-('LT250422016', 'BNHN990029', 'CBTCT009', 'CS09', '2025-04-22', N'Xảy ra phản ứng'),
-('LT250222035', 'BNHN220040', 'CBPTH002', 'CS10', '2025-02-22', N'Thành công'),
-('LT250522030', 'BNHN220040', 'CBPTH002', 'CS10', '2025-05-22', N'Xảy ra phản ứng');
-
--- File 3: LAN_TIEM (Đã gán đủ Ma_Co_So và loại bỏ bản ghi không hợp lệ)
-INSERT INTO LAN_TIEM (Ma_Lan_Tiem, Ma_Benh_Nhan, Ma_Can_Bo, Ma_Co_So, Ngay_Tiem, Ket_Qua_Tiem) VALUES
-('LT250120004', 'BNHN210035', 'CBNVA001', 'CS10', '2025-01-20', N'Xảy ra phản ứng'),
-('LT250420033', 'BNHN210035', 'CBNVA001', 'CS10', '2025-04-20', N'Thành công'),
-('LT250422121', 'BNHN990021', 'CBNVA001', 'CS10', '2025-04-22', N'Thành công'),
-('LT250124067', 'BNHN180032', 'CBNMC026', 'CS06', '2025-01-24', N'Thành công'),
-('LT250525044', 'BNHN180032', 'CBNMC026', 'CS06', '2025-05-25', N'Thành công'),
-('LT250409007', 'BNHN020004', 'CBNMC026', 'CS06', '2025-04-09', N'Xảy ra phản ứng'),
-('LT250210031', 'BNHN010023', 'CBNTH021', 'CS10', '2025-02-10', N'Thành công'),
-('LT250510001', 'BNHN010023', 'CBNTH021', 'CS10', '2025-05-10', N'Xảy ra phản ứng');
-
-
-INSERT INTO CHI_TIET_LAN_TIEM (Ma_Lan_Tiem, Ma_Vaccine) VALUES
-('LT250126070', 'USMEN2410'),
-('LT250529013', 'VNPEN2410'),
-('LT250122066', 'VNFVR2311'),
-('LT250425072', 'VNFVR2311'),
-('LT250429077', 'USMRN2310'),
-('LT250224059', 'VNPEN2410'),
-('LT250122041', 'JAPJP2312'),
-('LT250524029', 'JAPJP2312'),
-('LT250422015', 'JPNIP2410'),
-('LT250222034', 'USBVG2412'),
-('LT250120004', 'CHINA2308'),
-('LT250420033', 'CHINA2308'),
-('LT250422121', 'FRAFLU2312'),
-('LT250124067', 'FRDTP2411'),
-('LT250525044', 'FRDTP2411'),
-('LT250409007', 'DEZOS2410'),
-('LT250210031', 'USHPV2410'),
-('LT250510001', 'USHPV2410');
-
-
-INSERT INTO CHI_TIET_LAN_TIEM (Ma_Lan_Tiem, Ma_Vaccine) VALUES
-('LT250625016', 'USMRN2310'),
-('LT250327010', 'VNFVR2311'),
-('LT250525041', 'USMRN2310'),
-('LT250120063', 'USMEN2410'),
-('LT250320102', 'USMEN2410'),
-('LT250522040', 'USMEN2410'),
-('LT250622020', 'USMEN2410'),
-('LT250129005', 'USMEN2410'),
-('LT250429058', 'USMEN2410'),
-('LT250422026', 'USMEN2410'),
-('LT250129006', 'USMEN2410'),
-('LT250429059', 'USMEN2410'),
-('LT250422027', 'USMEN2410'),
-('LT250122042', 'USMEN2410'),
-('LT250524030', 'USMEN2410'),
-('LT250422016', 'USMEN2410'),
-('LT250222035', 'USMEN2410'),
-('LT250522030', 'USMEN2410');
-
-
-INSERT INTO PHAN_UNG_SAU_TIEM (Ma_Phan_Ung, Ma_Lan_Tiem, Ten_Phan_Ung, Muc_Do_Phan_Ung, Thoi_Diem_Xay_Ra, Thoi_Diem_Ket_Thuc, Ghi_Chu)
+DELETE LAN_TIEM
+-- Lần tiêm
+INSERT INTO LAN_TIEM (Ma_Lan_Tiem, Ma_Benh_Nhan, Ma_Co_So, Ma_Can_Bo, Ngay_Tiem, Ket_Qua_Tiem)
 VALUES
-    ('PU290425MEN312', 'LT250120004', N'Sốt cao', N'Nặng', '2025-04-29 14:00', '2025-04-29 18:30', N'Đã nhập viện theo dõi'),
-    ('PU220525BVG347', 'LT250122066', N'Nổi mẩn đỏ', N'Trung bình', '2025-01-22 10:15', '2025-01-22 11:00', N'Dùng thuốc kháng histamin'),
-    ('PU220525ROT453', 'LT250327010', N'Sưng tại chỗ tiêm', N'Nhẹ', '2025-03-27 12:30', '2025-03-27 20:00', N'Chườm lạnh tại chỗ'),
-    ('PU260525MRN056', 'LT250409007', N'Đau đầu', N'Trung bình', '2025-05-26 16:00', '2025-05-27 09:00', N'Dùng thuốc giảm đau'),
-    ('PU020625MRN077', 'LT250422016', N'Chóng mặt', N'Nhẹ', '2025-06-02 14:45', '2025-06-02 17:30', N'Nghỉ ngơi theo dõi'),
-    ('PU120625RVG028', 'LT250510001', N'Nôn ói', N'Nặng', '2025-06-12 18:00', '2025-06-13 12:00', N'Đã truyền dịch và theo dõi'),
-    ('PU200725RVG368', 'LT250522030', N'Sốt nhẹ', N'Nhẹ', '2025-07-20 09:30', null, N'Nghỉ ngơi theo dõi');
+('LT200125639', 'BNHN210035', 'CS02', 'CBDBP178', '2025-01-20', N'Thành công'),
+('LT200125285', 'BNHN980017', 'CS03', 'CBLHD147', '2025-01-20', N'Thành công'),
+('LT220125746', 'BNHN010010', 'CS03', 'CBLNT023', '2025-01-22', N'Thành công'),
+('LT220125457', 'BNHN210039', 'CS04', 'CBLHV017', '2025-01-22', N'Thành công');
+
+INSERT INTO LAN_TIEM (Ma_Lan_Tiem, Ma_Benh_Nhan, Ma_Co_So, Ma_Can_Bo, Ngay_Tiem, Ket_Qua_Tiem)VALUES
+('LT240125935', 'BNHN180032', 'CS05', 'CBTVH024', '2025-01-24', N'Xảy ra phản ứng'),
+('LT260125462', 'BNHN000020', 'CS05', 'CBVTA005', '2025-01-26', N'Xảy ra phản ứng'),
+('LT300125926', 'BNHN970019', 'CS04', 'CBLLP081', '2025-01-30', N'Xảy ra phản ứng'),
+('LT010225916', 'BNHCM000048', 'CS10', 'CBNVA001', '2025-02-01', N'Thành công'),
+('LT010225937', 'BNHN970024', 'CS08', 'CBPHT025', '2025-02-01', N'Thành công'),
+('LT100225749', 'BNHN010023', 'CS05', 'CBTTN012', '2025-02-10', N'Thành công'),
+('LT150225572', 'BNHCM000053', 'CS09', 'CBMVT029', '2025-02-15', N'Thành công'),
+('LT200225624', 'BNHN010003', 'CS02', 'CBBTA275', '2025-02-20', N'Thành công'),
+('LT200225315', 'BNHN970030', 'CS02', 'CBDBP178', '2025-02-20', N'Thành công'),
+('LT220225678', 'BNHN220040', 'CS06', 'CBLMT045', '2025-02-22', N'Thành công'),
+('LT240225384', 'BNHN020018', 'CS06', 'CBLLP008', '2025-02-24', N'Thành công'),
+('LT010325825', 'BNHCM980046', 'CS09', 'CBPTH002', '2025-03-01', N'Thành công'),
+('LT040325796', 'BNHN950013', 'CS02', 'CBHBT092', '2025-03-04', N'Thành công'),
+('LT140325524', 'BNHN030011', 'CS08', 'CBHBT005', '2025-03-14', N'Xảy ra phản ứng'),
+('LT200325794', 'BNHCM020049', 'CS09', 'CBMVT029', '2025-03-20', N'Thành công'),
+('LT200325476', 'BNHN980017', 'CS03', 'CBLNT023', '2025-03-20', N'Xảy ra phản ứng'),
+('LT270325359', 'BNHN990009', 'CS08', 'CBPHT025', '2025-03-27', N'Thành công'),
+('LT010425492', 'BNHN000008', 'CS04', 'CBLLT259', '2025-04-01', N'Thành công'),
+('LT090425826', 'BNHN020004', 'CS05', 'CBDBH010', '2025-04-09', N'Thành công'),
+('LT110425514', 'BNHN920012', 'CS02', 'CBBTA275', '2025-04-11', N'Thành công');
+
+
+INSERT INTO CHI_TIET_LAN_TIEM (Ma_Lan_Tiem, Ma_Vaccine) VALUES
+('LT200125639', 'USBVG2412'),
+('LT200125285', 'JAPJP2312'),
+('LT220125746', 'VNFVR2311'),
+('LT220125457', 'USMRN2310'),
+('LT240125935', 'RUSSP2309'),
+('LT260125462', 'FRDTP2411'),
+('LT300125926', 'USMRN2310'),
+('LT010225916', 'VNBGC2305');
+INSERT INTO CHI_TIET_LAN_TIEM (Ma_Lan_Tiem, Ma_Vaccine) VALUES
+('LT010225937', 'FRDTP2411'),
+('LT100225749', 'VNBGC2305'),
+('LT150225572', 'CHINA2308'),
+('LT200225624', 'USHPV2410'),
+('LT200225315', 'USBVG2412'),
+('LT220225678', 'JPNIP2410'),
+('LT240225384', 'USBVG2412'),
+('LT010325825', 'VNFVR2311'),
+('LT040325796', 'DEZOS2410'),
+('LT140325524', 'USMEN2410'),
+('LT200325794', 'USMRN2306'),
+('LT200325476', 'USBVG2412'),
+('LT270325359', 'USMRN2306'),
+('LT010425492', 'VNBGC2305'),
+('LT090425826', 'USHPV2410'),
+('LT110425514', 'DEZOS2410');
+
+INSERT INTO PHAN_UNG_SAU_TIEM (Ma_Phan_Ung, Ma_Lan_Tiem, Ten_Phan_Ung, Muc_Do_Phan_Ung, Thoi_Diem_Xay_Ra, Thoi_Diem_Ket_Thuc, Ghi_Chu) VALUES
+('PU140325MEN077', 'LT140325524', N'Chóng mặt', N'Nhẹ', '2025-03-20 14:45', '2025-03-20 17:30', N'Nghỉ ngơi theo dõi'),
+('PU200325BVG028', 'LT200325476', N'Nôn ói', N'Nặng', '2025-03-20 18:00', '2025-03-20 12:00', N'Đã truyền dịch và theo dõi'),
+('PU240125SSP368', 'LT240125935', N'Sốt nhẹ', N'Nhẹ', '2025-01-24 09:30', NULL, N'Nghỉ ngơi theo dõi'),
+('PU260125DTP347', 'LT260125462', N'Nổi mẩn đỏ', N'Trung bình', '2025-01-26 10:15', '2025-01-26 11:00', N'Dùng thuốc kháng histamin'),
+('PU300125MRN453', 'LT300125926', N'Sưng tại chỗ tiêm', N'Nhẹ', '2025-01-30 12:30', '2025-01-30 20:00', N'Chườm lạnh tại chỗ');
 
 
 
--- File 1
-INSERT INTO PHIEU_KHAM (Ma_Phieu_Kham, Ma_Benh_Nhan, Ma_Can_Bo, Ma_Co_So, Ngay_Kham, Noi_Dung, Chi_Dinh) VALUES
-('PK250101001', 'BNHN981001', 'CBLTP003', 'CS03', '2025-01-05', N'Khám tổng quát định kỳ', N'Đủ điều kiện tiêm'),
-('PK250101002', 'BNHN990002', 'CBPTH002', 'CS10', '2025-01-12', N'Huyết áp cao, theo dõi thêm', N'Không đủ điều kiện'),
-('PK250101003', 'BNHN990002', 'CBPTH002', 'CS10', '2025-01-19', N'Huyết áp ổn định', N'Đủ điều kiện tiêm'),
-('PK250102005', 'BNHN020004', 'CBHBT005', 'CS08', '2025-02-14', N'Tiền sử dị ứng nhẹ', N'Đủ điều kiện tiêm'),
-('PK250102006', 'BNHN030005', 'CBTVH024', 'CS05', '2025-02-22', N'Đang bị sốt', N'Hủy bỏ'),
-('PK250103007', 'BNHN030005', 'CBTVH024', 'CS05', '2025-03-22', N'Tình trạng sức khỏe ổn định', N'Đủ điều kiện tiêm'),
-('PK250102009', 'BNHN980007', 'CBPVL007', 'CS10', '2025-02-28', N'Huyết áp thấp', N'Không đủ điều kiện'),
-('PK250103010', 'BNHN980007', 'CBPVL007', 'CS10', '2025-03-07', N'Tình trạng cải thiện', N'Đủ điều kiện tiêm'),
-('PK250103011', 'BNHN000008', 'CBLLP008', 'CS06', '2025-03-15', N'Thường xuyên chóng mặt', N'Hủy bỏ'),
-('PK250104012', 'BNHN000008', 'CBLLP008', 'CS06', '2025-04-15', N'Không còn triệu chứng', N'Đủ điều kiện tiêm'),
-('PK250102013', 'BNHN990009', 'CBTCT009', 'CS09', '2025-02-20', N'Triệu chứng ổn định', N'Đủ điều kiện tiêm'),
-('PK250101014', 'BNHN010010', 'CBDBH010', 'CS05', '2025-01-11', N'Cảm cúm nhẹ', N'Hủy bỏ'),
-('PK250102015', 'BNHN010010', 'CBDBH010', 'CS05', '2025-02-11', N'Không còn triệu chứng', N'Đủ điều kiện tiêm'),
-('PK250104020', 'BNHN950013', 'CBHBT005', 'CS08', '2025-04-01', N'Không có triệu chứng bất thường', N'Đủ điều kiện tiêm');
--- File 2
-INSERT INTO PHIEU_KHAM (Ma_Phieu_Kham, Ma_Benh_Nhan, Ma_Can_Bo, Ma_Co_So, Ngay_Kham, Noi_Dung, Chi_Dinh) VALUES
-('PK250103021', 'BNHN000014', 'CBPTH002', 'CS10', '2025-03-10', N'Khám sức khỏe định kỳ', N'Đủ điều kiện tiêm'),
-('PK250103022', 'BNHN010015', 'CBLTP003', 'CS09', '2025-03-15', N'Huyết áp không ổn định', N'Không đủ điều kiện'),
-('PK250103023', 'BNHN010015', 'CBLTP003', 'CS09', '2025-03-22', N'Tình trạng cải thiện', N'Đủ điều kiện tiêm'),
-('PK250102026', 'BNHN980017', 'CBHBT005', 'CS08', '2025-02-14', N'Sốt cao, cần theo dõi', N'Không đủ điều kiện'),
-('PK250103027', 'BNHN980017', 'CBHBT005', 'CS08', '2025-03-02', N'Hạ sốt, sức khỏe tốt', N'Đủ điều kiện tiêm'),
-('PK250103028', 'BNHN020018', 'CBTVH024', 'CS05', '2025-03-05', N'Huyết áp thấp', N'Không đủ điều kiện'),
-('PK250103029', 'BNHN020018', 'CBTTN012', 'CS05', '2025-03-12', N'Huyết áp bình thường', N'Đủ điều kiện tiêm'),
-('PK250103031', 'BNHN000020', 'CBPVL007', 'CS10', '2025-03-14', N'Cảm cúm nhẹ', N'Không đủ điều kiện'),
-('PK250103032', 'BNHN000020', 'CBPVL007', 'CS10', '2025-03-21', N'Không còn triệu chứng', N'Đủ điều kiện tiêm'),
-('PK250103033', 'BNHN990021', 'CBLLP008', 'CS06', '2025-03-11', N'Sốt nhẹ', N'Không đủ điều kiện'),
-('PK250103034', 'BNHN990021', 'CBLLP008', 'CS06', '2025-03-18', N'Tình trạng tốt', N'Đủ điều kiện tiêm'),
-('PK250103035', 'BNHN030022', 'CBTNN028', 'CS07', '2025-03-20', N'Không có vấn đề sức khỏe', N'Đủ điều kiện tiêm'),
-('PK250103039', 'BNHN000025', 'CBHBT005', 'CS08', '2025-03-28', N'Triệu chứng nhẹ, cần theo dõi', N'Không đủ điều kiện'),
-('PK250104040', 'BNHN000025', 'CBHBT005', 'CS08', '2025-04-04', N'Không còn triệu chứng', N'Đủ điều kiện tiêm');
--- File 3
-INSERT INTO PHIEU_KHAM (Ma_Phieu_Kham, Ma_Benh_Nhan, Ma_Can_Bo, Ma_Co_So, Ngay_Kham, Noi_Dung, Chi_Dinh) VALUES
-('PK250103521', 'BNHN020026', 'CBLTP003', 'CS03', '2025-03-10', N'Khám tổng quát định kỳ', N'Đủ điều kiện tiêm'),
-('PK250103522', 'BNHN030027', 'CBPTH002', 'CS10', '2025-03-12', N'Huyết áp không ổn định, theo dõi thêm', N'Không đủ điều kiện'),
-('PK250103523', 'BNHN030027', 'CBPTH002', 'CS10', '2025-03-19', N'Huyết áp ổn định', N'Đủ điều kiện tiêm'),
-('PK250103525', 'BNHN990029', 'CBHBT005', 'CS08', '2025-03-14', N'Tiền sử dị ứng nhẹ', N'Đủ điều kiện tiêm'),
-('PK250103526', 'BNHN970030', 'CBDBH010', 'CS05', '2025-03-11', N'Đang bị sốt', N'Hủy bỏ'),
-('PK250103527', 'BNHN970030', 'CBDBH010', 'CS05', '2025-03-21', N'Tình trạng sức khỏe ổn định', N'Đủ điều kiện tiêm'),
-('PK250103529', 'BNHN180032', 'CBPVL007', 'CS10', '2025-03-18', N'Huyết áp thấp', N'Không đủ điều kiện'),
-('PK250103530', 'BNHN180032', 'CBPVL007', 'CS10', '2025-03-25', N'Tình trạng cải thiện', N'Đủ điều kiện tiêm'),
-('PK250103531', 'BNHN190033', 'CBLLP008', 'CS06', '2025-03-14', N'Thường xuyên chóng mặt', N'Hủy bỏ'),
-('PK250103532', 'BNHN190033', 'CBLLP008', 'CS06', '2025-04-14', N'Không còn triệu chứng', N'Đủ điều kiện tiêm'),
-('PK250103534', 'BNHN210035', 'CBDBH010', 'CS05', '2025-03-11', N'Cảm cúm nhẹ', N'Hủy bỏ'),
-('PK250103535', 'BNHN210035', 'CBDBH010', 'CS05', '2025-03-20', N'Không còn triệu chứng', N'Đủ điều kiện tiêm'),
-('PK250103540', 'BNHN200038', 'CBHBT005', 'CS08', '2025-03-29', N'Không có triệu chứng bất thường', N'Đủ điều kiện tiêm');
--- File 4
-INSERT INTO PHIEU_KHAM (Ma_Phieu_Kham, Ma_Benh_Nhan, Ma_Can_Bo, Ma_Co_So, Ngay_Kham, Noi_Dung, Chi_Dinh) VALUES
-('PK250103221', 'BNHN210039', 'CBLTP003', 'CS03', '2025-03-10', N'Khám tổng quát định kỳ', N'Đủ điều kiện tiêm'),
-('PK250103222', 'BNHN210039', 'CBLTP003', 'CS03', '2025-03-17', N'Huyết áp cao, cần theo dõi', N'Không đủ điều kiện'),
-('PK250103223', 'BNHN220040', 'CBPTH002', 'CS10', '2025-03-05', N'Chóng mặt kéo dài', N'Hủy bỏ'),
-('PK250104224', 'BNHN220040', 'CBPTH002', 'CS10', '2025-04-05', N'Không còn triệu chứng', N'Đủ điều kiện tiêm'),
-('PK250101227', 'BNHN920042', 'CBHBT005', 'CS08', '2025-01-18', N'Cảm cúm nhẹ', N'Hủy bỏ'),
-('PK250102228', 'BNHN920042', 'CBHBT005', 'CS08', '2025-02-18', N'Không còn triệu chứng', N'Đủ điều kiện tiêm'),
-('PK250103229', 'BNHN950043', 'CBDBH010', 'CS05', '2025-03-08', N'Không có triệu chứng bất thường', N'Đủ điều kiện tiêm')--Nhập data cho chi tiết lô
+-- Phiếu khám
+INSERT INTO PHIEU_KHAM (Ma_Phieu_Kham, Ma_Benh_Nhan, Ma_Can_Bo, Ma_Co_So, Ngay_Kham, Noi_Dung, Chi_Dinh)
+VALUES
+('PK110325527', 'BNHN210035', 'CBDBP178', 'CS02', '2025-03-11', N'Huyết áp bình thường', N'Đủ điều kiện tiêm'),
+('PK200325146', 'BNHN210035', 'CBBTN039', 'CS02', '2025-03-20', N'Tình trạng sức khỏe ổn định', N'Đủ điều kiện tiêm'),
+('PK050125483', 'BNHN920012', 'CBBTA275', 'CS02', '2025-01-05', N'Tình trạng sức khỏe ổn định', N'Đủ điều kiện tiêm'),
+('PK010425572', 'BNHN950013', 'CBHBT092', 'CS02', '2025-04-01', N'Không có triệu chứng bất thường', N'Đủ điều kiện tiêm'),
+('PK220225319', 'BNHN950041', 'CBDHA056', 'CS02', '2025-02-22', N'Tình trạng cải thiện', N'Đủ điều kiện tiêm'),
+('PK080325784', 'BNHN950043', 'CBDBH019', 'CS02', '2025-03-08', N'Khám tổng quát định kỳ', N'Đủ điều kiện tiêm'),
+('PK120125364', 'BNHN991234', 'CBBTN039', 'CS02', '2025-01-12', N'Không còn triệu chứng', N'Đủ điều kiện tiêm'),
+('PK110225153', 'BNHN010010', 'CBLTP003', 'CS03', '2025-02-11', N'Huyết áp thấp', N'Không đủ điều kiện'),
+('PK100325426', 'BNHN020026', 'CBNBT018', 'CS03', '2025-03-10', N'Khám sức khỏe định kỳ', N'Đủ điều kiện tiêm'),
+('PK170325719', 'BNHN030016', 'CBMVT029', 'CS03', '2025-03-17', N'Tình trạng tốt', N'Đủ điều kiện tiêm'),
+('PK240325852', 'BNHN030016', 'CBLHD147', 'CS03', '2025-03-24', N'Không còn triệu chứng', N'Đủ điều kiện tiêm'),
+('PK220325739', 'BNHN180036', 'CBLNT023', 'CS03', '2025-03-22', N'Không còn triệu chứng', N'Đủ điều kiện tiêm'),
+('PK300325824', 'BNHN180036', 'CBNBT018', 'CS03', '2025-03-30', N'Không còn triệu chứng', N'Đủ điều kiện tiêm'),
+('PK110325273', 'BNHN970030', 'CBLTP003', 'CS03', '2025-03-11', N'Không có triệu chứng bất thường', N'Đủ điều kiện tiêm'),
+('PK210325685', 'BNHN970030', 'CBNBT018', 'CS03', '2025-03-21', N'Huyết áp ổn định', N'Đủ điều kiện tiêm'),
+('PK150325409', 'BNHN000008', 'CBLLT259', 'CS04', '2025-03-15', N'Khám sức khỏe định kỳ', N'Đủ điều kiện tiêm'),
+('PK250125479', 'BNHN010003', 'CBLHV017', 'CS04', '2025-01-25', N'Khám sức khỏe định kỳ', N'Đủ điều kiện tiêm'),
+('PK130125679', 'BNHN200034', 'CBLLP081', 'CS04', '2025-01-13', N'Huyết áp bình thường', N'Đủ điều kiện tiêm'),
+('PK100325753', 'BNHN210039', 'CBHNN019', 'CS04', '2025-03-10', N'Tình trạng sức khỏe ổn định', N'Đủ điều kiện tiêm'),
+('PK170325862', 'BNHN210039', 'CBLLT259', 'CS04', '2025-03-17', N'Tình trạng sức khỏe ổn định', N'Đủ điều kiện tiêm'),
+('PK220325647', 'BNHN950041', 'CBLLP081', 'CS04', '2025-03-22', N'Thường xuyên chóng mặt', N'Không đủ điều kiện'),
+('PK080325915', 'BNHN970019', 'CBLHV017', 'CS04', '2025-03-08', N'Huyết áp cao, cần theo dõi', N'Không đủ điều kiện'),
+('PK150325568', 'BNHN980028', 'CBLMT231', 'CS04', '2025-03-15', N'Huyết áp ổn định', N'Đủ điều kiện tiêm'),
+('PK140325825', 'BNHN990029', 'CBLLT259', 'CS04', '2025-03-14', N'Hạ sốt, sức khỏe tốt', N'Đủ điều kiện tiêm'),
+('PK110125826', 'BNHN010010', 'CBVTA005', 'CS05', '2025-01-11', N'Không còn triệu chứng', N'Đủ điều kiện tiêm'),
+('PK290325287', 'BNHN010023', 'CBTVH024', 'CS05', '2025-03-29', N'Không còn triệu chứng', N'Đủ điều kiện tiêm'),
+('PK140225369', 'BNHN020004', 'CBDBH010', 'CS05', '2025-02-14', N'Khám tổng quát định kỳ', N'Đủ điều kiện tiêm'),
+('PK220225583', 'BNHN030005', 'CBTTN012', 'CS05', '2025-02-22', N'Huyết áp không ổn định, theo dõi thêm', N'Không đủ điều kiện'),
+('PK220325694', 'BNHN030005', 'CBDBH010', 'CS05', '2025-03-22', N'Khám tổng quát định kỳ', N'Đủ điều kiện tiêm'),
+('PK180325412', 'BNHN180032', 'CBTVH024', 'CS05', '2025-03-18', N'Tiền sử dị ứng nhẹ', N'Đủ điều kiện tiêm'),
+('PK250325685', 'BNHN180032', 'CBVTA005', 'CS05', '2025-03-25', N'Khám tổng quát định kỳ', N'Đủ điều kiện tiêm'),
+('PK160325246', 'BNHN190037', 'CBTTN012', 'CS05', '2025-03-16', N'Triệu chứng ổn định', N'Đủ điều kiện tiêm'),
+('PK280225759', 'BNHN980007', 'CBDBH010', 'CS05', '2025-02-28', N'Huyết áp thấp', N'Không đủ điều kiện'),
+('PK070325821', 'BNHN980007', 'CBVTA005', 'CS05', '2025-03-07', N'Tình trạng sức khỏe ổn định', N'Đủ điều kiện tiêm'),
+('PK140225392', 'BNHN980017', 'CBTVH024', 'CS05', '2025-02-14', N'Tình trạng sức khỏe ổn định', N'Đủ điều kiện tiêm'),
+('PK020325457', 'BNHN980017', 'CBTTN012', 'CS05', '2025-03-02', N'Không còn triệu chứng', N'Đủ điều kiện tiêm'),
+('PK190125385', 'BNHN990002', 'CBVTA005', 'CS05', '2025-01-19', N'Tình trạng cải thiện', N'Đủ điều kiện tiêm'),
+('PK110325593', 'BNHN990021', 'CBTTN012', 'CS05', '2025-03-11', N'Không có triệu chứng bất thường', N'Đủ điều kiện tiêm'),
+('PK180325712', 'BNHN990021', 'CBTVH024', 'CS05', '2025-03-18', N'Huyết áp bình thường', N'Đủ điều kiện tiêm'),
+('PK100325276', 'BNHN000014', 'CBLLP008', 'CS06', '2025-03-10', N'Không còn triệu chứng', N'Đủ điều kiện tiêm'),
+('PK150325762', 'BNHN010015', 'CBLLT027', 'CS06', '2025-03-15', N'Huyết áp không ổn định, theo dõi thêm', N'Không đủ điều kiện'),
+('PK220325498', 'BNHN010015', 'CBNMC026', 'CS06', '2025-03-22', N'Khám tổng quát định kỳ', N'Đủ điều kiện tiêm'),
+('PK050325742', 'BNHN020018', 'CBLMT045', 'CS06', '2025-03-05', N'Sốt nhẹ', N'Không đủ điều kiện'),
+('PK120325247', 'BNHN030027', 'CBDBP020', 'CS06', '2025-03-12', N'Huyết áp thấp', N'Không đủ điều kiện'),
+('PK190325578', 'BNHN030027', 'CBBTN094', 'CS06', '2025-03-19', N'Khám tổng quát định kỳ', N'Đủ điều kiện tiêm'),
+('PK230325518', 'BNHN190037', 'CBLLP008', 'CS06', '2025-03-23', N'Không có triệu chứng bất thường', N'Đủ điều kiện tiêm'),
+('PK040425712', 'BNHN000025', 'CBTTD015', 'CS07', '2025-04-04', N'Không có triệu chứng bất thường', N'Đủ điều kiện tiêm'),
+('PK220325631', 'BNHN010023', 'CBHNN203', 'CS07', '2025-03-22', N'Tình trạng cải thiện', N'Đủ điều kiện tiêm'),
+('PK120325815', 'BNHN020018', 'CBTNN028', 'CS07', '2025-03-12', N'Không có triệu chứng bất thường', N'Đủ điều kiện tiêm'),
+('PK290325382', 'BNHN200038', 'CBTTD015', 'CS07', '2025-03-29', N'Huyết áp bình thường', N'Đủ điều kiện tiêm'),
+('PK050325294', 'BNHN220040', 'CBBTA006', 'CS07', '2025-03-05', N'Không còn triệu chứng', N'Đủ điều kiện tiêm'),
+('PK050425617', 'BNHN220040', 'CBTTD015', 'CS07', '2025-04-05', N'Tình trạng sức khỏe ổn định', N'Đủ điều kiện tiêm'),
+('PK160225428', 'BNHN970006', 'CBTTD015', 'CS07', '2025-02-16', N'Đang bị sốt', N'Không đủ điều kiện'),
+('PK140125935', 'BNHN000020', 'CBPHT025', 'CS08', '2025-01-14', N'Không còn triệu chứng', N'Đủ điều kiện tiêm'),
+('PK210325684', 'BNHN000020', 'CBHBT005', 'CS08', '2025-03-21', N'Đang bị sốt', N'Không đủ điều kiện'),
+('PK120325348', 'BNHN000044', 'CBHBT005', 'CS08', '2025-03-12', N'Tình trạng sức khỏe ổn định', N'Đủ điều kiện tiêm'),
+('PK210325854', 'BNHN010045', 'CBPHT025', 'CS08', '2025-03-21', N'Không có vấn đề sức khỏe', N'Đủ điều kiện tiêm'),
+('PK180325327', 'BNHN030011', 'CBHBT005', 'CS08', '2025-03-18', N'Tiền sử dị ứng nhẹ', N'Đủ điều kiện tiêm'),
+('PK250325468', 'BNHN030011', 'CBPHT025', 'CS08', '2025-03-25', N'Tiền sử dị ứng nhẹ', N'Đủ điều kiện tiêm'),
+('PK200325136', 'BNHN030022', 'CBHBT005', 'CS08', '2025-03-20', N'Khám tổng quát định kỳ', N'Đủ điều kiện tiêm'),
+('PK160325963', 'BNHN170031', 'CBPHT025', 'CS08', '2025-03-16', N'Huyết áp cao, theo dõi thêm', N'Không đủ điều kiện'),
+('PK140325357', 'BNHN190033', 'CBHBT005', 'CS08', '2025-03-14', N'Khám tổng quát định kỳ', N'Đủ điều kiện tiêm'),
+('PK180125726', 'BNHN920042', 'CBHBT005', 'CS08', '2025-01-18', N'Tình trạng sức khỏe ổn định', N'Đủ điều kiện tiêm'),
+('PK180225835', 'BNHN920042', 'CBPHT025', 'CS08', '2025-02-18', N'Không có vấn đề sức khỏe', N'Đủ điều kiện tiêm'),
+('PK250325536', 'BNHN970024', 'CBHBT005', 'CS08', '2025-03-25', N'Huyết áp cao, cần theo dõi', N'Không đủ điều kiện'),
+('PK050125639', 'BNHN981001', 'CBHBT005', 'CS08', '2025-01-05', N'Huyết áp bình thường', N'Đủ điều kiện tiêm'),
+('PK120125724', 'BNHN990002', 'CBPHT025', 'CS08', '2025-01-12', N'Huyết áp bình thường', N'Đủ điều kiện tiêm'),
+('PK200225476', 'BNHN990009', 'CBHBT005', 'CS08', '2025-02-20', N'Huyết áp ổn định', N'Đủ điều kiện tiêm'),
+('PK010225391', 'BNHCM000053', 'CBMVT029', 'CS09', '2025-02-01', N'Tiền sử dị ứng nhẹ', N'Đủ điều kiện tiêm'),
+('PK100225158', 'BNHCM980046', 'CBPTH002', 'CS09', '2025-02-10', N'Huyết áp bình thường', N'Đủ điều kiện tiêm'),
+('PK100125742', 'BNHCM000048', 'CBPTH014', 'CS10', '2025-01-10', N'Khám sức khỏe định kỳ', N'Đủ điều kiện tiêm'),
+('PK050325867', 'BNHCM020049', 'CBPTK016', 'CS10', '2025-03-05', N'Khám sức khỏe định kỳ', N'Đủ điều kiện tiêm'),
+('PK010425623', 'BNHCM030050', 'CBNVA001', 'CS10', '2025-04-01', N'Khám sức khỏe định kỳ', N'Đủ điều kiện tiêm');
+
+
+--Nhập data cho chi tiết lô
 
 INSERT INTO CHI_TIET_LO_VACCINE (Ma_Lo, Ma_Co_So, So_Lieu_Da_Su_Dung, So_Lieu_Ton_Kho, Ngay_Nhap, Ngay_Xuat)  
 VALUES  
@@ -841,480 +866,252 @@ VALUES
 -- Lệnh INSERT dữ liệu vào bảng LICH_HEN (chỉ ngày tháng năm, không giờ phút giây)
 INSERT INTO LICH_HEN (Ma_Lich_Hen, Ma_Co_So, Ma_Benh_Nhan, Ngay_Hen, Ngay_Dat_Lich, Ghi_Chu, Tinh_Trang_Lich)
 VALUES
-('LH050125386', 'CS08', 'BNHN981001', '2025-01-05', '2024-12-26', N'Khám Tiêm', N'Đã xác nhận'),
-('LH050125746', 'CS02', 'BNHN920012', '2025-01-05', '2024-12-28', N'Khám Tiêm', N'Đã xác nhận'),
-('LH110125836', 'CS05', 'BNHN010010', '2025-01-11', '2024-12-07', N'Khám Tiêm', N'Đã xác nhận'),
-('LH120125777', 'CS08', 'BNHN990002', '2025-01-12', '2024-11-24', N'Khám Tiêm', N'Đã xác nhận'),
-('LH120125550', 'CS02', 'BNHN991234', '2025-01-12', '2024-12-18', N'Khám Tiêm', N'Đã xác nhận'),
-('LH130125534', 'CS04', 'BNHN200034', '2025-01-13', '2024-12-05', N'Khám Tiêm', N'Đã xác nhận'),
-('LH180125720', 'CS08', 'BNHN920042', '2025-01-18', '2025-01-06', N'Khám Tiêm', N'Đã xác nhận'),
-('LH190125112', 'CS05', 'BNHN990002', '2025-01-19', '2024-11-29', N'Khám Tiêm', N'Đã xác nhận'),
-('LH200125853', 'CS02', 'BNHN210035', '2025-01-20', '2024-12-22', N'Lịch tiêm vaccine', N'Đã xác nhận'),
-('LH200125850', 'CS03', 'BNHN980017', '2025-01-20', '2024-12-25', N'Lịch tiêm vaccine', N'Đã xác nhận'),
-('LH220125139', 'CS03', 'BNHN010010', '2025-01-22', '2024-12-08', N'Lịch tiêm vaccine', N'Đã xác nhận'),
-('LH220125170', 'CS04', 'BNHN210039', '2025-01-22', '2025-01-07', N'Lịch tiêm vaccine', N'Đã xác nhận'),
-('LH240125262', 'CS05', 'BNHN180032', '2025-01-24', '2024-12-27', N'Lịch tiêm vaccine', N'Đã xác nhận'),
-('LH250125376', 'CS04', 'BNHN010003', '2025-01-25', '2024-12-15', N'Khám Tiêm', N'Đã xác nhận'),
-('LH260125807', 'CS05', 'BNHN000020', '2025-01-26', '2024-12-12', N'Lịch tiêm vaccine', N'Đã xác nhận'),
-('LH290125280', 'CS10', 'BNHCM000053', '2025-01-29', '2025-01-02', N'Lịch tiêm vaccine', N'Đã xác nhận'),
-('LH300125414', 'CS04', 'BNHN970019', '2025-01-30', '2024-12-07', N'Lịch tiêm vaccine', N'Đã xác nhận'),
-('LH010225208', 'CS09', 'BNHCM020049', '2025-02-01', '2024-12-17', N'Lịch tiêm vaccine', N'Đã xác nhận'),
-('LH010225141', 'CS08', 'BNHN970024', '2025-02-01', '2024-12-28', N'Lịch tiêm vaccine', N'Đã xác nhận'),
-('LH100225286', 'CS05', 'BNHN010023', '2025-02-10', '2025-01-21', N'Lịch tiêm vaccine', N'Đã xác nhận'),
-('LH110225268', 'CS03', 'BNHN010010', '2025-02-11', '2025-01-16', N'Khám Tiêm', N'Đã xác nhận'),
-('LH140225719', 'CS05', 'BNHN980017', '2025-02-14', '2025-01-15', N'Khám Tiêm', N'Đã xác nhận'),
-('LH140225786', 'CS05', 'BNHN020004', '2025-02-14', '2024-12-30', N'Khám Tiêm', N'Đã xác nhận'),
-('LH150225572', 'CS10', 'BNHCM990054', '2025-02-15', '2025-01-08', N'Khám Tiêm', N'Đã xác nhận'),
-('LH160225347', 'CS07', 'BNHN970006', '2025-02-16', '2025-01-09', N'Khám Tiêm', N'Đã xác nhận'),
-('LH180225492', 'CS08', 'BNHN920042', '2025-02-18', '2025-01-17', N'Khám Tiêm', N'Đã xác nhận'),
-('LH200225302', 'CS09', 'BNHCM020049', '2025-02-20', '2025-01-08', N'Khám Tiêm', N'Đã xác nhận');
-
-INSERT INTO LICH_HEN (Ma_Lich_Hen, Ma_Co_So, Ma_Benh_Nhan, Ngay_Hen, Ngay_Dat_Lich, Ghi_Chu, Tinh_Trang_Lich)
-VALUES
-('LH200225895', 'CS08', 'BNHN990009', '2025-02-20', '2025-01-05', N'Khám Tiêm', N'Đã xác nhận'),
-('LH200225172', 'CS02', 'BNHN010003', '2025-02-20', '2025-01-01', N'Lịch tiêm vaccine', N'Đã xác nhận'),
-('LH200225523', 'CS02', 'BNHN970030', '2025-02-20', '2025-01-26', N'Lịch tiêm vaccine', N'Đã xác nhận'),
-('LH220225536', 'CS06', 'BNHN220040', '2025-02-22', '2025-01-22', N'Lịch tiêm vaccine', N'Đã xác nhận'),
-('LH220225617', 'CS02', 'BNHN950041', '2025-02-22', '2024-12-29', N'Khám Tiêm', N'Đã xác nhận'),
-('LH220225595', 'CS05', 'BNHN030005', '2025-02-22', '2024-12-28', N'Khám Tiêm', N'Đã xác nhận'),
-('LH240225660', 'CS06', 'BNHN020018', '2025-02-24', '2024-12-27', N'Lịch tiêm vaccine', N'Đã xác nhận'),
-('LH280225316', 'CS05', 'BNHN980007', '2025-02-28', '2025-02-10', N'Khám Tiêm', N'Đã xác nhận'),
-('LH010325949', 'CS09', 'BNHCM980046', '2025-03-01', '2025-02-15', N'Lịch tiêm vaccine', N'Đã xác nhận'),
-('LH020325334', 'CS05', 'BNHN980017', '2025-03-02', '2025-02-22', N'Khám Tiêm', N'Đã xác nhận'),
-('LH040325180', 'CS02', 'BNHN950013', '2025-03-04', '2025-01-18', N'Lịch tiêm vaccine', N'Đã xác nhận'),
-('LH050325416', 'CS06', 'BNHN020018', '2025-03-05', '2025-02-26', N'Khám Tiêm', N'Đã xác nhận'),
-('LH050325655', 'CS07', 'BNHN220040', '2025-03-05', '2025-02-15', N'Khám Tiêm', N'Đã xác nhận'),
-('LH070325318', 'CS05', 'BNHN980007', '2025-03-07', '2025-02-11', N'Khám Tiêm', N'Đã xác nhận'),
-('LH080325352', 'CS04', 'BNHN970019', '2025-03-08', '2025-02-19', N'Khám Tiêm', N'Đã xác nhận'),
-('LH080325313', 'CS02', 'BNHN950043', '2025-03-08', '2025-01-21', N'Khám Tiêm', N'Đã xác nhận'),
-('LH100325686', 'CS04', 'BNHN210039', '2025-03-10', '2025-02-14', N'Khám Tiêm', N'Đã xác nhận'),
-('LH100325819', 'CS03', 'BNHN020026', '2025-03-10', '2025-02-23', N'Khám Tiêm', N'Đã xác nhận'),
-('LH100325659', 'CS10', 'BNHCM020049', '2025-03-10', '2025-02-02', N'Khám Tiêm', N'Đã xác nhận'),
-('LH100325206', 'CS06', 'BNHN000014', '2025-03-10', '2025-01-25', N'Khám Tiêm', N'Đã xác nhận'),
-('LH110325599', 'CS05', 'BNHN990021', '2025-03-11', '2025-02-25', N'Khám Tiêm', N'Đã xác nhận'),
-('LH110325737', 'CS02', 'BNHN210035', '2025-03-11', '2025-02-19', N'Khám Tiêm', N'Đã xác nhận'),
-('LH110325398', 'CS03', 'BNHN970030', '2025-03-11', '2025-01-11', N'Khám Tiêm', N'Đã xác nhận'),
-('LH120325429', 'CS06', 'BNHN030027', '2025-03-12', '2025-01-16', N'Khám Tiêm', N'Đã xác nhận'),
-('LH120325830', 'CS08', 'BNHN000044', '2025-03-12', '2025-02-27', N'Khám Tiêm', N'Đã xác nhận'),
-('LH120325488', 'CS07', 'BNHN020018', '2025-03-12', '2025-03-04', N'Khám Tiêm', N'Đã xác nhận'),
-('LH140325301', 'CS08', 'BNHN000020', '2025-03-14', '2025-03-05', N'Khám Tiêm', N'Đã xác nhận'),
-('LH140325874', 'CS08', 'BNHN190033', '2025-03-14', '2025-02-01', N'Khám Tiêm', N'Đã xác nhận'),
-('LH140325826', 'CS04', 'BNHN990029', '2025-03-14', '2025-02-01', N'Khám Tiêm', N'Đã xác nhận'),
-('LH140325486', 'CS10', 'BNHCM000048', '2025-03-14', '2025-01-18', N'Lịch tiêm vaccine', N'Đã xác nhận'),
-('LH140325416', 'CS08', 'BNHN030011', '2025-03-14', '2025-02-28', N'Lịch tiêm vaccine', N'Đã xác nhận'),
-('LH150325251', 'CS10', 'BNHCM990054', '2025-03-15', '2025-02-01', N'Khám Tiêm', N'Đã xác nhận'),
-('LH150325469', 'CS09', 'BNHCM980046', '2025-03-15', '2025-02-11', N'Khám Tiêm', N'Đã xác nhận'),
-('LH150325306', 'CS04', 'BNHN980028', '2025-03-15', '2025-02-09', N'Khám Tiêm', N'Đã xác nhận'),
-('LH150325562', 'CS06', 'BNHN010015', '2025-03-15', '2025-01-28', N'Khám Tiêm', N'Đã xác nhận'),
-('LH150325442', 'CS04', 'BNHN000008', '2025-03-15', '2025-01-19', N'Khám Tiêm', N'Đã xác nhận'),
-('LH160325228', 'CS08', 'BNHN170031', '2025-03-16', '2025-02-17', N'Khám Tiêm', N'Đã xác nhận'),
-('LH160325340', 'CS05', 'BNHN190037', '2025-03-16', '2025-02-06', N'Khám Tiêm', N'Đã xác nhận'),
-('LH170325375', 'CS04', 'BNHN210039', '2025-03-17', '2025-02-14', N'Khám Tiêm', N'Đã xác nhận'),
-('LH170325454', 'CS03', 'BNHN030016', '2025-03-17', '2025-03-05', N'Khám Tiêm', N'Đã xác nhận'),
-('LH180325894', 'CS08', 'BNHN030011', '2025-03-18', '2025-01-26', N'Khám Tiêm', N'Đã xác nhận'),
-('LH180325266', 'CS05', 'BNHN990021', '2025-03-18', '2025-02-28', N'Khám Tiêm', N'Đã xác nhận'),
-('LH180325205', 'CS05', 'BNHN180032', '2025-03-18', '2025-02-28', N'Khám Tiêm', N'Đã xác nhận'),
-('LH190325872', 'CS06', 'BNHN030027', '2025-03-19', '2025-02-21', N'Khám Tiêm', N'Đã xác nhận'),
-('LH200325692', 'CS02', 'BNHN210035', '2025-03-20', '2025-01-30', N'Khám Tiêm', N'Đã xác nhận'),
-('LH200325279', 'CS08', 'BNHN030022', '2025-03-20', '2025-02-15', N'Khám Tiêm', N'Đã xác nhận'),
-('LH200325320', 'CS03', 'BNHN980017', '2025-03-20', '2025-02-18', N'Lịch tiêm vaccine', N'Đã xác nhận'),
-('LH210325595', 'CS08', 'BNHN000020', '2025-03-21', '2025-01-24', N'Khám Tiêm', N'Đã xác nhận'),
-('LH210325608', 'CS08', 'BNHN010045', '2025-03-21', '2025-03-14', N'Khám Tiêm', N'Đã xác nhận');
-INSERT INTO LICH_HEN (Ma_Lich_Hen, Ma_Co_So, Ma_Benh_Nhan, Ngay_Hen, Ngay_Dat_Lich, Ghi_Chu, Tinh_Trang_Lich)
-VALUES
-('LH210325260', 'CS03', 'BNHN970030', '2025-03-21', '2025-03-09', N'Khám Tiêm', N'Đã xác nhận'),
-('LH220325422', 'CS04', 'BNHN950041', '2025-03-22', '2025-01-22', N'Khám Tiêm', N'Đã xác nhận'),
-('LH220325576', 'CS10', 'BNHCM000048', '2025-03-22', '2025-03-01', N'Khám Tiêm', N'Đã xác nhận'),
-('LH220325773', 'CS03', 'BNHN180036', '2025-03-22', '2025-02-09', N'Khám Tiêm', N'Đã xác nhận'),
-('LH220325210', 'CS07', 'BNHN010023', '2025-03-22', '2025-02-22', N'Khám Tiêm', N'Đã xác nhận'),
-('LH220325627', 'CS06', 'BNHN010015', '2025-03-22', '2025-03-03', N'Khám Tiêm', N'Đã xác nhận'),
-('LH220325245', 'CS05', 'BNHN030005', '2025-03-22', '2025-02-01', N'Khám Tiêm', N'Đã xác nhận'),
-('LH230325180', 'CS06', 'BNHN190037', '2025-03-23', '2025-03-14', N'Khám Tiêm', N'Đã xác nhận'),
-('LH230325393', 'CS09', 'BNHCM000053', '2025-03-23', '2025-02-22', N'Khám Tiêm', N'Đã xác nhận'),
-('LH240325455', 'CS03', 'BNHN030016', '2025-03-24', '2025-03-08', N'Khám Tiêm', N'Đã xác nhận'),
-('LH250325883', 'CS08', 'BNHN030011', '2025-03-25', '2025-01-29', N'Khám Tiêm', N'Đã xác nhận'),
-('LH250325198', 'CS10', 'BNHCM970051', '2025-03-25', '2025-01-25', N'Khám Tiêm', N'Đã xác nhận'),
-('LH250325121', 'CS08', 'BNHN970024', '2025-03-25', '2025-02-05', N'Khám Tiêm', N'Đã xác nhận'),
-('LH250325863', 'CS05', 'BNHN180032', '2025-03-25', '2025-03-03', N'Khám Tiêm', N'Đã xác nhận'),
-('LH270325277', 'CS08', 'BNHN990009', '2025-03-27', '2025-03-07', N'Lịch tiêm vaccine', N'Đã gửi mail'),
-('LH280325208', 'CS07', 'BNHN000025', '2025-03-28', '2025-03-13', N'Khám Tiêm', N'Đã gửi mail'),
-('LH280325818', 'CS10', 'BNHCM980052', '2025-03-28', '2025-02-01', N'Khám Tiêm', N'Đã gửi mail'),
-('LH290325123', 'CS07', 'BNHN200038', '2025-03-29', '2025-02-16', N'Khám Tiêm', N'Đã gửi mail'),
-('LH290325339', 'CS05', 'BNHN010023', '2025-03-29', '2025-03-15', N'Khám Tiêm', N'Đã gửi mail'),
-('LH300325940', 'CS03', 'BNHN180036', '2025-03-30', '2025-03-15', N'Khám Tiêm', N'Đang chờ'),
-('LH300325665', 'CS09', 'BNHCM010055', '2025-03-30', '2025-02-03', N'Khám Tiêm', N'Đang chờ'),
-('LH010425294', 'CS10', 'BNHCM990054', '2025-04-01', '2025-02-14', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH010425206', 'CS09', 'BNHCM980046', '2025-04-01', '2025-02-24', N'Khám Tiêm', N'Đang chờ'),
-('LH010425774', 'CS02', 'BNHN950013', '2025-04-01', '2025-02-06', N'Khám Tiêm', N'Đang chờ'),
-('LH040425342', 'CS07', 'BNHN000025', '2025-04-04', '2025-03-10', N'Khám Tiêm', N'Đang chờ'),
-('LH050425519', 'CS07', 'BNHN220040', '2025-04-05', '2025-03-26', N'Khám Tiêm', N'Đang chờ'),
-('LH050425634', 'CS10', 'BNHCM030050', '2025-04-05', '2025-03-20', N'Khám Tiêm', N'Đang chờ'),
-('LH050425502', 'CS10', 'BNHCM970051', '2025-04-05', '2025-03-11', N'Khám Tiêm', N'Đang chờ'),
-('LH080425862', 'CS10', 'BNHCM980052', '2025-04-08', '2025-02-11', N'Khám Tiêm', N'Đang chờ'),
-('LH080425833', 'CS09', 'BNHCM990047', '2025-04-08', '2025-03-30', N'Khám Tiêm', N'Đang chờ'),
-('LH090425370', 'CS05', 'BNHN020004', '2025-04-09', '2025-03-17', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH100425522', 'CS09', 'BNHCM010055', '2025-04-10', '2025-03-05', N'Khám Tiêm', N'Đang chờ'),
-('LH110425108', 'CS02', 'BNHN920012', '2025-04-11', '2025-03-21', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH140425622', 'CS08', 'BNHN190033', '2025-04-14', '2025-03-11', N'Khám Tiêm', N'Đang chờ'),
-('LH150425493', 'CS04', 'BNHN000008', '2025-04-15', '2025-04-05', N'Khám Tiêm', N'Đang chờ'),
-('LH150425491', 'CS09', 'BNHCM980046', '2025-04-15', '2025-03-27', N'Khám Tiêm', N'Đang chờ'),
-('LH190425797', 'CS08', 'BNHN000044', '2025-04-19', '2025-03-27', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH200425494', 'CS02', 'BNHN210035', '2025-04-20', '2025-03-18', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH200425481', 'CS03', 'BNHN170031', '2025-04-20', '2025-04-06', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH210425640', 'CS08', 'BNHN190037', '2025-04-21', '2025-03-06', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH220425491', 'CS04', 'BNHN990029', '2025-04-22', '2025-02-27', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH220425179', 'CS10', 'BNHCM030050', '2025-04-22', '2025-03-21', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH220425971', 'CS08', 'BNHN920042', '2025-04-22', '2025-03-10', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH220425594', 'CS03', 'BNHN990021', '2025-04-22', '2025-04-07', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH220425458', 'CS08', 'BNHN950041', '2025-04-22', '2025-03-08', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH220425990', 'CS03', 'BNHN000014', '2025-04-22', '2025-03-15', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH230425615', 'CS03', 'BNHN030016', '2025-04-23', '2025-02-22', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH240425433', 'CS05', 'BNHN980007', '2025-04-24', '2025-03-14', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH250425642', 'CS04', 'BNHN210039', '2025-04-25', '2025-03-15', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH250425946', 'CS06', 'BNHN030027', '2025-04-25', '2025-03-25', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH260425188', 'CS10', 'BNHCM980052', '2025-04-26', '2025-03-05', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH270425540', 'CS02', 'BNHN000025', '2025-04-27', '2025-03-12', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH270425703', 'CS08', 'BNHN030022', '2025-04-27', '2025-04-14', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH280425789', 'CS04', 'BNHN981001', '2025-04-28', '2025-03-27', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH290425661', 'CS05', 'BNHN000020', '2025-04-29', '2025-04-05', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH290425336', 'CS10', 'BNHCM000053', '2025-04-29', '2025-03-13', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH290425998', 'CS08', 'BNHN990009', '2025-04-29', '2025-03-14', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH300425375', 'CS08', 'BNHN190033', '2025-04-30', '2025-04-22', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH010525307', 'CS04', 'BNHN000008', '2025-05-01', '2025-04-06', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH030525665', 'CS09', 'BNHCM020049', '2025-05-03', '2025-04-05', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH030525230', 'CS04', 'BNHN200034', '2025-05-03', '2025-03-06', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH040525563', 'CS02', 'BNHN950043', '2025-05-04', '2025-04-10', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH060525668', 'CS09', 'BNHCM990047', '2025-05-06', '2025-03-28', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH060525150', 'CS03', 'BNHN030005', '2025-05-06', '2025-04-07', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH090525469', 'CS09', 'BNHCM010055', '2025-05-09', '2025-04-30', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH100525680', 'CS02', 'BNHN010023', '2025-05-10', '2025-03-22', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH100525176', 'CS02', 'BNHN991234', '2025-05-10', '2025-03-18', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH110525459', 'CS03', 'BNHN020026', '2025-05-11', '2025-04-15', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH120525139', 'CS04', 'BNHN010015', '2025-05-12', '2025-05-01', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH130525414', 'CS02', 'BNHN200038', '2025-05-13', '2025-03-31', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH140525976', 'CS04', 'BNHN010045', '2025-05-14', '2025-03-20', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH220525909', 'CS07', 'BNHN220040', '2025-05-22', '2025-05-12', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH220525675', 'CS03', 'BNHN980017', '2025-05-22', '2025-04-08', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH220525161', 'CS08', 'BNHN920042', '2025-05-22', '2025-04-06', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH220525754', 'CS02', 'BNHN950041', '2025-05-22', '2025-04-22', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH240525313', 'CS03', 'BNHN010010', '2025-05-24', '2025-05-08', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH240525682', 'CS08', 'BNHN030011', '2025-05-24', '2025-05-10', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH250525752', 'CS06', 'BNHN020018', '2025-05-25', '2025-04-13', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH250525316', 'CS04', 'BNHN180032', '2025-05-25', '2025-04-02', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH260525589', 'CS10', 'BNHCM980052', '2025-05-26', '2025-04-15', N'Lịch tiêm vaccine', N'Đang chờ')
-INSERT INTO LICH_HEN (Ma_Lich_Hen, Ma_Co_So, Ma_Benh_Nhan, Ngay_Hen, Ngay_Dat_Lich, Ghi_Chu, Tinh_Trang_Lich)
-VALUES
-('LH260525472', 'CS02', 'BNHN000025', '2025-05-26', '2025-03-28', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH270525790', 'CS08', 'BNHN030022', '2025-05-27', '2025-05-01', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH290525529', 'CS05', 'BNHN000020', '2025-05-29', '2025-05-07', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH290525372', 'CS03', 'BNHN970030', '2025-05-29', '2025-05-03', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH300525402', 'CS04', 'BNHN970019', '2025-05-30', '2025-05-16', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH020625600', 'CS09', 'BNHCM980046', '2025-06-02', '2025-04-20', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH030625876', 'CS04', 'BNHN200034', '2025-06-03', '2025-04-21', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH050625701', 'CS03', 'BNHN030005', '2025-06-05', '2025-05-11', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH070625128', 'CS04', 'BNHN950013', '2025-06-07', '2025-05-29', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH080625347', 'CS08', 'BNHN970024', '2025-06-08', '2025-04-25', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH100625388', 'CS04', 'BNHN991234', '2025-06-10', '2025-05-26', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH120625631', 'CS03', 'BNHN010015', '2025-06-12', '2025-06-05', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH220625649', 'CS03', 'BNHN980017', '2025-06-22', '2025-04-28', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH220625399', 'CS08', 'BNHN920042', '2025-06-22', '2025-05-07', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH220625281', 'CS02', 'BNHN010003', '2025-06-22', '2025-04-23', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH220625940', 'CS02', 'BNHN950041', '2025-06-22', '2025-06-02', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH220625355', 'CS03', 'BNHN000014', '2025-06-22', '2025-06-09', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH250625573', 'CS04', 'BNHN210039', '2025-06-25', '2025-05-18', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH260625529', 'CS10', 'BNHCM980052', '2025-06-26', '2025-06-18', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH260625757', 'CS08', 'BNHN000025', '2025-06-26', '2025-05-18', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH290625314', 'CS03', 'BNHN970030', '2025-06-29', '2025-05-19', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH020725850', 'CS10', 'BNHCM980046', '2025-07-02', '2025-05-07', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH070725744', 'CS04', 'BNHN950013', '2025-07-07', '2025-06-22', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH190725614', 'CS03', 'BNHN010015', '2025-07-19', '2025-06-22', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH200725596', 'CS03', 'BNHN170031', '2025-07-20', '2025-05-25', N'Lịch tiêm vaccine', N'Đang chờ'),
-('LH210925980', 'CS02', 'BNHN200038', '2025-09-21', '2025-08-30', N'Lịch tiêm vaccine', N'Đang chờ');
+('LH250105738', 'CS02', 'BNHN920012', '2025-01-05', '2024-12-28', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250105778', 'CS08', 'BNHN981001', '2025-01-05', '2024-12-26', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250110285', 'CS10', 'BNHCM000048', '2025-01-10', '2024-12-20', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250111429', 'CS05', 'BNHN010010', '2025-01-11', '2024-12-07', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250112980', 'CS08', 'BNHN990002', '2025-01-12', '2024-11-24', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250112192', 'CS02', 'BNHN991234', '2025-01-12', '2024-12-18', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250113021', 'CS04', 'BNHN200034', '2025-01-13', '2024-12-05', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250314492', 'CS08', 'BNHN000020', '2025-01-14', '2025-03-05', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250118940', 'CS08', 'BNHN920042', '2025-01-18', '2025-01-06', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250119081', 'CS05', 'BNHN990002', '2025-01-19', '2024-11-29', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250120526', 'CS02', 'BNHN210035', '2025-01-20', '2024-12-22', N'Lịch tiêm vaccine', N'Đã xác nhận'),
+('LH250120273', 'CS03', 'BNHN980017', '2025-01-20', '2024-12-25', N'Lịch tiêm vaccine', N'Đã xác nhận'),
+('LH250122631', 'CS03', 'BNHN010010', '2025-01-22', '2024-12-08', N'Lịch tiêm vaccine', N'Đã xác nhận'),
+('LH250122031', 'CS04', 'BNHN210039', '2025-01-22', '2025-01-07', N'Lịch tiêm vaccine', N'Đã xác nhận'),
+('LH250124708', 'CS05', 'BNHN180032', '2025-01-24', '2024-12-27', N'Lịch tiêm vaccine', N'Đã xác nhận'),
+('LH250125638', 'CS04', 'BNHN010003', '2025-01-25', '2024-12-15', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250126794', 'CS05', 'BNHN000020', '2025-01-26', '2024-12-12', N'Lịch tiêm vaccine', N'Đã xác nhận'),
+('LH250130758', 'CS04', 'BNHN970019', '2025-01-30', '2024-12-07', N'Lịch tiêm vaccine', N'Đã xác nhận'),
+('LH250201893', 'CS09', 'BNHCM000053', '2025-02-01', '2025-01-05', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250201736', 'CS10', 'BNHCM000048', '2025-02-01', '2025-01-15', N'Lịch tiêm vaccine', N'Đã xác nhận'),
+('LH250201960', 'CS08', 'BNHN970024', '2025-02-01', '2024-12-28', N'Lịch tiêm vaccine', N'Đã xác nhận'),
+('LH250210663', 'CS09', 'BNHCM980046', '2025-02-10', '2025-01-20', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250210438', 'CS05', 'BNHN010023', '2025-02-10', '2025-01-21', N'Lịch tiêm vaccine', N'Đã xác nhận'),
+('LH250211530', 'CS03', 'BNHN010010', '2025-02-11', '2025-01-16', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250214245', 'CS05', 'BNHN020004', '2025-02-14', '2024-12-30', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250214172', 'CS05', 'BNHN980017', '2025-02-14', '2025-01-15', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250215642', 'CS09', 'BNHCM000053', '2025-02-15', '2025-02-05', N'Lịch tiêm vaccine', N'Đã xác nhận'),
+('LH250216556', 'CS07', 'BNHN970006', '2025-02-16', '2025-01-09', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250218041', 'CS08', 'BNHN920042', '2025-02-18', '2025-01-17', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250220182', 'CS08', 'BNHN990009', '2025-02-20', '2025-01-05', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250220846', 'CS02', 'BNHN010003', '2025-02-20', '2025-01-01', N'Lịch tiêm vaccine', N'Đã xác nhận'),
+('LH250220364', 'CS02', 'BNHN970030', '2025-02-20', '2025-01-26', N'Lịch tiêm vaccine', N'Đã xác nhận'),
+('LH250222354', 'CS05', 'BNHN030005', '2025-02-22', '2024-12-28', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250222849', 'CS02', 'BNHN950041', '2025-02-22', '2024-12-29', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250222536', 'CS06', 'BNHN220040', '2025-02-22', '2025-01-22', N'Lịch tiêm vaccine', N'Đã xác nhận'),
+('LH250224548', 'CS06', 'BNHN020018', '2025-02-24', '2024-12-27', N'Lịch tiêm vaccine', N'Đã xác nhận'),
+('LH250228970', 'CS05', 'BNHN980007', '2025-02-28', '2025-02-10', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250301824', 'CS09', 'BNHCM980046', '2025-03-01', '2025-02-15', N'Lịch tiêm vaccine', N'Đã xác nhận'),
+('LH250302071', 'CS05', 'BNHN980017', '2025-03-02', '2025-02-22', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250304546', 'CS02', 'BNHN950013', '2025-03-04', '2025-01-18', N'Lịch tiêm vaccine', N'Đã xác nhận'),
+('LH250305127', 'CS10', 'BNHCM020049', '2025-03-05', '2025-02-10', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250305346', 'CS06', 'BNHN020018', '2025-03-05', '2025-02-26', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250305334', 'CS07', 'BNHN220040', '2025-03-05', '2025-02-15', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250307768', 'CS05', 'BNHN980007', '2025-03-07', '2025-02-11', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250308455', 'CS02', 'BNHN950043', '2025-03-08', '2025-01-21', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250308657', 'CS04', 'BNHN970019', '2025-03-08', '2025-02-19', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250110284', 'CS06', 'BNHN000014', '2025-03-10', '2025-01-25', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250310750', 'CS03', 'BNHN020026', '2025-03-10', '2025-02-23', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250310829', 'CS04', 'BNHN210039', '2025-03-10', '2025-02-14', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250311425', 'CS02', 'BNHN210035', '2025-03-11', '2025-02-19', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250311263', 'CS03', 'BNHN970030', '2025-03-11', '2025-01-11', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250311485', 'CS05', 'BNHN990021', '2025-03-11', '2025-02-25', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250312724', 'CS08', 'BNHN000044', '2025-03-12', '2025-02-27', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250312447', 'CS07', 'BNHN020018', '2025-03-12', '2025-03-04', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250312566', 'CS06', 'BNHN030027', '2025-03-12', '2025-01-16', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250314213', 'CS08', 'BNHN190033', '2025-03-14', '2025-02-01', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250314788', 'CS04', 'BNHN990029', '2025-03-14', '2025-02-01', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250314556', 'CS08', 'BNHN030011', '2025-03-14', '2025-02-28', N'Lịch tiêm vaccine', N'Đã xác nhận'),
+('LH250315925', 'CS04', 'BNHN000008', '2025-03-15', '2025-03-01', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250315135', 'CS06', 'BNHN010015', '2025-03-15', '2025-01-28', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250315677', 'CS04', 'BNHN980028', '2025-03-15', '2025-02-09', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250316869', 'CS08', 'BNHN170031', '2025-03-16', '2025-02-17', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250316516', 'CS05', 'BNHN190037', '2025-03-16', '2025-02-06', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250317960', 'CS03', 'BNHN030016', '2025-03-17', '2025-03-05', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250317930', 'CS04', 'BNHN210039', '2025-03-17', '2025-02-14', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250318657', 'CS08', 'BNHN030011', '2025-03-18', '2025-01-26', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250318607', 'CS05', 'BNHN180032', '2025-03-18', '2025-02-28', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250318586', 'CS05', 'BNHN990021', '2025-03-18', '2025-02-28', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250319667', 'CS06', 'BNHN030027', '2025-03-19', '2025-02-21', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250320263', 'CS08', 'BNHN030022', '2025-03-20', '2025-02-15', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250320627', 'CS02', 'BNHN210035', '2025-03-20', '2025-01-30', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250320486', 'CS09', 'BNHCM020049', '2025-03-20', '2025-03-10', N'Lịch tiêm vaccine', N'Đã xác nhận'),
+('LH250320374', 'CS03', 'BNHN980017', '2025-03-20', '2025-02-18', N'Lịch tiêm vaccine', N'Đã xác nhận'),
+('LH250321683', 'CS08', 'BNHN000020', '2025-03-21', '2025-01-24', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250321943', 'CS08', 'BNHN010045', '2025-03-21', '2025-03-14', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250321465', 'CS03', 'BNHN970030', '2025-03-21', '2025-03-09', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250322337', 'CS06', 'BNHN010015', '2025-03-22', '2025-03-03', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250322640', 'CS07', 'BNHN010023', '2025-03-22', '2025-02-22', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250322455', 'CS05', 'BNHN030005', '2025-03-22', '2025-02-01', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250322011', 'CS03', 'BNHN180036', '2025-03-22', '2025-02-09', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250322950', 'CS04', 'BNHN950041', '2025-03-22', '2025-01-22', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250323718', 'CS06', 'BNHN190037', '2025-03-23', '2025-03-14', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250324162', 'CS03', 'BNHN030016', '2025-03-24', '2025-03-08', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250325859', 'CS08', 'BNHN030011', '2025-03-25', '2025-01-29', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250325809', 'CS05', 'BNHN180032', '2025-03-25', '2025-03-03', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250325162', 'CS08', 'BNHN970024', '2025-03-25', '2025-02-05', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250327283', 'CS08', 'BNHN990009', '2025-03-27', '2025-03-07', N'Lịch tiêm vaccine', N'Đã xác nhận'),
+('LH250329741', 'CS05', 'BNHN010023', '2025-03-29', '2025-03-15', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250329324', 'CS07', 'BNHN200038', '2025-03-29', '2025-02-16', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250330112', 'CS03', 'BNHN180036', '2025-03-30', '2025-03-15', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250401752', 'CS10', 'BNHCM030050', '2025-04-01', '2025-03-15', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250401445', 'CS02', 'BNHN950013', '2025-04-01', '2025-02-06', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250401238', 'CS04', 'BNHN000008', '2025-04-01', '2025-03-20', N'Lịch tiêm vaccine', N'Đã xác nhận'),
+('LH250404237', 'CS07', 'BNHN000025', '2025-04-04', '2025-03-10', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250405435', 'CS07', 'BNHN220040', '2025-04-05', '2025-03-26', N'Khám Tiêm', N'Đã xác nhận'),
+('LH250409144', 'CS05', 'BNHN020004', '2025-04-09', '2025-03-17', N'Lịch tiêm vaccine', N'Đã gửi mail'),
+('LH250411839', 'CS02', 'BNHN920012', '2025-04-11', '2025-03-21', N'Lịch tiêm vaccine', N'Đã gửi mail'),
+('LH250414314', 'CS08', 'BNHN190033', '2025-04-14', '2025-03-11', N'Khám Tiêm', N'Đang chờ'),
+('LH250415329', 'CS10', 'BNHCM030050', '2025-04-15', '2025-04-05', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250419735', 'CS08', 'BNHN000044', '2025-04-19', '2025-03-27', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250420970', 'CS03', 'BNHN170031', '2025-04-20', '2025-04-06', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250420728', 'CS02', 'BNHN210035', '2025-04-20', '2025-03-18', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250421617', 'CS08', 'BNHN190037', '2025-04-21', '2025-03-06', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250322157', 'CS03', 'BNHN000014', '2025-04-22', '2025-03-15', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250422142', 'CS08', 'BNHN920042', '2025-04-22', '2025-03-10', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250422051', 'CS08', 'BNHN950041', '2025-04-22', '2025-03-08', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250422687', 'CS03', 'BNHN990021', '2025-04-22', '2025-04-07', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250422889', 'CS04', 'BNHN990029', '2025-04-22', '2025-02-27', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250423061', 'CS03', 'BNHN030016', '2025-04-23', '2025-02-22', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250424869', 'CS05', 'BNHN980007', '2025-04-24', '2025-03-14', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250425768', 'CS06', 'BNHN030027', '2025-04-25', '2025-03-25', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250425132', 'CS04', 'BNHN210039', '2025-04-25', '2025-03-15', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250427862', 'CS02', 'BNHN000025', '2025-04-27', '2025-03-12', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250427364', 'CS08', 'BNHN030022', '2025-04-27', '2025-04-14', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250428879', 'CS04', 'BNHN981001', '2025-04-28', '2025-03-27', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250429825', 'CS05', 'BNHN000020', '2025-04-29', '2025-04-05', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250429384', 'CS08', 'BNHN990009', '2025-04-29', '2025-03-14', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250430415', 'CS08', 'BNHN190033', '2025-04-30', '2025-04-22', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250503819', 'CS04', 'BNHN200034', '2025-05-03', '2025-03-06', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250404354', 'CS02', 'BNHN950043', '2025-05-04', '2025-04-10', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250505188', 'CS09', 'BNHCM010055', '2025-05-05', '2025-04-01', N'Khám Tiêm', N'Đang chờ'),
+('LH250506153', 'CS03', 'BNHN030005', '2025-05-06', '2025-04-07', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250510539', 'CS02', 'BNHN010023', '2025-05-10', '2025-03-22', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250510990', 'CS02', 'BNHN991234', '2025-05-10', '2025-03-18', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250511851', 'CS03', 'BNHN020026', '2025-05-11', '2025-04-15', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250512833', 'CS04', 'BNHN010015', '2025-05-12', '2025-05-01', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250513122', 'CS02', 'BNHN200038', '2025-05-13', '2025-03-31', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250514842', 'CS04', 'BNHN010045', '2025-05-14', '2025-03-20', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250519477', 'CS09', 'BNHCM010055', '2025-05-19', '2025-05-10', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250520913', 'CS07', 'BNHN000025', '2025-05-20', '2025-03-13', N'Khám Tiêm', N'Đang chờ'),
+('LH250522637', 'CS07', 'BNHN220040', '2025-05-22', '2025-05-12', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250522243', 'CS08', 'BNHN920042', '2025-05-22', '2025-04-06', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250522152', 'CS02', 'BNHN950041', '2025-05-22', '2025-04-22', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250522475', 'CS03', 'BNHN980017', '2025-05-22', '2025-04-08', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250524732', 'CS03', 'BNHN010010', '2025-05-24', '2025-05-08', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250524758', 'CS08', 'BNHN030011', '2025-05-24', '2025-05-10', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250525649', 'CS06', 'BNHN020018', '2025-05-25', '2025-04-13', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250525910', 'CS04', 'BNHN180032', '2025-05-25', '2025-04-02', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250526148', 'CS02', 'BNHN000025', '2025-05-26', '2025-03-28', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250527465', 'CS08', 'BNHN030022', '2025-05-27', '2025-05-01', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250529916', 'CS05', 'BNHN000020', '2025-05-29', '2025-05-07', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250529566', 'CS03', 'BNHN970030', '2025-05-29', '2025-05-03', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250530859', 'CS04', 'BNHN970019', '2025-05-30', '2025-05-16', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250603920', 'CS04', 'BNHN200034', '2025-06-03', '2025-04-21', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250605952', 'CS03', 'BNHN030005', '2025-06-05', '2025-05-11', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250607647', 'CS04', 'BNHN950013', '2025-06-07', '2025-05-29', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250608061', 'CS08', 'BNHN970024', '2025-06-08', '2025-04-25', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250610091', 'CS04', 'BNHN991234', '2025-06-10', '2025-05-26', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250612934', 'CS03', 'BNHN010015', '2025-06-12', '2025-06-05', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250622368', 'CS03', 'BNHN000014', '2025-06-22', '2025-06-09', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250622957', 'CS02', 'BNHN010003', '2025-06-22', '2025-04-23', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250622344', 'CS08', 'BNHN920042', '2025-06-22', '2025-05-07', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250622253', 'CS02', 'BNHN950041', '2025-06-22', '2025-06-02', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250622576', 'CS03', 'BNHN980017', '2025-06-22', '2025-04-28', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250625233', 'CS04', 'BNHN210039', '2025-06-25', '2025-05-18', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250626759', 'CS08', 'BNHN000025', '2025-06-26', '2025-05-18', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250629667', 'CS03', 'BNHN970030', '2025-06-29', '2025-05-19', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250707748', 'CS04', 'BNHN950013', '2025-07-07', '2025-06-22', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250719236', 'CS03', 'BNHN010015', '2025-07-19', '2025-06-22', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250717596', 'CS03', 'BNHN170031', '2025-07-20', '2025-05-25', N'Lịch tiêm vaccine', N'Đang chờ'),
+('LH250921223', 'CS02', 'BNHN200038', '2025-09-21', '2025-08-30', N'Lịch tiêm vaccine', N'Đang chờ');
 
 
 INSERT INTO CHI_TIET_LICH_HEN (Ma_Lich_Hen, Ma_Vaccine) VALUES
--- Lịch hẹn ngày 2025-01-05
-('LH050125386', 'USMEN2410'), -- Không trùng, chọn ngẫu nhiên
-('LH050125746', 'VNPEN2410'), -- Không trùng, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-01-11
-('LH110125836', 'VNFVR2311'), -- Không trùng, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-01-12
-('LH120125777', 'USBVG2412'), -- Không trùng, chọn ngẫu nhiên
-('LH120125550', 'USMRN2310'), -- Không trùng, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-01-13
-('LH130125534', 'JAPJP2312'), -- Không trùng, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-01-18
-('LH180125720', 'JPNIP2410'), -- Không trùng, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-01-19
-('LH190125112', 'CHINA2308'), -- Không trùng, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-01-20 (trùng với LT250120063, LT250120004)
-('LH200125853', 'FRAFLU2312'), -- Trùng ngày, chọn ngẫu nhiên
-('LH200125850', 'FRDTP2411'),  -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-01-22 (trùng với LT250122041, LT250122066)
-('LH220125139', 'DEZOS2410'), -- Trùng ngày, chọn ngẫu nhiên
-('LH220125170', 'USHPV2410'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-01-24 (trùng với LT250124067)
-('LH240125262', 'USMEN2410'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-01-25
-('LH250125376', 'VNPEN2410'), -- Không trùng, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-01-26 (trùng với LT250126070)
-('LH260125807', 'VNFVR2311'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-01-29 (trùng với LT250129005)
-('LH290125280', 'USBVG2412'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-01-30
-('LH300125414', 'USMRN2310'), -- Không trùng, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-02-01 (trùng với LT250201011, LT250201938)
-('LH010225208', 'JAPJP2312'), -- Trùng ngày, chọn ngẫu nhiên
-('LH010225141', 'JPNIP2410'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-02-10 (trùng với LT250210031)
-('LH100225286', 'CHINA2308'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-02-11
-('LH110225268', 'FRAFLU2312'), -- Không trùng, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-02-14
-('LH140225719', 'FRDTP2411'), -- Không trùng, chọn ngẫu nhiên
-('LH140225786', 'DEZOS2410'), -- Không trùng, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-02-15
-('LH150225572', 'USHPV2410'), -- Không trùng, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-02-16
-('LH160225347', 'USMEN2410'), -- Không trùng, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-02-18
-('LH180225492', 'VNPEN2410'), -- Không trùng, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-02-20 (trùng với LT250220039, LT250220231)
-('LH200225302', 'VNFVR2311'), -- Trùng ngày, chọn ngẫu nhiên
-('LH200225895', 'USBVG2412'), -- Trùng ngày, chọn ngẫu nhiên
-('LH200225172', 'USMRN2310'), -- Trùng ngày, chọn ngẫu nhiên
-('LH200225523', 'JAPJP2312'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-02-22 (trùng với LT250222034)
-('LH220225536', 'JPNIP2410'), -- Trùng ngày, chọn ngẫu nhiên
-('LH220225617', 'CHINA2308'), -- Trùng ngày, chọn ngẫu nhiên
-('LH220225595', 'FRAFLU2312'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-02-24 (trùng với LT250224059)
-('LH240225660', 'FRDTP2411'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-02-28
-('LH280225316', 'DEZOS2410'), -- Không trùng, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-03-01 (trùng với LT250301871)
-('LH010325949', 'USHPV2410'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-03-02
-('LH020325334', 'USMEN2410'), -- Không trùng, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-03-04 (trùng với LT250304198)
-('LH040325180', 'VNPEN2410'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-03-05
-('LH050325416', 'VNFVR2311'), -- Không trùng, chọn ngẫu nhiên
-('LH050325655', 'USBVG2412'), -- Không trùng, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-03-07
-('LH070325318', 'USMRN2310'), -- Không trùng, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-03-08
-('LH080325352', 'JAPJP2312'), -- Không trùng, chọn ngẫu nhiên
-('LH080325313', 'JPNIP2410'), -- Không trùng, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-03-10
-('LH100325686', 'CHINA2308'), -- Không trùng, chọn ngẫu nhiên
-('LH100325819', 'FRAFLU2312'), -- Không trùng, chọn ngẫu nhiên
-('LH100325659', 'FRDTP2411'), -- Không trùng, chọn ngẫu nhiên
-('LH100325206', 'DEZOS2410'), -- Không trùng, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-03-11
-('LH110325599', 'USHPV2410'), -- Không trùng, chọn ngẫu nhiên
-('LH110325737', 'USMEN2410'), -- Không trùng, chọn ngẫu nhiên
-('LH110325398', 'VNPEN2410'), -- Không trùng, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-03-12
-('LH120325429', 'VNFVR2311'), -- Không trùng, chọn ngẫu nhiên
-('LH120325830', 'USBVG2412'), -- Không trùng, chọn ngẫu nhiên
-('LH120325488', 'USMRN2310'), -- Không trùng, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-03-14 (trùng với LT250314101, LT250314361)
-('LH140325301', 'JAPJP2312'), -- Trùng ngày, chọn ngẫu nhiên
-('LH140325874', 'JPNIP2410'), -- Trùng ngày, chọn ngẫu nhiên
-('LH140325826', 'CHINA2308'), -- Trùng ngày, chọn ngẫu nhiên
-('LH140325486', 'FRAFLU2312'), -- Trùng ngày, chọn ngẫu nhiên
-('LH140325416', 'FRDTP2411'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-03-15
-('LH150325251', 'DEZOS2410'), -- Không trùng, chọn ngẫu nhiên
-('LH150325469', 'USHPV2410'), -- Không trùng, chọn ngẫu nhiên
-('LH150325306', 'USMEN2410'), -- Không trùng, chọn ngẫu nhiên
-('LH150325562', 'VNPEN2410'), -- Không trùng, chọn ngẫu nhiên
-('LH150325442', 'VNFVR2311'), -- Không trùng, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-03-16
-('LH160325228', 'USBVG2412'), -- Không trùng, chọn ngẫu nhiên
-('LH160325340', 'USMRN2310'), -- Không trùng, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-03-17
-('LH170325375', 'JAPJP2312'), -- Không trùng, chọn ngẫu nhiên
-('LH170325454', 'JPNIP2410'), -- Không trùng, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-03-18
-('LH180325894', 'CHINA2308'), -- Không trùng, chọn ngẫu nhiên
-('LH180325266', 'FRAFLU2312'), -- Không trùng, chọn ngẫu nhiên
-('LH180325205', 'FRDTP2411'), -- Không trùng, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-03-19
-('LH190325872', 'DEZOS2410'), -- Không trùng, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-03-20 (trùng với LT250320102)
-('LH200325692', 'USHPV2410'), -- Trùng ngày, chọn ngẫu nhiên
-('LH200325279', 'USMEN2410'), -- Trùng ngày, chọn ngẫu nhiên
-('LH200325320', 'VNPEN2410'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-03-21
-('LH210325595', 'VNFVR2311'), -- Không trùng, chọn ngẫu nhiên
-('LH210325608', 'USBVG2412'), -- Không trùng, chọn ngẫu nhiên
-('LH210325260', 'USMRN2310'), -- Không trùng, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-03-22 (không trùng lần tiêm nào)
-('LH220325422', 'JAPJP2312'), -- Không trùng, chọn ngẫu nhiên
-('LH220325576', 'JPNIP2410'), -- Không trùng, chọn ngẫu nhiên
-('LH220325773', 'CHINA2308'), -- Không trùng, chọn ngẫu nhiên
-('LH220325210', 'FRAFLU2312'), -- Không trùng, chọn ngẫu nhiên
-('LH220325627', 'FRDTP2411'), -- Không trùng, chọn ngẫu nhiên
-('LH220325245', 'DEZOS2410'), -- Không trùng, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-03-23
-('LH230325180', 'USHPV2410'), -- Không trùng, chọn ngẫu nhiên
-('LH230325393', 'USMEN2410'), -- Không trùng, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-03-24
-('LH240325455', 'VNPEN2410'), -- Không trùng, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-03-25
-('LH250325883', 'VNFVR2311'), -- Không trùng, chọn ngẫu nhiên
-('LH250325198', 'USBVG2412'), -- Không trùng, chọn ngẫu nhiên
-('LH250325121', 'USMRN2310'), -- Không trùng, chọn ngẫu nhiên
-('LH250325863', 'JAPJP2312'), -- Không trùng, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-03-27
-('LH270325277', 'JPNIP2410'), -- Không trùng, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-03-28
-('LH280325208', 'CHINA2308'), -- Không trùng, chọn ngẫu nhiên
-('LH280325818', 'FRAFLU2312'), -- Không trùng, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-03-29
-('LH290325123', 'FRDTP2411'), -- Không trùng, chọn ngẫu nhiên
-('LH290325339', 'DEZOS2410'), -- Không trùng, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-03-30
-('LH300325940', 'USHPV2410'), -- Không trùng, chọn ngẫu nhiên
-('LH300325665', 'USMEN2410'), -- Không trùng, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-04-01 (trùng với LT250401071)
-('LH010425294', 'VNPEN2410'), -- Trùng ngày, chọn ngẫu nhiên
-('LH010425206', 'VNFVR2311'), -- Trùng ngày, chọn ngẫu nhiên
-('LH010425774', 'USBVG2412'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-04-04
-('LH040425342', 'USMRN2310'), -- Không trùng, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-04-05
-('LH050425519', 'JAPJP2312'), -- Không trùng, chọn ngẫu nhiên
-('LH050425634', 'JPNIP2410'), -- Không trùng, chọn ngẫu nhiên
-('LH050425502', 'CHINA2308'), -- Không trùng, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-04-08
-('LH080425862', 'FRAFLU2312'), -- Không trùng, chọn ngẫu nhiên
-('LH080425833', 'FRDTP2411'), -- Không trùng, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-04-09 (trùng với LT250409007)
-('LH090425370', 'DEZOS2410'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-04-10
-('LH100425522', 'USHPV2410'), -- Không trùng, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-04-11 (trùng với LT250411001)
-('LH110425108', 'USMEN2410'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-04-14
-('LH140425622', 'VNPEN2410'), -- Không trùng, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-04-15
-('LH150425493', 'VNFVR2311'), -- Không trùng, chọn ngẫu nhiên
-('LH150425491', 'USBVG2412'), -- Không trùng, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-04-19 (trùng với LT250419001)
-('LH190425797', 'USMRN2310'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-04-20 (trùng với LT250420033, LT250420441)
-('LH200425494', 'JAPJP2312'), -- Trùng ngày, chọn ngẫu nhiên
-('LH200425481', 'JPNIP2410'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-04-21
-('LH210425640', 'CHINA2308'), -- Không trùng, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-04-22 (trùng với LT250422111, LT250422121, LT250422015, LT250422026, LT250422231, LT250422349)
-('LH220425491', 'FRAFLU2312'), -- Trùng ngày, chọn ngẫu nhiên
-('LH220425179', 'FRDTP2411'), -- Trùng ngày, chọn ngẫu nhiên
-('LH220425971', 'DEZOS2410'), -- Trùng ngày, chọn ngẫu nhiên
-('LH220425594', 'USHPV2410'), -- Trùng ngày, chọn ngẫu nhiên
-('LH220425458', 'USMEN2410'), -- Trùng ngày, chọn ngẫu nhiên
-('LH220425990', 'VNPEN2410'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-04-23
-('LH230425615', 'VNFVR2311'), -- Không trùng, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-04-24 (trùng với LT250424012)
-('LH240425433', 'USBVG2412'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-04-25 (trùng với LT250425501, LT250425072)
-('LH250425642', 'USMRN2310'), -- Trùng ngày, chọn ngẫu nhiên
-('LH250425946', 'JAPJP2312'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-04-26
-('LH260425188', 'JPNIP2410'), -- Không trùng, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-04-27 (trùng với LT250427341, LT250427881)
-('LH270425540', 'CHINA2308'), -- Trùng ngày, chọn ngẫu nhiên
-('LH270425703', 'FRAFLU2312'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-04-28 (trùng với LT250428451)
-('LH280425789', 'FRDTP2411'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-04-29 (trùng với LT250429038, LT250429058, LT250429077)
-('LH290425661', 'DEZOS2410'), -- Trùng ngày, chọn ngẫu nhiên
-('LH290425336', 'USHPV2410'), -- Trùng ngày, chọn ngẫu nhiên
-('LH290425998', 'USMEN2410'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-04-30 (trùng với LT250430009)
-('LH300425375', 'VNPEN2410'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-05-01 (trùng với LT250501024)
-('LH010525307', 'VNFVR2311'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-05-03 (trùng với LT250503033, LT250503067)
-('LH030525665', 'USBVG2412'), -- Trùng ngày, chọn ngẫu nhiên
-('LH030525230', 'USMRN2310'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-05-04 (trùng với LT250504356)
-('LH040525563', 'JAPJP2312'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-05-06 (trùng với LT250506509, LT250506046)
-('LH060525668', 'JPNIP2410'), -- Trùng ngày, chọn ngẫu nhiên
-('LH060525150', 'CHINA2308'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-05-09 (trùng với LT250509039)
-('LH090525469', 'FRAFLU2312'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-05-10 (trùng với LT250510048, LT250510001)
-('LH100525680', 'FRDTP2411'), -- Trùng ngày, chọn ngẫu nhiên
-('LH100525176', 'DEZOS2410'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-05-11 (trùng với LT250511023)
-('LH110525459', 'USHPV2410'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-05-12 (trùng với LT250512468)
-('LH120525139', 'USMEN2410'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-05-13 (trùng với LT250513046)
-('LH130525414', 'VNPEN2410'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-05-14 (trùng với LT250514231)
-('LH140525976', 'VNFVR2311'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-05-22 (trùng với LT250522040, LT250522029, LT250522092, LT250522339)
-('LH220525909', 'USBVG2412'), -- Trùng ngày, chọn ngẫu nhiên
-('LH220525675', 'USMRN2310'), -- Trùng ngày, chọn ngẫu nhiên
-('LH220525161', 'JAPJP2312'), -- Trùng ngày, chọn ngẫu nhiên
-('LH220525754', 'JPNIP2410'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-05-24 (trùng với LT250524029, LT250524056)
-('LH240525313', 'CHINA2308'), -- Trùng ngày, chọn ngẫu nhiên
-('LH240525682', 'FRAFLU2312'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-05-25 (trùng với LT250525041, LT250525044)
-('LH250525752', 'FRDTP2411'), -- Trùng ngày, chọn ngẫu nhiên
-('LH250525316', 'DEZOS2410'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-05-26 (trùng với LT250526034, LT250526002)
-('LH260525589', 'USHPV2410'), -- Trùng ngày, chọn ngẫu nhiên
-('LH260525472', 'USMEN2410'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-05-27 (trùng với LT250527642)
-('LH270525790', 'VNPEN2410'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-05-29 (trùng với LT250529013, LT250529092)
-('LH290525529', 'VNFVR2311'), -- Trùng ngày, chọn ngẫu nhiên
-('LH290525372', 'USBVG2412'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-05-30 (trùng với LT250530572)
-('LH300525402', 'USMRN2310'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-06-02 (trùng với LT250602772)
-('LH020625600', 'JAPJP2312'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-06-03 (trùng với LT250603035)
-('LH030625876', 'JPNIP2410'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-06-05 (trùng với LT250605342)
-('LH050625701', 'CHINA2308'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-06-07 (trùng với LT250607023)
-('LH070625128', 'FRAFLU2312'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-06-08 (trùng với LT250608034)
-('LH080625347', 'FRDTP2411'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-06-10 (trùng với LT250610023)
-('LH100625388', 'DEZOS2410'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-06-12 (trùng với LT250612023)
-('LH120625631', 'USHPV2410'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-06-22 (trùng với LT250622020, LT250622073, LT250622136, LT250622463, LT250622667)
-('LH220625649', 'USMEN2410'), -- Trùng ngày, chọn ngẫu nhiên
-('LH220625399', 'VNPEN2410'), -- Trùng ngày, chọn ngẫu nhiên
-('LH220625281', 'VNFVR2311'), -- Trùng ngày, chọn ngẫu nhiên
-('LH220625940', 'USBVG2412'), -- Trùng ngày, chọn ngẫu nhiên
-('LH220625355', 'USMRN2310'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-06-25 (trùng với LT250625016)
-('LH250625573', 'JAPJP2312'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-06-26 (trùng với LT250626095, LT250626003)
-('LH260625529', 'JPNIP2410'), -- Trùng ngày, chọn ngẫu nhiên
-('LH260625757', 'CHINA2308'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-06-29 (trùng với LT250629403)
-('LH290625314', 'FRAFLU2312'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-07-02 (trùng với LT250702343)
-('LH020725850', 'FRDTP2411'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-07-07 (trùng với LT250707064)
-('LH070725744', 'DEZOS2410'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-07-19 (trùng với LT250719053)
-('LH190725614', 'USHPV2410'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-07-20 (trùng với LT250720009)
-('LH200725596', 'USMEN2410'), -- Trùng ngày, chọn ngẫu nhiên
--- Lịch hẹn ngày 2025-09-21 (trùng với LT250921042)
-('LH210925980', 'VNPEN2410'); -- Trùng ngày, chọn ngẫu nhiên
+('LH250201736', 'VNBGC2305'),
+('LH250201960', 'FRDTP2411'),
+('LH250301824', 'VNFVR2311'),
+('LH250401238', 'VNBGC2305'),
+('LH250503819', 'USHPV2410'),
+('LH250603920', 'USHPV2410'),
+('LH250304546', 'DEZOS2410'),
+('LH250404354', 'DEZOS2410'),
+('LH250605952', 'VNFVR2311'),
+('LH250506153', 'VNFVR2311'),
+('LH250607647', 'USHPV2410'),
+('LH250707748', 'USHPV2410'),
+('LH250608061', 'FRDTP2411'),
+('LH250409144', 'USHPV2410'),
+('LH250210438', 'VNBGC2305'),
+('LH250510539', 'JAPJP2312'),
+('LH250510990', 'DEZOS2410'),
+('LH250610091', 'USMRN2310'),
+('LH250411839', 'DEZOS2410'),
+('LH250511851', 'RUSSP2309'),
+('LH250512833', 'VNBGC2305'),
+('LH250612934', 'RUSSP2309'),
+('LH250513122', 'USMRN2310'),
+('LH250314556', 'USMEN2410'),
+('LH250514842', 'USMEN2410'),
+('LH250215642', 'CHINA2308'),
+('LH250415329', 'JPNIP2410'),
+('LH250419735', 'VNBGC2305'),
+('LH250519477', 'GBADV2307'),
+('LH250719236', 'RUSSP2309'),
+('LH250120273', 'JAPJP2312'),
+('LH250120526', 'USBVG2412'),
+('LH250220364', 'USBVG2412'),
+('LH250220846', 'USHPV2410'),
+('LH250320374', 'USBVG2412'),
+('LH250320486', 'USMRN2306'),
+('LH250420970', 'USBVG2412'),
+('LH250420728', 'USBVG2412'),
+('LH250717596', 'USBVG2412'),
+('LH250421617', 'USMEN2410'),
+('LH250921223', 'USBVG2412'),
+('LH250122031', 'USMRN2310'),
+('LH250122631', 'VNFVR2311'),
+('LH250222536', 'JPNIP2410'),
+('LH250322157', 'RUSSP2309'),
+('LH250422687', 'CHTYP2410'),
+('LH250422142', 'FRDTP2411'),
+('LH250422889', 'VNBGC2305'),
+('LH250422051', 'VNBGC2305'),
+('LH250522475', 'USBVG2412'),
+('LH250522152', 'USMRN2310'),
+('LH250522243', 'FRDTP2411'),
+('LH250522637', 'RUSSP2309'),
+('LH250622957', 'USHPV2410'),
+('LH250622253', 'USMRN2310'),
+('LH250622368', 'RUSSP2309'),
+('LH250622344', 'FRDTP2411'),
+('LH250622576', 'USBVG2412'),
+('LH250423061', 'VNRVG2413'),
+('LH250124708', 'RUSSP2309'),
+('LH250224548', 'USBVG2412'),
+('LH250424869', 'FRDTP2411'),
+('LH250524732', 'VNFVR2311'),
+('LH250524758', 'USMEN2410'),
+('LH250425132', 'VNBGC2305'),
+('LH250425768', 'VNFVR2311'),
+('LH250525649', 'USBVG2412'),
+('LH250525910', 'VNBGC2305'),
+('LH250625233', 'USMRN2310'),
+('LH250126794', 'FRDTP2411'),
+('LH250526148', 'USMRN2306'),
+('LH250626759', 'USMRN2306'),
+('LH250327283', 'USMRN2306'),
+('LH250427364', 'FRDTP2411'),
+('LH250427862', 'VNBGC2305'),
+('LH250527465', 'FRDTP2411'),
+('LH250428879', 'VNBGC2305'),
+('LH250429384', 'USMRN2306'),
+('LH250429825', 'FRDTP2411'),
+('LH250529916', 'FRDTP2411'),
+('LH250529566', 'USBVG2412'),
+('LH250629667', 'USBVG2412'),
+('LH250130758', 'USMRN2310'),
+('LH250430415', 'USMRN2306'),
+('LH250530859', 'USMRN2310');
